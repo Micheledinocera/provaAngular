@@ -1,0 +1,29 @@
+.demo-tab-content {
+    padding: 16px;
+}
+
+.ittweb-tabset{
+    left:50%;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.nb-theme-default nb-route-tabset ul li a::before {
+    background: #306ccc;
+}
+
+ul[_ngcontent-c4] li[_ngcontent-c4] a[_ngcontent-c4]{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+ul[_ngcontent-c4] li[_ngcontent-c4] {
+    padding-right: 5%;
+}
+
+ul[_ngcontent-c4] li[_ngcontent-c4] a[_ngcontent-c4]::before{
+    height: 2px !important;
+}
+
+nb-card-header{
+    background-color: #fbfbfb !important;
+}
