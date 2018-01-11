@@ -1,8 +1,33 @@
 <div class="d-flex">
-    <div class="logo" routerLink="/boh" type="checkbox" data-toggle="toggle">
-        Accela Search
+    <div class="header-logo-container d-flex">
+        <div routerLink="/boh" role="button" type="checkbox" data-toggle="showBack" (click)="logoClick()">
+            Accela Search
+        </div>
+        <div *ngIf="showBack" class="back-button" (click)="backClick()">
+            BACK
+        </div>
     </div>
-    <div class="back-button d-none" routerLink="/">
-        BACK
+    <div class="header-actions-container d-flex">
+        <div>
+            <nb-search role="button" type="rotate-layout" tag="rotate-layout"></nb-search>
+        </div>
+        <div *ngIf="!user.isEmpty()" role="button">
+            <!--<div (click)="userClick()">-->
+                <!--<div>capocchia</div>-->
+                <!--<div>capocchia</div>-->
+            <!--</div>-->
+            <div role="button" (click)="userClick()">
+                <div>{{user.name}}</div>
+                <div>{{user.surname}}</div>
+                <i class="material-icons">&#xE7FF;</i>
+            </div>
+            <ul role="menu" class="user-dropdown-menu d-none">
+                <li role="menuitem">Account</li>
+                <li role="menuitem">Plan</li>
+                <li *ngIf="!user.isAdmin()" role="menuitem" (click)="wizardClick()">Wizard</li>
+                <li role="menuitem" (click)="logoutClick()">Logout</li>
+            </ul>
+        </div>
+        <div *ngIf="!user.isEmpty() && !user.isAdmin()" routerLink="/home" role="button" style="outline: none;">Dashboard</div>
     </div>
 </div>

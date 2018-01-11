@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent} from "./home.component";
 import {AnalitycsComponent} from "./analitycs/analitycs.component";
-import {SetupComponent} from "./setup/setup.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {TipsComponent} from "./tips/tips.component";
 import {TeamComponent} from "./team/team.component";
@@ -22,7 +21,7 @@ const routes: Routes = [
                 component: DashboardComponent
             }, {
                 path: 'setup',
-                component: SetupComponent
+                loadChildren: './setup/setup.module#SetupModule'
             }, {
                 path: 'analytics',
                 component: AnalitycsComponent
@@ -34,9 +33,7 @@ const routes: Routes = [
                 component: TeamComponent
             }
         ],
-    },
-
-
+    }
 ];
 
 @NgModule({
@@ -46,4 +43,4 @@ const routes: Routes = [
 
 export class HomeRoutingModule { }
 
-export const routingComponents = [ HomeComponent,AnalitycsComponent,SetupComponent,DashboardComponent,TipsComponent,TeamComponent];
+export const routingComponents = [ HomeComponent,AnalitycsComponent,DashboardComponent,TipsComponent,TeamComponent];

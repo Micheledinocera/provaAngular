@@ -1,0 +1,15 @@
+.ittweb-tabset-setup ul li a::before {
+    background: none !important;
+}
+
+.ittweb-tabset-setup ul{
+    border-bottom: none !important;
+}
+
+.ittweb-tabset-setup ul li a:hover {
+    color: #306ccc !important;
+}
+
+.ittweb-tabset-setup ul li.active a{
+        color: #306ccc !important;
+}

@@ -1,3 +1,23 @@
 .logo{
     cursor: pointer;
 }
+
+ittweb-header {
+    width: 100%;
+}
+
+.nb-search:before {
+    content: "\E946";
+}
+
+.nb-search{
+    font-family: nebular;
+}
+
+.header-actions-container{
+    margin-left: auto;
+}
+
+.user-dropdown-menu{
+    position: absolute;
+}

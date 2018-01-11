@@ -11,23 +11,23 @@ export class HomeComponent  {
     tabs: any[] = [
         {
             title: 'DASHBOARD',
-            route: '/dashboard',
+            route: '/home/dashboard',
         },
         {
             title: 'SETUP',
-            route: '/setup',
+            route: '/home/setup',
         },
         {
             title: 'ANALYTICS',
-            route: '/analytics',
+            route: '/home/analytics',
         },
         {
             title: 'TIPS',
-            route: '/tips',
+            route: '/home/tips',
         },
         {
             title: 'TEAM',
-            route: '/team',
-        },
+            route: '/home/team',
+        }
     ];
 }

@@ -1,3 +1,51 @@
+nav{
+    width: 80%;
+}
+
+.avoid-clicks {
+    pointer-events: none;
+}
+
 nb-layout-header, nb-layout-column{
     background-color: #fbfbfb;
+}
+
+.ittweb-container{
+    left:50%;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.ittweb-tabset{
+    left:50%;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.ittweb-tabset > ul li a::before {
+    background: #306ccc !important;
+}
+
+.ittweb-tabset > ul li a{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.ittweb-tabset > ul li{
+    padding-right: 5%;
+    outline: none;
+}
+
+.ittweb-tabset > ul li a::before{
+    height: 2px !important;
+}
+
+.ittweb-btn{
+    cursor: pointer !important;
+    background-color: #306ccc !important;
+}
+
+.ittweb-back-btn{
+    cursor: pointer !important;
+    background-color: #34495e !important;
 }

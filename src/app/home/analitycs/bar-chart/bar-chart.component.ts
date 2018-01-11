@@ -19,47 +19,6 @@ export class BarChartComponent {
             data: [28, 48, 40, 19, 86, 27, 90]
         }
         ];
-    //
-    // public options = {
-    //     responsive: true,
-    //     maintainAspectRatio: false,
-    //     elements: {
-    //         rectangle: {
-    //             borderWidth: 2,
-    //         },
-    //     },
-    //     scales: {
-    //         xAxes: [
-    //             {
-    //                 gridLines: {
-    //                     display: true,
-    //                     color: 'blue',
-    //                 },
-    //                 ticks: {
-    //                     fontColor: 'blue',
-    //                 },
-    //             },
-    //         ],
-    //         yAxes: [
-    //             {
-    //                 gridLines: {
-    //                     display: false,
-    //                     color: 'green',
-    //                 },
-    //                 ticks: {
-    //                     fontColor: 'green',
-    //                 },
-    //             },
-    //         ],
-    //     },
-    //     legend: {
-    //         position: 'right',
-    //         labels: {
-    //             fontColor: 'red',
-    //         },
-    //     },
-    // };
-
 
     public barChartData={datasets:[
           {
@@ -107,32 +66,7 @@ export class BarChartComponent {
           ],
       },
     };
-    // public barChartColors:Array<any> = [
-    //     { // grey
-    //         backgroundColor: 'rgba(254,0,0,0.2)',
-    //         borderColor: 'rgba(254,0,0,0.2)',
-    //         pointBackgroundColor: 'rgba(148,159,177,1)',
-    //         pointBorderColor: '#fff',
-    //         pointHoverBackgroundColor: 'rgba(254,0,0,0.2)',
-    //         pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    //     },
-    //     { // dark grey
-    //         backgroundColor: 'rgba(0,254,0,0.2)',
-    //         borderColor: 'rgba(0,254,0,0.2)',
-    //         pointBackgroundColor: 'rgba(77,83,96,1)',
-    //         pointBorderColor: '#fff',
-    //         pointHoverBackgroundColor: 'rgba(0,254,0,0.2)',
-    //         pointHoverBorderColor: 'rgba(77,83,96,1)'
-    //     },
-    //     { // grey
-    //         backgroundColor: 'rgba(0,0,254,0.2)',
-    //         borderColor: 'rgba(0,0,254,0.2)',
-    //         pointBackgroundColor: 'rgba(148,159,177,1)',
-    //         pointBorderColor: '#fff',
-    //         pointHoverBackgroundColor: 'rgba(0,0,254,0.2)',
-    //         pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    //     }
-    // ];
+
     public barChartLegend:boolean = true;
     public barChartType:string = 'horizontalBar';
 
