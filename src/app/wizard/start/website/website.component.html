@@ -1,4 +1,22 @@
-<div class="wizard-container">
-  <button role="button" class="btn ittweb-back-btn" routerLink="/wizard/start/cms">BACK</button>
-  <button role="button" class="btn ittweb-btn" routerLink="/wizard/start/fields">NEXT</button>
+<div class="wizard-container" [@slide]='state' (@slide.done)="navigate($event)">
+  <div class="page-title col-12 text-center">
+    Choose a website to start the wizard
+  </div>
+  <div class="page-sub-title">
+    Website
+  </div>
+  <nb-card class="col-4">
+    <nb-card-body>
+      <input [(ngModel)]="searchText" placeholder="example.com">
+      <ul>
+        <li *ngFor="let site of sites | filter : searchText">
+          <input [(ngModel)]="siteValue" type="radio" [name]="onoffswitch+index" class="onoffswitch" [id]="myonoffswitch+index" [value]="site">
+          {{ site }}</li>
+      </ul>
+    </nb-card-body>
+  </nb-card>
+  <div>
+    <button role="button" class="btn ittweb-back-btn" (click)="slideOutRight()">BACK</button>
+    <button role="button" class="btn ittweb-btn next" [disabled]="!siteValue" (click)="slideOutLeft()">NEXT</button>
+  </div>
 </div>

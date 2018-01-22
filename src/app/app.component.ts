@@ -4,6 +4,7 @@ import {DataService} from "./service/data/data.service";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {LoginComponent} from "./login/login.component";
+import {EventEmitterService} from "./service/event-emitter/event-emitter.service";
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -13,13 +14,20 @@ import {LoginComponent} from "./login/login.component";
 })
 export class AppComponent implements OnInit {
     private user:User;
-
+    public loading=false;
     constructor(
         private dataservice:DataService,
         private router:Router,
         private cs:CookieService,
-        private lc:LoginComponent
-        ){}
+        private lc:LoginComponent,
+        private ee:EventEmitterService
+        ){
+        ee.onLoadingEvent.subscribe(
+            (loading) => {
+                this.loading= loading;
+            }
+        );
+    }
 
     ngOnInit(){
         this.user=this.dataservice.getUser();
@@ -28,6 +36,7 @@ export class AppComponent implements OnInit {
             this.lc.login(this.cs.get("username"),this.cs.get("password"),false);
         }
     }
+
 
     title = 'app';
 }

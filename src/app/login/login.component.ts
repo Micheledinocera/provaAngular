@@ -22,6 +22,7 @@ declare var $ :any;
 export class LoginComponent implements OnInit {
 
     private user:User;
+    public loading=false;
 
     constructor(
         private http : HttpClient,
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
     }
 
     login(username,password,showError){
+        this.ee.onLoadingEvent.emit(true);
         if(username=="dummy" && password=="dummy"){
             let data={
                 type:"user",
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
             this.dataservice.setUser(this.user);
             this.ee.onLoginEvent.emit(this.user);
             this.router.navigate(['wizard']);
+            this.ee.onLoadingEvent.emit(false);
         } else {
             var url = 'http://localhost:8080/api/roba?username=' + username + '&password=' + password;
 
@@ -60,11 +63,13 @@ export class LoginComponent implements OnInit {
                         this.router.navigate(['superAdmin']);
                     else
                         this.router.navigate(['wizard']);
+                    this.ee.onLoadingEvent.emit(false);
                 }, err => {
                     if(showError) {
                         this.toaster.showToast('error', err.error.message, '');
                         $(".form-control").addClass("form-control-danger");
                     }
+                    this.ee.onLoadingEvent.emit(false);
                 });
         }
         this.cs.set("username",username);

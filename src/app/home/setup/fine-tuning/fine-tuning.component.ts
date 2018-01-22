@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FineTuningComponent implements OnInit {
 
-  constructor() { }
+  currency;
+  currencies=[];
+  separator;
+  constructor() {
+      this.currencies=[
+          "Euro - €",
+          "Dollar - $"
+      ]
+  }
 
   ngOnInit() {
   }

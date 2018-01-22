@@ -20,7 +20,7 @@ const routes: Routes = [
                 path: 'currentSettings',
                 component: CurrentSettingsComponent
             }, {
-                path: 'synonimus',
+                path: 'synonimous',
                 component: SynonimousComponent
             }, {
                 path: 'stopWords',

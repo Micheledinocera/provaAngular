@@ -10,6 +10,18 @@ nb-layout-header, nb-layout-column{
     background-color: #fbfbfb;
 }
 
+.center{
+    left:50%;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.center-relative{
+    left:50%;
+    position: relative;
+    transform: translateX(-50%);
+}
+
 .ittweb-container{
     left:50%;
     position: absolute;
@@ -27,6 +39,7 @@ nb-layout-header, nb-layout-column{
 }
 
 .ittweb-tabset > ul li a{
+    font-family: Montserrat, sans-serif !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
@@ -43,9 +56,48 @@ nb-layout-header, nb-layout-column{
 .ittweb-btn{
     cursor: pointer !important;
     background-color: #306ccc !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+}
+
+.ittweb-btn:hover{
+    background-color: #4f8fed !important;
 }
 
 .ittweb-back-btn{
     cursor: pointer !important;
     background-color: #34495e !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+}
+
+.next{
+    float:right;
+}
+
+.page-sub-title{
+    color: black;
+    font-family: Montserrat, sans-serif !important;
+    font-weight: 600;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.page-title{
+    font-family: Montserrat, sans-serif !important;
+    font-size: 16px;
+    color:black;
+}
+
+.small{
+    font-size: 10px !important;
+}
+
+mat-chip{
+    border-style: solid;
+    border-width: 1px;
+    color:#4f8fed;
+    border-color: #a4abb3;
 }

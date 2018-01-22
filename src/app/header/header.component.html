@@ -1,7 +1,7 @@
 <div class="d-flex">
     <div class="header-logo-container d-flex">
         <div routerLink="/boh" role="button" type="checkbox" data-toggle="showBack" (click)="logoClick()">
-            Accela Search
+            <svg-icon src="assets/logo.svg"></svg-icon>
         </div>
         <div *ngIf="showBack" class="back-button" (click)="backClick()">
             BACK
@@ -12,22 +12,24 @@
             <nb-search role="button" type="rotate-layout" tag="rotate-layout"></nb-search>
         </div>
         <div *ngIf="!user.isEmpty()" role="button">
-            <!--<div (click)="userClick()">-->
-                <!--<div>capocchia</div>-->
-                <!--<div>capocchia</div>-->
-            <!--</div>-->
-            <div role="button" (click)="userClick()">
-                <div>{{user.name}}</div>
-                <div>{{user.surname}}</div>
-                <i class="material-icons">&#xE7FF;</i>
+            <div class="header-user-action d-flex" role="button" (click)="userClick()">
+                <svg-icon class="user-icon" src="assets/icon-user.svg"></svg-icon>
+                <div class="user-name">
+                    <div>{{user.name}}</div>
+                    <div>{{user.surname}}</div>
+                </div>
+                <!--<i class="material-icons">&#xE7FF;</i>-->
+
             </div>
-            <ul role="menu" class="user-dropdown-menu d-none">
+            <ul [@appear]='state' role="menu" class="user-dropdown-menu">
                 <li role="menuitem">Account</li>
                 <li role="menuitem">Plan</li>
                 <li *ngIf="!user.isAdmin()" role="menuitem" (click)="wizardClick()">Wizard</li>
                 <li role="menuitem" (click)="logoutClick()">Logout</li>
             </ul>
         </div>
-        <div *ngIf="!user.isEmpty() && !user.isAdmin()" routerLink="/home" role="button" style="outline: none;">Dashboard</div>
+        <div *ngIf="!user.isEmpty() && !user.isAdmin()" routerLink="/home" role="button" style="outline: none;">
+            <svg-icon class="dashboard-icon" src="assets/dashboard.svg"></svg-icon>
+        </div>
     </div>
 </div>

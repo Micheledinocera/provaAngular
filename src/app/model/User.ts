@@ -18,6 +18,5 @@ export class User{
 
     isEmpty(){
         return this.type=="";
-
     }
 }

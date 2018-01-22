@@ -1,15 +1,21 @@
-import { Component, OnInit} from '@angular/core';
+import { Component} from '@angular/core';
+import {DataService} from "../service/data/data.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-wizard',
     templateUrl: './wizard.component.html',
-    styleUrls: ['./wizard.component.css']
+    styleUrls: ['./wizard.component.css'],
 })
-export class WizardComponent implements OnInit {
+export class WizardComponent{
 
-  constructor() { }
+    constructor(
+        private router:Router,
+        private dataservice:DataService
+    ){}
 
-  ngOnInit() {
-  }
-
+    toWizard(){
+        this.router.navigate(['/wizard/start']);
+        this.dataservice.setOrigin("");
+    }
 }

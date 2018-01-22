@@ -21,3 +21,20 @@ ittweb-header {
 .user-dropdown-menu{
     position: absolute;
 }
+
+.user-icon{
+    width: 30px;
+    height: 30px;
+}
+
+.header-user-action:hover g,div{
+    stroke:#306ccc;
+}
+
+.dashboard-icon:hover g{
+    stroke:#306ccc;
+}
+
+.header-user-action:hover>div{
+    color:#306ccc;
+}

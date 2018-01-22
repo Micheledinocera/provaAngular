@@ -1,3 +1,89 @@
-<p>
-  dashboard works!
-</p>
+<div class="page-sub-title"> KPIs
+  <nb-card>
+    <nb-card-body>
+      <select class="wizard-dropdown col-3" [(ngModel)]="timeRangeKpis">
+        <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
+      </select>
+      <div class="d-flex col-12">
+        <div class="col-3 kpis-data d-flex">
+          <div class="col-6"> {{data[timeRangeKpis][0].title}}</div>
+          <div class="col-6 text-right"> {{data[timeRangeKpis][0].value}} </div>
+        </div>
+        <div class="col-3 kpis-data d-flex">
+          <div class="col-6"> {{data[timeRangeKpis][1].title}}</div>
+          <div class="col-6 text-right"> {{data[timeRangeKpis][1].value}} </div>
+        </div>
+        <div class="col-3 kpis-data d-flex">
+          <div class="col-6"> {{data[timeRangeKpis][2].title}}</div>
+          <div class="col-6 text-right"> {{data[timeRangeKpis][2].value}} </div>
+        </div>
+      </div>
+      <div class="d-flex col-12">
+        <div class="col-3 kpis-data d-flex">
+          <div class="col-6"> {{data[timeRangeKpis][3].title}}</div>
+          <div class="col-6 text-right"> {{data[timeRangeKpis][3].value}} </div>
+        </div>
+        <div class="col-3 kpis-data d-flex">
+          <div class="col-6"> {{data[timeRangeKpis][4].title}}</div>
+          <div class="col-6 text-right"> {{data[timeRangeKpis][4].value}} </div>
+        </div>
+        <div class="col-3 kpis-data d-flex">
+          <div class="col-6"> {{data[timeRangeKpis][5].title}}</div>
+          <div class="col-6 text-right"> {{data[timeRangeKpis][5].value}} </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>
+<div class="d-flex">
+  <div class="page-sub-title col-6"> Top 10 searches
+    <nb-card>
+      <nb-card-body>
+        <select class="wizard-dropdown col-3" [(ngModel)]="timeRangeSearches">
+          <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
+        </select>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th colspan="3">Query</th>
+            <th>AVG Hits</th>
+            <th>Count</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let searchSingleData of searchesData[timeRangeSearches]">
+            <td colspan="3"> {{searchSingleData.query}}</td>
+            <td> {{searchSingleData.avg}}</td>
+            <td> {{searchSingleData.count}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="page-sub-title col-6"> Top 10 most clicked products
+    <nb-card>
+      <nb-card-body>
+        <select class="wizard-dropdown col-3" [(ngModel)]="timeRangeClicked">
+          <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
+        </select>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th colspan="3">Query</th>
+              <th>AVG Hits</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let clickedSingleData of clickedData[timeRangeClicked]">
+              <td colspan="3"> {{clickedSingleData.query}}</td>
+              <td> {{clickedSingleData.avg}}</td>
+              <td> {{clickedSingleData.count}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

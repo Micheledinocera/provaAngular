@@ -1,3 +1,20 @@
-<p>
-  stop-words works!
-</p>
+<nb-card>
+  <nb-card-body>
+    <table class="table">
+      <thead>
+      <tr>
+        <th colspan="12">
+          <input type="text" [(ngModel)]="searchText">
+        </th>
+        <th><button class="btn ittweb-btn small" (click)="addWord()">+Add Word</button></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let word of words | filterOnWord : searchText">
+        <td colspan="12"> {{word.word}}</td>
+        <td> <button class="btn ittweb-btn small" (click)="removeWord(word)">REMOVE</button> </td>
+      </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>

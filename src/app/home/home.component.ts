@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation, AfterViewInit} from '@angular/core';
+import {EventEmitterService} from "../service/event-emitter/event-emitter.service";
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -6,8 +7,7 @@ import { Component, ViewEncapsulation} from '@angular/core';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent  {
-
+export class HomeComponent implements AfterViewInit {
     tabs: any[] = [
         {
             title: 'DASHBOARD',
@@ -30,4 +30,12 @@ export class HomeComponent  {
             route: '/home/team',
         }
     ];
+
+    constructor(private ee:EventEmitterService){
+        this.ee.onLoadingEvent.emit(true);
+    }
+
+    ngAfterViewInit() {
+        this.ee.onLoadingEvent.emit(false);
+    }
 }

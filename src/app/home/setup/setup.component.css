@@ -1,3 +1,10 @@
+.ittweb-tabset-setup ul li a{
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 17px !important;
+    text-align: center !important;
+    color: #7d7d87 !important;
+}
+
 .ittweb-tabset-setup ul li a::before {
     background: none !important;
 }
@@ -7,9 +14,11 @@
 }
 
 .ittweb-tabset-setup ul li a:hover {
-    color: #306ccc !important;
+    color: #4f8fed !important;
+    /*font-weight: 800 !important;*/
 }
 
 .ittweb-tabset-setup ul li.active a{
-        color: #306ccc !important;
+    color: #4f8fed !important;
+    /*font-weight: 800 !important;*/
 }

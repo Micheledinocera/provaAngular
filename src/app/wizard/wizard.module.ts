@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { WizardRoutingModule} from "./wizard-routing.module";
 import { NbRouteTabsetModule} from "@nebular/theme";
 
+
 import { routingComponents} from "./wizard-routing.module";
-import { FinishComponent } from './finish/finish.component';
 import { CompletedComponent } from './completed/completed.component';
 
 
@@ -16,7 +16,6 @@ import { CompletedComponent } from './completed/completed.component';
   ],
   declarations: [
       routingComponents,
-      FinishComponent,
       CompletedComponent
   ]
 })

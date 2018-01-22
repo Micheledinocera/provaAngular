@@ -1,3 +1,15 @@
-<p>
-  fine-tuning works!
-</p>
+<div class="d-flex">
+  <div class="page-sub-title col-6"> Currency
+    <nb-card>
+      <nb-card-body>
+        <select [(ngModel)]="currency" class="wizard-dropdown col-3">
+          <option *ngFor="let currency of currencies"> {{currency}} </option>
+        </select>
+        <ul>
+          <li><input class="col-3" type="radio" ([ngModel])="separator" value="Dot" name="onoffswitch1"> Dot </li>
+          <li><input class="col-3" type="radio" ([ngModel])="separator" value="Comma" name="onoffswitch2"> Comma</li>
+        </ul>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

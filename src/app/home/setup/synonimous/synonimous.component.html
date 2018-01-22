@@ -1,3 +1,33 @@
-<p>
-  synonimous works!
-</p>
+<nb-card>
+  <nb-card-body>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>WORD</th>
+        <th colspan="10">SYNONIMOUS</th>
+        <th><button class="btn ittweb-btn small" (click)="addWord()">+Add Word</button></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let word of words">
+        <td> {{word.word}}</td>
+        <td colspan="10">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let synonym of word.synonyms" [selectable]="selectable"
+                      [removable]="removable" (remove)="remove(word,synonym)">
+              {{synonym}}
+              <i class="material-icons" matChipRemove *ngIf="removable">cancel</i>
+            </mat-chip>
+            <input placeholder="Add Synonimous... (press ENTER to insert)"
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add(word,$event)" />
+          </mat-chip-list>
+        </td>
+        <td> <button class="btn ittweb-btn small" (click)="removeWord(word)">REMOVE</button> </td>
+      </tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+</nb-card>

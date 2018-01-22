@@ -16,8 +16,8 @@ export class SetupComponent implements OnInit{
             route: '/home/setup/currentSettings',
         },
         {
-            title: 'Synonimus',
-            route: '/home/setup/synonimus',
+            title: 'Synonimous',
+            route: '/home/setup/synonimous',
         },
         {
             title: 'Stop Words',
