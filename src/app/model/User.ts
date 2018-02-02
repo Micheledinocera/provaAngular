@@ -1,22 +1,22 @@
-export class User{
+export class User {
 
-    type:string="";
-    name:string="";
-    surname:string="";
+    type= '';
+    name= '';
+    surname= '';
 
-    constructor(response:any) {
-        if(!!response.type) {
+    constructor(response: any) {
+        if (!!response.type) {
             this.type = response.type;
             this.name = response.name;
             this.surname = response.surname;
         }
     }
 
-    isAdmin(){
-        return this.type=="admin";
+    isAdmin() {
+        return this.type === 'admin';
     }
 
-    isEmpty(){
-        return this.type=="";
+    isEmpty() {
+        return this.type === '';
     }
 }

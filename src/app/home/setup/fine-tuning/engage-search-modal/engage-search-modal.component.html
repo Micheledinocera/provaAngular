@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left"> Ciao </h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <nb-card>
+    <nb-card-body>
+      <div class="page-sub-title"> Insert Title</div>
+      <input [(ngModel)]="engagesearch.title" placeholder="Title" class="form-control">
+      <div class="page-sub-title"> Insert Description</div>
+      <input [(ngModel)]="engagesearch.description" placeholder="Description" class="form-control">
+      <div class="page-sub-title"> Insert Keywords separated by a comma</div>
+      <textarea [(ngModel)]="keywords" placeholder="Keyword1,Keyword2" class="form-control" rows="5"> </textarea>
+      <mat-radio-group [(ngModel)]="templateSelection">
+        <mat-radio-button name="separator" value="Template"> Use a template </mat-radio-button>
+        <mat-radio-button name="separator" value="Html"> Insert your HTML </mat-radio-button>
+      </mat-radio-group>
+      <div *ngIf="templateSelection=='Template'">
+        <select [(ngModel)]=selectedTemplate class="form-control">
+          <option *ngFor=" let template of templates">{{template}}</option>
+        </select>
+      </div>
+      <div *ngIf="templateSelection=='Html'">
+          <textarea [(ngModel)]=selectedTemplateHtml placeholder="Your HTML here" class="form-control" rows="5"> </textarea>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn ittweb-btn" (click)="add(engagesearch)">{{this.type === 'add'?'ADD':'EDIT'}}</button>
+</div>

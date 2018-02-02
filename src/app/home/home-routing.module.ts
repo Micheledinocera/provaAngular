@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent} from "./home.component";
-import {AnalitycsComponent} from "./analitycs/analitycs.component";
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {TipsComponent} from "./tips/tips.component";
-import {TeamComponent} from "./team/team.component";
+import { HomeComponent} from './home.component';
+import {AnalitycsComponent} from './analitycs/analitycs.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {TipsComponent} from './tips/tips.component';
+import {TeamComponent} from './team/team.component';
 
 const routes: Routes = [
     {
@@ -43,4 +43,4 @@ const routes: Routes = [
 
 export class HomeRoutingModule { }
 
-export const routingComponents = [ HomeComponent,AnalitycsComponent,DashboardComponent,TipsComponent,TeamComponent];
+export const routingComponents = [ HomeComponent, AnalitycsComponent, DashboardComponent, TipsComponent, TeamComponent];

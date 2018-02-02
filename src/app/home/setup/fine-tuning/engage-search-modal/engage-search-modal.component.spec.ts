@@ -1,20 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { EngageSearchModalComponent } from './engage-search-modal.component';
 
-import { MyComponentComponent } from './my-component.component';
-
-describe('MyComponentComponent', () => {
-  let component: MyComponentComponent;
-  let fixture: ComponentFixture<MyComponentComponent>;
+describe('EngageSearchModalComponent', () => {
+  let component: EngageSearchModalComponent;
+  let fixture: ComponentFixture<EngageSearchModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyComponentComponent ]
+      declarations: [ EngageSearchModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyComponentComponent);
+    fixture = TestBed.createComponent(EngageSearchModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

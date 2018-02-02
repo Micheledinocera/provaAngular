@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, AfterViewInit} from '@angular/core';
-import {EventEmitterService} from "../service/event-emitter/event-emitter.service";
+import {EventEmitterService} from '../service/event-emitter/event-emitter.service';
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -31,11 +31,11 @@ export class HomeComponent implements AfterViewInit {
         }
     ];
 
-    constructor(private ee:EventEmitterService){
-        this.ee.onLoadingEvent.emit(true);
+    constructor(private ee: EventEmitterService) {
+        // this.ee.onLoadingEvent.emit(true);
     }
 
     ngAfterViewInit() {
-        this.ee.onLoadingEvent.emit(false);
+        // this.ee.onLoadingEvent.emit(false);
     }
 }

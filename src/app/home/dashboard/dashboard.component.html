@@ -1,35 +1,35 @@
 <div class="page-sub-title"> KPIs
   <nb-card>
     <nb-card-body>
-      <select class="wizard-dropdown col-3" [(ngModel)]="timeRangeKpis">
+      <select class="wizard-dropdown col-3 form-control" [(ngModel)]="timeRangeKpis">
         <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
       </select>
       <div class="d-flex col-12">
         <div class="col-3 kpis-data d-flex">
           <div class="col-6"> {{data[timeRangeKpis][0].title}}</div>
-          <div class="col-6 text-right"> {{data[timeRangeKpis][0].value}} </div>
+          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][0].value" duration=1> 0 </div>
         </div>
         <div class="col-3 kpis-data d-flex">
           <div class="col-6"> {{data[timeRangeKpis][1].title}}</div>
-          <div class="col-6 text-right"> {{data[timeRangeKpis][1].value}} </div>
+          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][1].value" duration=1> 0 </div>
         </div>
         <div class="col-3 kpis-data d-flex">
           <div class="col-6"> {{data[timeRangeKpis][2].title}}</div>
-          <div class="col-6 text-right"> {{data[timeRangeKpis][2].value}} </div>
+          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][2].value" duration=1> 0 </div>
         </div>
       </div>
       <div class="d-flex col-12">
         <div class="col-3 kpis-data d-flex">
           <div class="col-6"> {{data[timeRangeKpis][3].title}}</div>
-          <div class="col-6 text-right"> {{data[timeRangeKpis][3].value}} </div>
+          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][3].value" duration=1> 0 </div>
         </div>
         <div class="col-3 kpis-data d-flex">
           <div class="col-6"> {{data[timeRangeKpis][4].title}}</div>
-          <div class="col-6 text-right"> {{data[timeRangeKpis][4].value}} </div>
+          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][4].value" duration=1> 0 </div>
         </div>
         <div class="col-3 kpis-data d-flex">
           <div class="col-6"> {{data[timeRangeKpis][5].title}}</div>
-          <div class="col-6 text-right"> {{data[timeRangeKpis][5].value}} </div>
+          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][5].value" duration=1> 0 </div>
         </div>
       </div>
     </nb-card-body>
@@ -39,7 +39,7 @@
   <div class="page-sub-title col-6"> Top 10 searches
     <nb-card>
       <nb-card-body>
-        <select class="wizard-dropdown col-3" [(ngModel)]="timeRangeSearches">
+        <select class="wizard-dropdown col-4 form-control" [(ngModel)]="timeRangeSearches">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
         <table class="table table-hover">
@@ -53,8 +53,8 @@
           <tbody>
           <tr *ngFor="let searchSingleData of searchesData[timeRangeSearches]">
             <td colspan="3"> {{searchSingleData.query}}</td>
-            <td> {{searchSingleData.avg}}</td>
-            <td> {{searchSingleData.count}}</td>
+            <td countUp [endVal]="searchSingleData.avg" duration=1> 0 </td>
+            <td countUp [endVal]="searchSingleData.count" duration=1> 0 </td>
           </tr>
           </tbody>
         </table>
@@ -64,7 +64,7 @@
   <div class="page-sub-title col-6"> Top 10 most clicked products
     <nb-card>
       <nb-card-body>
-        <select class="wizard-dropdown col-3" [(ngModel)]="timeRangeClicked">
+        <select class="wizard-dropdown col-4 form-control" [(ngModel)]="timeRangeClicked">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
         <table class="table table-hover">
@@ -78,8 +78,8 @@
           <tbody>
             <tr *ngFor="let clickedSingleData of clickedData[timeRangeClicked]">
               <td colspan="3"> {{clickedSingleData.query}}</td>
-              <td> {{clickedSingleData.avg}}</td>
-              <td> {{clickedSingleData.count}}</td>
+              <td countUp [endVal]="clickedSingleData.avg" duration=1> 0 </td>
+              <td countUp [endVal]="clickedSingleData.count" duration=1> 0 </td>
             </tr>
           </tbody>
         </table>

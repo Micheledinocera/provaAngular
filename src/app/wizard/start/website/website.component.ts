@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {DataService} from "../../../service/data/data.service";
-import {WizardController} from "../wizard-controller";
+import {Router} from '@angular/router';
+import {DataService} from '../../../service/data/data.service';
+import {WizardController} from '../wizard-controller';
 
-declare var jquery:any;
-declare var $ :any;
+declare var jquery: any;
+declare var $: any;
 
 @Component({
     selector: 'app-website',
     templateUrl: './website.component.html',
     styleUrls: ['./website.component.css'],
-    animations:WizardController.animation
+    animations: WizardController.animation
 })
 
 export class WebsiteComponent implements OnInit {
@@ -19,30 +19,38 @@ export class WebsiteComponent implements OnInit {
     info;
     searchText;
     siteValue;
+    import= 'N';
+    importSiteValue;
+    sitesFiltred= [];
+    sites= ['Sito1.com', 'Sito2.com', 'Sito2.eu', 'Sito2.it', 'Sito3.org'];
 
-    sites=["Sito1.com","Sito2.com","Sito2.eu","Sito2.it","Sito3.org"];
-    
     constructor(
-        private router:Router,
-        private dataservice:DataService
+        private router: Router,
+        private dataservice: DataService
     ) {
-        this.wizardController=new WizardController(this.router,this.dataservice);
+        this.wizardController = new WizardController(this.router, this.dataservice);
     }
 
     ngOnInit() {
-        this.info=this.wizardController.initialazeView();
-        this.state=this.info.state;
+        this.info = this.wizardController.initialazeView();
+        this.state = this.info.state;
     }
 
-    slideOutLeft(){
-        this.state="startToLeft";
+    slideOutLeft() {
+        this.state = 'startToLeft';
     }
 
-    slideOutRight(){
-        this.state="startToRight";
+    slideOutRight() {
+        this.state = 'startToRight';
     }
 
-    navigate(event){
-        this.wizardController.navigate(event,'/wizard/start/fields','/wizard/start/cms');
+    navigate(event) {
+        this.wizardController.navigate(event, '/wizard/start/fields', '/wizard/start/cms');
+    }
+
+    onChange(siteValue) {
+      this.sitesFiltred = this.sites.filter(function(i) {
+        return i !== siteValue;
+      });
     }
 }

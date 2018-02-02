@@ -9,29 +9,46 @@
     <nb-card-body>
 
         <div *ngIf="type=='sku'">
-            <input [(ngModel)]="searchText" placeholder="sku1234">
-            <ul>
-                <li *ngFor="let sku of skus | filterOnValue : searchText">
-                    <input type="checkbox" [(ngModel)]="sku.checked">
-                        <input [(ngModel)]="mainSku" type="radio" [name]="onoffswitch+index" [value]="sku.value" [disabled]="!sku.checked">
-                            {{ sku.value }}
+            <input [(ngModel)]="searchText" placeholder="sku1234" class="form-control">
+            <ul class="list-group">
+                <li *ngFor="let sku of modalData | filterOnValue : searchText" class="list-group-item" [ngClass]="!sku.checked && sku.value==mainSku?'danger':''" [tooltip]="!sku.checked && sku.value==mainSku?'You can\'t choose an unselected field as main':''">
+                  <mat-checkbox [(ngModel)]="sku.checked">
+                    <mat-radio-group [(ngModel)]="mainSku">
+                      <mat-radio-button name="sku" [value]="sku.value" [disabled]="!sku.checked">
+                          {{ sku.value }}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                  </mat-checkbox>
                 </li>
             </ul>
         </div>
 
         <div *ngIf="type=='query'">
-            <input [(ngModel)]="searchText" placeholder="Name">
-            <ul>
-                <li *ngFor="let query of queries | filterOnValue : searchText" [value]="query.value" >
-                    <input type="checkbox" [(ngModel)]="query.checked">
-                    {{ query.value }}
+            <input [(ngModel)]="searchText" placeholder="Name" class="form-control">
+            <ul class="list-group">
+                <li *ngFor="let query of modalData | filterOnValue : searchText" [value]="query.value" class="list-group-item" >
+                    <mat-checkbox [(ngModel)]="query.checked">
+                      {{ query.value }}
+                    </mat-checkbox>
                 </li>
             </ul>
         </div>
+
+        <div *ngIf="type=='facet'">
+          <input [(ngModel)]="searchText" placeholder="Name" class="form-control">
+          <ul class="list-group">
+              <li *ngFor="let facet of modalData | filterOnValue : searchText" [value]="facet.value" class="list-group-item">
+                <mat-checkbox [(ngModel)]="facet.checked">
+                  {{ facet.value }}
+                </mat-checkbox>
+              </li>
+          </ul>
+      </div>
 
     </nb-card-body>
   </nb-card>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn ittweb-btn" (click)="add(type)">Close</button>
+  <!--<button type="button" class="btn ittweb-btn" (click)="pop.show()"> SELECT </button>-->
+  <button type="button" class="btn ittweb-btn" (click)="add(type)" [disabled]="checkMain()"> SELECT </button>
 </div>

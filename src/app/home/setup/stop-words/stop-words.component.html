@@ -1,20 +1,35 @@
-<nb-card>
-  <nb-card-body>
-    <table class="table">
-      <thead>
-      <tr>
-        <th colspan="12">
-          <input type="text" [(ngModel)]="searchText">
-        </th>
-        <th><button class="btn ittweb-btn small" (click)="addWord()">+Add Word</button></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let word of words | filterOnWord : searchText">
-        <td colspan="12"> {{word.word}}</td>
-        <td> <button class="btn ittweb-btn small" (click)="removeWord(word)">REMOVE</button> </td>
-      </tr>
-      </tbody>
-    </table>
-  </nb-card-body>
-</nb-card>
+<div class="d-flex">
+  <div class="page-sub-title col-6"> Default
+    <nb-card>
+      <nb-card-body>
+        <input type="text" [(ngModel)]="searchTextDefault" placeholder="Filter StopWord" class="form-control">
+        <table class="table">
+          <tbody>
+          <tr *ngFor="let word of defaultWords | filterOnWord : searchTextDefault">
+            <td colspan="12"> {{word.word}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="page-sub-title col-6"> Your list
+    <nb-card>
+      <nb-card-body>
+        <input type="text" [(ngModel)]="searchText"  placeholder="Filter StopWord" class="form-control">
+        <table class="table">
+          <tbody>
+          <tr *ngFor="let word of words | filterOnWord : searchText">
+            <td colspan="12"> <div [ngClass]="word.editable?'form-control':''" [contentEditable]="word.editable">{{word.word}}</div></td>
+            <td> <button class="btn ittweb-btn small" (click)="removeWord(word)">REMOVE</button> </td>
+            <td> <button class="btn ittweb-btn small" (click)="word.editable=!word.editable">{{word.editable?'OK':'EDIT'}}</button> </td>
+          </tr>
+          </tbody>
+        </table>
+      </nb-card-body>
+      <nb-card-footer>
+          <th><button class="btn ittweb-btn small" (click)="addWord()">+Add Word</button></th>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>

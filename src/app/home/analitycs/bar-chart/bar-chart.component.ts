@@ -8,30 +8,21 @@ import { Component} from '@angular/core';
 export class BarChartComponent {
 
     public data =
-        [{
-            label: 'Dataset 1',
-            backgroundColor: 'yellow',
-            borderWidth: 1,
-            data: [65, 59, 80, 81, 56, 55, 40],
-        }, {
-            label: 'Dataset 2',
-            backgroundColor: 'green',
-            data: [28, 48, 40, 19, 86, 27, 90]
-        }
-        ];
+      [{
+          label: 'Dataset 1',
+          backgroundColor: 'yellow',
+          borderWidth: 1,
+          data: [65, 59, 80, 81, 56, 55, 40]
+      }, {
+          label: 'Dataset 2',
+          backgroundColor: 'green',
+          data: [28, 48, 40, 19, 86, 27, 90]
+      }
+    ];
 
-    public barChartData={datasets:[
-          {
-              data: [65, 59, 80, 81, 56, 55, 40],
-          } , {
-              data: [28, 48, 40, 19, 86, 27, 90],
-          }
-          ]
-    };
+    public barChartLabels: any = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-    public barChartLabels:any = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-    public barChartOptions:any = {
+    public barChartOptions: any = {
         elements: {
             rectangle: {
                 borderWidth: 2,
@@ -67,15 +58,15 @@ export class BarChartComponent {
       },
     };
 
-    public barChartLegend:boolean = true;
-    public barChartType:string = 'horizontalBar';
+    public barChartLegend = true;
+    public barChartType = 'horizontalBar';
 
     // events
-    public chartClicked(e:any):void {
+    public chartClicked(e: any): void {
 
     }
 
-    public chartHovered(e:any):void {
+    public chartHovered(e: any): void {
 
     }
 }

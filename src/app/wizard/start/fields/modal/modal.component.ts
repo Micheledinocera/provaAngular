@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { Sku } from '../../../../model/Sku';
+import { EventEmitterService } from '../../../../service/event-emitter/event-emitter.service';
 
 @Component({
   selector: 'app-modal',
@@ -9,21 +11,39 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 export class ModalComponent {
 
     skus: any[] = [];
-    mainSku: any;
+    modalData: any[] = [];
     type: any;
-    queries: any[]=[];
+    queries: any[]= [];
+    facets: any[]= [];
+    mainSku: any;
+    searchText;
+    facetTypes= ['checkbox', 'slider', 'radio'];
 
-    constructor(public modalRef: BsModalRef) {
+    selectMainSku(skuValue) {
+      for (const sku of this.modalData)
+          sku.isMain = (sku.value === skuValue);
     }
 
-    add(type){
-        if(type=="sku")
-            this.selectMainSku(this.mainSku);
-        this.modalRef.hide();
+    checkMain() {
+      for (const sku of this.modalData){
+        if (!sku.checked && sku.value === this.mainSku)
+          return true;
+      }
+      return false;
     }
-    selectMainSku(skuValue){
-        for(let sku of this.skus){
-            sku.isMain=(sku.value==skuValue);
-        }
+
+    constructor(
+      public modalRef: BsModalRef,
+      private ee: EventEmitterService
+    ) {}
+
+    add(type) {
+      if (this.type === 'sku') {
+        this.selectMainSku(this.mainSku);
+      }
+      this.ee.onModalDismissEvent.emit({
+        type: this.type,
+        data: this.modalData});
+      this.modalRef.hide();
     }
 }

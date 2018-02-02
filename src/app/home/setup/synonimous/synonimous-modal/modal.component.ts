@@ -13,13 +13,13 @@ export class SynonymousModalComponent {
     constructor(public modalRef: BsModalRef) {
     }
 
-    add(word){
+    add(word) {
         this.words.push(
             {
-                word:word,
-                synonyms:[]
+                word: word,
+                synonyms: []
             }
         );
-        this.modalRef.hide()
+        this.modalRef.hide();
     }
 }

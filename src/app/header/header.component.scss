@@ -1,0 +1,56 @@
+@import '../../styles.scss';
+
+.logo{
+    cursor: pointer;
+}
+
+ittweb-header {
+    width: 100%;
+}
+
+.nb-search:before {
+    content: "\E946";
+}
+
+.nb-search{
+    font-family: $font;
+}
+
+.header-actions-container{
+    margin-left: auto;
+}
+
+.header-dropdown-menu{
+  top: 4.75rem;
+  z-index: 1;
+}
+
+.user-icon{
+    width: 30px;
+    height: 30px;
+}
+
+.header-user-action:hover g,div{
+    stroke: $color-primary-blue;
+}
+
+.header-user-action, .sites-dropdown, .header-dropdown-menu{
+  cursor: pointer;
+}
+
+.sites-dropdown-menu{
+  top: 4.75rem;
+  z-index: 1;
+}
+
+.sites-dropdown{
+  height: 4.75rem;
+}
+
+.header-dropdown-menu li:hover{
+  background-color: $color-dark-gray;
+}
+
+.header-btn{
+  height: 50%;
+}

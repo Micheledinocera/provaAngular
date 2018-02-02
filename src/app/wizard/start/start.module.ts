@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
-import { StartRoutingModule } from "./start-routing.module";
-import { NbRouteTabsetModule } from "@nebular/theme";
-import { CommonModule } from "@angular/common";
-import { FormsModule,ReactiveFormsModule } from "@angular/forms";
-import { NbCardModule } from "@nebular/theme";
+import { StartRoutingModule } from './start-routing.module';
+import { NbRouteTabsetModule } from '@nebular/theme';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NbCardModule } from '@nebular/theme';
 import { TreeviewModule } from 'ngx-treeview';
-import { AngularSvgIconModule } from "angular-svg-icon";
+import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ModalModule } from 'ngx-bootstrap';
 import { OrderModule } from 'ngx-order-pipe';
-import { MatCheckboxModule, MatRadioModule } from "@angular/material";
+import { MatCheckboxModule, MatRadioModule} from '@angular/material';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import { FilterPipe, FilterOnValuePipe, OnlyCheckedPipe} from '../../pipes/filter.pipe';
+import { FilterPipe, FilterOnValuePipe, OnlyCheckedPipe } from '../../pipes/filter.pipe';
 import { CmsComponent } from './cms/cms.component';
 import { WebsiteComponent } from './website/website.component';
 import { FieldsComponent } from './fields/fields.component';
@@ -21,7 +22,7 @@ import { BackResultModalComponent } from './back-results/modal/modal.component';
 import { FinishComponent } from './finish/finish.component';
 
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { BsModalService } from "ngx-bootstrap";
+import { BsModalService } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -35,11 +36,23 @@ import { BsModalService } from "ngx-bootstrap";
       MatCheckboxModule,
       MatRadioModule,
       ReactiveFormsModule,
+      TooltipModule.forRoot(),
       ModalModule.forRoot(),
       TreeviewModule.forRoot()
   ],
-    declarations: [CmsComponent, WebsiteComponent, FieldsComponent, BackResultsComponent,StartComponent,FilterPipe,FilterOnValuePipe,OnlyCheckedPipe, ModalComponent,BackResultModalComponent,FinishComponent],
-    providers:[BsModalRef,BsModalService],
-    entryComponents:[ModalComponent,BackResultModalComponent]
+  declarations: [
+    CmsComponent,
+    WebsiteComponent,
+    FieldsComponent,
+    BackResultsComponent,
+    StartComponent,
+    FilterPipe,
+    FilterOnValuePipe,
+    OnlyCheckedPipe,
+    ModalComponent,
+    BackResultModalComponent,
+    FinishComponent],
+  providers: [BsModalRef, BsModalService],
+  entryComponents: [ModalComponent, BackResultModalComponent]
 })
 export class StartModule { }

@@ -1,19 +1,20 @@
 <ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
-  <div class="form-check">
-    <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()" [disabled]="item.disabled"
-             [indeterminate]="item.indeterminate" /> {{item.text}}
-    </label>
-    <label *ngIf="item.children" class="form-check-label float-right" (click)="onArrowClicked(item)">
-      <label> {{item.children.length}} SUB-CATEGORIES</label>
-      <svg-icon [src]="!item.collapsed?'assets/icon-arrow-up.svg':'assets/icon-arrow-down.svg'"></svg-icon>
-    </label>
-  </div>
+    <div class="form-check">
+        <label class="form-check-label">
+          <mat-checkbox class="form-check-input" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()"
+                  [indeterminate]="item.indeterminate" > {{item.text}}
+          </mat-checkbox>
+        </label>
+        <label *ngIf="item.children" class="form-check-label float-right" (click)="onArrowClicked(item)">
+            <label> {{item.children.length}} SUB-CATEGORIES</label>
+            <svg-icon [src]="!item.collapsed?'assets/icon-arrow-up.svg':'assets/icon-arrow-down.svg'"></svg-icon>
+        </label>
+    </div>
 </ng-template>
 
 <div class="wizard-container" [@slide]='state' (@slide.done)="navigate($event)">
   <div class="page-title col-12 text-center">
-    Define the area of your research
+      Define the area of your research
   </div>
   <div class="d-flex">
 
@@ -43,12 +44,15 @@
       SKU
       <nb-card>
         <nb-card-body>
-          <ul>
-            <li *ngFor="let sku of skus | orderBy: '':false:'case-insensitive':customComparator | onlyChecked"> {{ sku.value  }} {{sku.isMain?' - MAIN':''}} </li>
+          <ul class="list-group">
+            <li *ngFor="let sku of skus | orderBy: '':false:'case-insensitive':customComparator | onlyChecked" class="list-group-item">
+
+                {{ sku.value  }} {{sku.isMain?' - MAIN':''}}
+            </li>
           </ul>
         </nb-card-body>
         <nb-card-footer>
-          <div class="btn ittweb-btn float-right small" (click)="modalShowSku()"> Select SKU</div>
+          <div class="btn ittweb-btn float-right small" (click)="modalShowSku()"> SELECT </div>
         </nb-card-footer>
       </nb-card>
     </div>
@@ -59,14 +63,14 @@
       Query
       <nb-card>
         <nb-card-body>
-          <ul>
-            <li *ngFor="let query of queries | onlyChecked" >
+          <ul class="list-group">
+            <li *ngFor="let query of queries | onlyChecked" class="list-group-item">
               {{ query.value }}
             </li>
           </ul>
         </nb-card-body>
         <nb-card-footer>
-          <div class="btn ittweb-btn float-right small" (click)="modalShowQuery()"> Select SKU</div>
+          <div class="btn ittweb-btn float-right small" (click)="modalShowQuery()"> SELECT </div>
         </nb-card-footer>
       </nb-card>
     </div>
@@ -75,23 +79,26 @@
       Facets
       <nb-card>
         <nb-card-body>
-          <ul>
-            <li *ngFor="let facet of facets" class="d-flex">
-              <div class="col-3">{{facet.value}}</div>
-              <select [(ngModel)]="facet.type" class="wizard-dropdown col-3">
+          <ul class="list-group">
+            <li *ngFor="let facet of facets | onlyChecked" class="d-flex list-group-item">
+              <div class="col-2">{{facet.value}}</div>
+              <select [(ngModel)]="facet.type" class="wizard-dropdown col-4 form-control input-sm">
                 <option *ngFor="let facetType of facetTypes" [ngValue]="facetType" [selected]="facetType == facet.type">{{facetType}}</option>
               </select>
-              <div *ngIf="facet.type=='slider'" class="col-4 d-flex">
-                Min <input class="col-4" type="text"> Max <input type="text" class="col-4">
+              <div *ngIf="facet.type=='slider'" class="col-6 d-flex">
+                Min <input class="form-control input-sm" type="text"> Max <input type="text" class="form-control input-sm">
               </div>
             </li>
           </ul>
         </nb-card-body>
+        <nb-card-footer>
+          <div class="btn ittweb-btn float-right small" (click)="modalShowFacets()"> SELECT </div>
+        </nb-card-footer>
       </nb-card>
     </div>
   </div>
   <div>
-    <button role="button" class="btn ittweb-back-btn" (click)="slideOutRight()">BACK</button>
+    <!--<button role="button" class="btn ittweb-back-btn" (click)="slideOutRight()">BACK</button>-->
     <button role="button" class="btn ittweb-btn next" (click)="slideOutLeft()">NEXT</button>
   </div>
 </div>

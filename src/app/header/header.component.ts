@@ -1,89 +1,103 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {DataService} from "../service/data/data.service";
-import {Router} from "@angular/router";
-import {User} from "../model/User";
-import {EventEmitterService} from "../service/event-emitter/event-emitter.service";
-import {CookieService} from "ngx-cookie-service";
+import {DataService} from '../service/data/data.service';
+import {Router} from '@angular/router';
+import {User} from '../model/User';
+import {EventEmitterService} from '../service/event-emitter/event-emitter.service';
+import {CookieService} from 'ngx-cookie-service';
 import {trigger, state, style, transition, animate, keyframes} from '@angular/animations';
+import { Observable } from 'rxjs/Observable';
+import { Website } from '../model/Website';
 
-declare var jquery:any;
-declare var $ :any;
+declare var jquery: any;
+declare var $: any;
 
 @Component({
-    host: {
-        '(document:click)': 'onClick($event)'
-    },
+    host: {'(document:click)': 'onClick($event)'},
     encapsulation: ViewEncapsulation.None,
     selector: 'ittweb-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css'],
-    animations:[
-        trigger('appear',[
-            state('hide',style({
-                opacity:0,
+    styleUrls: ['./header.component.scss'],
+    animations: [
+        trigger('appear', [
+            state('hide', style({
+                opacity: 0,
+                display: 'none'
             })),
-            state('show',style({
-                opacity:1,
+            state('show', style({
+                opacity: 1,
+                display: 'block'
             })),
-            transition('hide <=> show',animate('100ms ease-in'))
+            transition('hide <=> show', animate('100ms ease-in'))
         ])
-    ]
+      ]
 })
 export class HeaderComponent implements OnInit {
 
-    showBack:boolean=false;
-    user:User;
-    state='hide';
+    showBack = false;
+    user: User;
+    state= 'hide';
+    stateSites= 'hide';
+    notificationState= 'hide';
+    notifications= ['bla'];
+    notificationDismissed= false;
+    // sites= ['www.site1.com', 'www.site1.it', 'www.site2.com', 'www.site2.net'];
+    sites = [];
+    selectedSite= this.sites[0];
 
     constructor(
-        private dataservice:DataService,
-        private router:Router,
-        private ee:EventEmitterService,
-        private cs:CookieService
+        private dataservice: DataService,
+        private router: Router,
+        private ee: EventEmitterService,
+        private cs: CookieService
     ) {
         ee.onLoginEvent.subscribe(
-            (user) => {
-                this.user= user;
+            (data) => {
+                this.user = data.user;
+                this.sites = data.sites;
+                this.selectedSite = this.sites[0];
             }
         );
     }
 
-    ngOnInit() {
-        this.user=this.dataservice.getUser();
+    ngOnInit() {}
+
+    wizardClick() {
+      this.router.navigate(['wizard']);
     }
 
-    backClick(){
-        this.showBack=false;
-        if(this.user.isEmpty()){
-            this.router.navigate(['']);
-        } else if(this.user.isAdmin())
-            this.router.navigate(['superAdmin']);
-        else
-            this.router.navigate(['home']);
-    }
-
-    logoClick(){
-        this.showBack=true;
-    }
-
-    userClick(){
-        this.state= this.state=='hide'?'show':'hide';
-    }
-
-    wizardClick(){
-        this.router.navigate(['wizard']);
-    }
-
-    logoutClick(){
-        this.user= new User("");
+    logoutClick() {
+        this.user = new User('');
         this.dataservice.setUser(this.user);
-        this.cs.delete("username");
-        this.cs.delete("password");
+        this.cs.delete('username');
+        this.cs.delete('password');
         this.router.navigate(['']);
     }
 
-    onClick(event){
-        if(event.target.parentElement!=null && event.target.parentElement.parentElement!=null && !event.target.parentElement.className.includes('header-user-action') && !event.target.parentElement.parentElement.className.includes('header-user-action'))
-            this.state='hide';
+    onClick(event) {
+      try {
+        if (
+          event.target.parentElement != null &&
+          !event.target.parentElement.className.includes('user-icon')
+        )
+          this.state = 'hide';
+        if (
+          event.target.parentElement != null &&
+          !event.target.parentElement.className.includes('sites-dropdown')
+        )
+          this.stateSites = 'hide';
+        if (
+          event.target.parentElement != null &&
+          !event.target.parentElement.className.includes('notification-icon')
+        )
+          this.notificationState = 'hide';
+      } catch (e) {
+        debugger;
+      }
+    }
+
+    selectSite(site) {
+      this.selectedSite = site;
+      this.dataservice.setSelectedSite(this.selectedSite);
+      this.ee.onSelectSiteEvent.emit(this.selectedSite);
     }
 }

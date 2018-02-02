@@ -8,7 +8,7 @@
       <div class="col-3">
         <div class="page-sub-title">Choose the CMS version </div>
         <div>
-          <select class="wizard-dropdown">
+          <select class="wizard-dropdown form-control">
             <option *ngFor="let version of versions">{{version}}</option>
           </select>
         </div>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="page-sub-title col-3" >Copy the API Key</div>
-    <input class="wizard-api-key col-6" type="text" disabled >
+    <input class="wizard-api-key col-6 form-control" disabled>
     <div>
       <button role="button" class="btn ittweb-btn next" (click)="slideOut()" disabled >NEXT</button>
     </div>

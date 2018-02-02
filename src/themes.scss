@@ -1,0 +1,42 @@
+// import Nebular Theme System and the default theme
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+@import '~@angular/material/theming';
+
+//colors
+$color-primary-blue: #306ccc;
+$color-secondary-blue: #4f8fed;
+$color-secondary-dark-blue: #34495e;
+$color-alert-red: #af333a;
+$color-darkest-gray: #393939;
+$color-dark-gray: #9b9b9b;
+$color-gray: #dddddd;
+$color-light-gray: #fbfbfb;
+$font: Montserrat, sans-serif;
+
+//typography
+@mixin Headline-1() {
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #424242;
+}
+
+@mixin button($color){
+  cursor: pointer !important;
+  background-color: $color !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+// and change some variables inside of the map
+$nb-themes: nb-register-theme((
+  color-success: $color-secondary-blue,
+  font-main:$font
+), default, default); // let's leave it as default

@@ -10,7 +10,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let word of words">
-        <td> {{word.word}}</td>
+        <td> <mat-checkbox [(ngModel)]="word.selected"> {{word.word}} </mat-checkbox></td>
         <td colspan="10">
           <mat-chip-list #chipList>
             <mat-chip *ngFor="let synonym of word.synonyms" [selectable]="selectable"
@@ -18,16 +18,23 @@
               {{synonym}}
               <i class="material-icons" matChipRemove *ngIf="removable">cancel</i>
             </mat-chip>
-            <input placeholder="Add Synonimous... (press ENTER to insert)"
-                   [matChipInputFor]="chipList"
-                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                   [matChipInputAddOnBlur]="addOnBlur"
-                   (matChipInputTokenEnd)="add(word,$event)" />
           </mat-chip-list>
         </td>
-        <td> <button class="btn ittweb-btn small" (click)="removeWord(word)">REMOVE</button> </td>
+        <td>
+          <input placeholder="Add Synonimous... (press ENTER to insert)"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add(word,$event)"
+          class="form-control" />
+        </td>
       </tr>
       </tbody>
     </table>
   </nb-card-body>
+  <nb-card-footer>
+    <button class="btn ittweb-btn small" (click)="selectAll()">SELECT ALL</button>
+    <button class="btn ittweb-btn small" (click)="deselectAll()">DESELECT ALL</button>
+    <button class="btn ittweb-btn small" (click)="removeWords()">REMOVE SELECTED</button>
+  </nb-card-footer>
 </nb-card>

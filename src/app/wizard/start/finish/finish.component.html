@@ -1,8 +1,9 @@
 <ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
     <div class="form-check">
         <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()" disabled
-                   [indeterminate]="item.indeterminate" /> {{item.text}}
+          <mat-checkbox class="form-check-input" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()" disabled
+                  [indeterminate]="item.indeterminate" > {{item.text}}
+          </mat-checkbox>
         </label>
         <label *ngIf="item.children" class="form-check-label float-right" (click)="onArrowClicked(item)">
             <label> {{item.children.length}} SUB-CATEGORIES</label>
@@ -31,8 +32,8 @@
             Query
             <nb-card>
                 <nb-card-body>
-                    <ul>
-                        <li *ngFor="let query of queries | onlyChecked" >
+                    <ul class="list-group">
+                        <li *ngFor="let query of queries | onlyChecked" class="list-group-item">
                             {{ query.value }}
                         </li>
                     </ul>
@@ -44,14 +45,14 @@
             Facets
             <nb-card>
                 <nb-card-body>
-                    <ul>
-                        <li *ngFor="let facet of facets" class="d-flex">
-                            <div class="col-3">{{facet.value}}</div>
-                            <select [(ngModel)]="facet.type" class="wizard-dropdown col-3">
+                    <ul class="list-group">
+                        <li *ngFor="let facet of facets" class="d-flex list-group-item">
+                            <div class="col-2">{{facet.value}}</div>
+                            <select [(ngModel)]="facet.type" class="wizard-dropdown col-4 form-control">
                                 <option *ngFor="let facetType of facetTypes" [ngValue]="facetType" [selected]="facetType == facet.type" disabled>{{facetType}}</option>
                             </select>
-                            <div *ngIf="facet.type=='slider'" class="col-4 d-flex">
-                                Min <input class="col-4" type="text"> Max <input type="text" class="col-4">
+                            <div *ngIf="facet.type=='slider'" class="col-6 d-flex">
+                                Min <input class="form-control" type="text" disabled> Max <input type="text" disabled class="form-control">
                             </div>
                         </li>
                     </ul>
@@ -63,8 +64,8 @@
         Back results
         <nb-card>
             <nb-card-body>
-                <ul>
-                    <li *ngFor="let field of fields | onlyChecked" >
+                <ul class="list-group">
+                    <li *ngFor="let field of fields | onlyChecked" class="list-group-item">
                         {{ field.value }}
                     </li>
                 </ul>
@@ -72,7 +73,7 @@
         </nb-card>
     </div>
     <div>
-        <button role="button" class="btn ittweb-back-btn" (click)="slideOutRight()">BACK</button>
-        <button role="button" class="btn ittweb-btn next" (click)="slideOutLeft()">FINISH</button>
+        <!--<button role="button" class="btn ittweb-back-btn" (click)="slideOutRight()">BACK</button>-->
+        <button role="button" class="btn ittweb-btn center col-6 small" (click)="slideOutLeft()">FINISH</button>
     </div>
 </div>

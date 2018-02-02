@@ -4,8 +4,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
     transform(items: any[], searchText: string): any[] {
-        if(!items) return [];
-        if(!searchText) return items;
+        if (!items) return [];
+        if (!searchText) return items;
         searchText = searchText.toLowerCase();
         return items.filter( it => {
             return it.toLowerCase().includes(searchText);
@@ -18,8 +18,8 @@ export class FilterPipe implements PipeTransform {
 })
 export class FilterOnValuePipe implements PipeTransform {
     transform(items: any[], searchText: string): any[] {
-        if(!items) return [];
-        if(!searchText) return items;
+        if (!items) return [];
+        if (!searchText) return items;
         searchText = searchText.toLowerCase();
         return items.filter( it => {
             return it.value.toLowerCase().includes(searchText);
@@ -29,11 +29,11 @@ export class FilterOnValuePipe implements PipeTransform {
 
 @Pipe({
     name: 'onlyChecked',
-    pure:false
+    pure: false
 })
 export class OnlyCheckedPipe implements PipeTransform {
     transform(items: any[]): any[] {
-        if(!items) return [];
+        if (!items) return [];
         return items.filter( it => {
             return it.checked;
         });
@@ -45,8 +45,8 @@ export class OnlyCheckedPipe implements PipeTransform {
 })
 export class FilterOnWordPipe implements PipeTransform {
     transform(items: any[], searchText: string): any[] {
-        if(!items) return [];
-        if(!searchText) return items;
+        if (!items) return [];
+        if (!searchText) return items;
         searchText = searchText.toLowerCase();
         return items.filter( it => {
             return it.word.toLowerCase().includes(searchText);

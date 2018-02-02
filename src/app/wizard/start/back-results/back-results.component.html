@@ -1,6 +1,6 @@
 <div class="wizard-container" [@slide]='state' (@slide.done)="navigate($event)">
   <div class="page-title col-12 text-center">
-    Define the area of your research
+    Define what your result would be and how they look like
   </div>
   <div class="d-flex">
 
@@ -8,14 +8,14 @@
       Back results
       <nb-card>
         <nb-card-body>
-          <ul>
-            <li *ngFor="let field of fields | onlyChecked" >
+          <ul class="list-group">
+            <li *ngFor="let field of fields | onlyChecked" class="list-group-item">
               {{ field.value }}
             </li>
           </ul>
         </nb-card-body>
         <nb-card-footer>
-          <div class="btn ittweb-btn float-right small" (click)="modalShow()"> ADD</div>
+          <div class="btn ittweb-btn float-right small" (click)="modalShow()"> SELECT </div>
         </nb-card-footer>
       </nb-card>
     </div>
@@ -30,7 +30,7 @@
     </div>
   </div>
   <div>
-    <button role="button" class="btn ittweb-back-btn" (click)="slideOutRight()">BACK</button>
+    <!--<button role="button" class="btn ittweb-back-btn" (click)="slideOutRight()">BACK</button>-->
     <button role="button" class="btn ittweb-btn next" (click)="slideOutLeft()">NEXT</button>
   </div>
 </div>
