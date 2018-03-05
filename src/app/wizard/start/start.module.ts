@@ -10,8 +10,9 @@ import { ModalModule } from 'ngx-bootstrap';
 import { OrderModule } from 'ngx-order-pipe';
 import { MatCheckboxModule, MatRadioModule} from '@angular/material';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SharedModule } from '../../shared/shared.module';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
-import { FilterPipe, FilterOnValuePipe, OnlyCheckedPipe } from '../../pipes/filter.pipe';
 import { CmsComponent } from './cms/cms.component';
 import { WebsiteComponent } from './website/website.component';
 import { FieldsComponent } from './fields/fields.component';
@@ -26,19 +27,21 @@ import { BsModalService } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
-      StartRoutingModule,
-      NbRouteTabsetModule,
-      NbCardModule,
-      CommonModule,
-      FormsModule,
-      AngularSvgIconModule,
-      OrderModule,
-      MatCheckboxModule,
-      MatRadioModule,
-      ReactiveFormsModule,
-      TooltipModule.forRoot(),
-      ModalModule.forRoot(),
-      TreeviewModule.forRoot()
+    StartRoutingModule,
+    NbRouteTabsetModule,
+    NbCardModule,
+    MatSlideToggleModule,
+    CommonModule,
+    FormsModule,
+    AngularSvgIconModule,
+    OrderModule,
+    SharedModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    TreeviewModule.forRoot()
   ],
   declarations: [
     CmsComponent,
@@ -46,9 +49,6 @@ import { BsModalService } from 'ngx-bootstrap';
     FieldsComponent,
     BackResultsComponent,
     StartComponent,
-    FilterPipe,
-    FilterOnValuePipe,
-    OnlyCheckedPipe,
     ModalComponent,
     BackResultModalComponent,
     FinishComponent],

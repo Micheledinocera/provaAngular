@@ -1,13 +1,13 @@
-<div class="d-flex">
+<div class="d-flex" *ngIf=" time > 0" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
   <div class="page-sub-title col-6"> Currency
     <nb-card>
       <nb-card-body>
-        <div class="d-flex">
-          <select [(ngModel)]="currency" class="wizard-dropdown col-3 form-control">
+        <div>
+          <select [(ngModel)]="currency" class="wizard-dropdown col-7 form-control-sm">
             <option *ngFor="let currency of currencies"> {{currency}} </option>
           </select>
-          <mat-radio-group [(ngModel)]="separator">
-            <mat-radio-button name="separator" value="Dot"> Dot </mat-radio-button>
+          <mat-radio-group class="float-right vertical-centering-absolute ml-4" [(ngModel)]="separator">
+            <mat-radio-button name="separator" value="Dot" class="mr-5"> Dot </mat-radio-button>
             <mat-radio-button name="separator" value="Comma"> Comma </mat-radio-button>
           </mat-radio-group>
         </div>
@@ -17,45 +17,47 @@
   <div class="page-sub-title col-6"> Placeholder to show if price not provided in the feed
     <nb-card>
       <nb-card-body>
-        <input type="text" placeholder="Placeholder text" [(ngModel)]="placeholder" class="form-control">
+        <input type="text" placeholder="Placeholder text" [(ngModel)]="placeholder" class="form-control small">
       </nb-card-body>
     </nb-card>
   </div>
 </div>
-<div class="d-flex">
+<div class="d-flex" *ngIf=" time > 1" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
   <div class="page-sub-title col-6"> Engage Search
     <nb-card>
       <nb-card-body>
           <table class="table">
             <tbody>
-                <tr *ngFor="let engageSearch of engageSearchs">
-                  <td colspan="3">
-                    <div class="page-sub-title"> {{engageSearch.title}} </div>
-                    <div> {{engageSearch.description}} </div>
-                  </td>
-                  <td> <button class="btn ittweb-btn small" (click)='removeSearch(engageSearch)'> Delete</button></td>
-                  <td> <button class="btn ittweb-btn small" (click)='editSearch(engageSearch)'> Edit</button></td>
-                  <td> <button class="btn ittweb-btn small"> Preview</button></td>
-                </tr>
+              <tr *ngFor="let engageSearch of engageSearchs">
+                <td colspan="3">
+                  <div class="page-sub-title"> {{engageSearch.title}} </div>
+                  <div> {{engageSearch.description}} </div>
+                </td>
+                <td>
+                  <button class="btn ittweb-negative-btn small float-right"> Preview</button>
+                  <button class="btn ittweb-black-btn smaller float-right" (click)='editSearch(engageSearch)'> Edit</button>
+                  <button class="btn ittweb-delete-btn smaller float-right" (click)='removeSearch(engageSearch)'> Delete</button>
+                </td>
+              </tr>
             </tbody>
           </table>
       </nb-card-body>
       <nb-card-footer>
-          <button class="btn ittweb-btn small" (click)="addSearch()"> ADD </button>
+          <button class="btn ittweb-btn small float-right" (click)="addSearch()"> ADD </button>
       </nb-card-footer>
     </nb-card>
   </div>
   <div class="page-sub-title col-6"> JS Layer show mode
     <nb-card>
       <nb-card-body>
-          <select [(ngModel)]="showMode" class="wizard-dropdown col-3 form-control">
+          <select [(ngModel)]="showMode" class="wizard-dropdown col-8 form-control-sm">
               <option *ngFor="let showMode of showModes"> {{showMode}} </option>
           </select>
       </nb-card-body>
     </nb-card>
   </div>
 </div>
-<div class="d-flex">
+<div class="d-flex" *ngIf=" time > 2" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
   <div class="page-sub-title col-6"> Weight
     <nb-card>
       <nb-card-body>
@@ -69,7 +71,7 @@
               <td> {{weight.title}}</td>
               <td colspan="10">
                 <!--  <input type="range" class="progress" [(ngModel)]="weight.value" max="10">-->
-                <mat-slider max=10 min=0 step=1 thumb-label=true [(ngModel)]="weight.value"></mat-slider>
+                <mat-slider max=10 min=0 step=1 thumb-label=true [(ngModel)]="weight.value" color="primary"></mat-slider>
               </td>
             </tr>
           </tbody>
@@ -83,9 +85,13 @@
           <table class="table">
               <tbody>
               <tr *ngFor="let ip of ips">
-                <td colspan="12"> <div [ngClass]="ip.editable?'form-control':''" [contentEditable]="ip.editable">{{ip.word}}</div></td>
-                <td> <button class="btn ittweb-btn small" (click)="removeIp(ip)">REMOVE</button> </td>
-                <td> <button class="btn ittweb-btn small" (click)="ip.editable=!ip.editable">{{ip.editable?'OK':'EDIT'}}</button> </td>
+                <td class="d-flex">
+                  <div *ngIf="!ip?.editable" class="small col-7" [ngClass]="ip?.editable?'edit-form':''">{{ip.ip}}</div>
+                  <input *ngIf="ip?.editable" class="form-control small col-7" [ngClass]="ip?.editable?'edit-form':''" [(ngModel)]="ip.ip">
+                <!--<td colspan="12"> <div class="form-control" [ngClass]="ip?.editable?'edit-form':''" [contentEditable]="ip.editable" [textContent]="ip.ip">{{ip.ip}}</div></td>-->
+                  <button class="btn ittweb-delete-btn small" (click)="removeIp(ip)">REMOVE</button>
+                  <button class="btn ittweb-black-btn small" (click)="updateWord($event,ip)">{{ip.editable?'SAVE':'EDIT'}}</button>
+                </td>
               </tr>
               </tbody>
             </table>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {DataService} from '../../../service/data/data.service';
+import {EventEmitterService} from '../../../service/event-emitter/event-emitter.service';
 import {WizardController} from '../wizard-controller';
 
 declare var jquery: any;
@@ -22,13 +23,15 @@ export class WebsiteComponent implements OnInit {
     import= 'N';
     importSiteValue;
     sitesFiltred= [];
-    sites= ['Sito1.com', 'Sito2.com', 'Sito2.eu', 'Sito2.it', 'Sito3.org'];
+    sites= [];
 
     constructor(
         private router: Router,
-        private dataservice: DataService
+        private dataservice: DataService,
+        private ee: EventEmitterService
     ) {
         this.wizardController = new WizardController(this.router, this.dataservice);
+        this.sites = dataservice.getSitesList();
     }
 
     ngOnInit() {
@@ -45,12 +48,16 @@ export class WebsiteComponent implements OnInit {
     }
 
     navigate(event) {
+        this.dataservice.setSelectedSiteWizard(this.siteValue);
+        if (this.import === 'N')
+          this.importSiteValue = '';
+        this.dataservice.importSiteWizardFrom(this.importSiteValue);
         this.wizardController.navigate(event, '/wizard/start/fields', '/wizard/start/cms');
     }
 
     onChange(siteValue) {
       this.sitesFiltred = this.sites.filter(function(i) {
-        return i !== siteValue;
+        return i.name !== siteValue;
       });
     }
 }

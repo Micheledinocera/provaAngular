@@ -35,4 +35,15 @@ export class FineTuning {
     };
   }
 
+  static getDummyFineTuning2() {
+    return {
+      currency: Currency.getDummyCurrency2(),
+      placeholder: 'placeholder2',
+      jsLayer: 'List view',
+      engageSearchs: EngageSearch.getDummyEngageSearches2(),
+      weights: Weight.getDummyWeights2(),
+      ips: Ip.getDummyIps2()
+    };
+  }
+
 }

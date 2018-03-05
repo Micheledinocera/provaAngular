@@ -1,0 +1,9 @@
+@import "../../../styles.scss";
+
+.site{
+  @include Headline-2()
+}
+
+.desc{
+  @include Subheader-2();
+}

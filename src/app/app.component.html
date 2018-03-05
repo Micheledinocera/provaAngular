@@ -1,13 +1,16 @@
-<nb-layout>
-    <nb-layout-header class="d-flex justify-content-center">
-        <toaster-container></toaster-container>
-        <ittweb-header> </ittweb-header>
-    </nb-layout-header>
+<!--<ngx-sample-layout>-->
+  <nb-layout class="window-mode with-scroll">
+      <nb-layout-header class="d-flex justify-content-center">
+          <toaster-container></toaster-container>
+          <ngx-loading-bar></ngx-loading-bar>
+          <ittweb-header> </ittweb-header>
+      </nb-layout-header>
 
-    <nb-layout-column>
-        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
-        <router-outlet>
+      <nb-layout-column>
+          <!--<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>-->
+          <router-outlet>
 
-        </router-outlet>
-    </nb-layout-column>
-</nb-layout>
+          </router-outlet>
+      </nb-layout-column>
+  </nb-layout>
+<!--</ngx-sample-layout>-->

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnChanges, HostListener } from '@angular/core';
 import {DataService} from '../service/data/data.service';
 import {Router} from '@angular/router';
 import {User} from '../model/User';
@@ -40,9 +40,11 @@ export class HeaderComponent implements OnInit {
     notificationState= 'hide';
     notifications= ['bla'];
     notificationDismissed= false;
-    // sites= ['www.site1.com', 'www.site1.it', 'www.site2.com', 'www.site2.net'];
+    checkAtLeastOneCompletedSite;
+    checkAllCompletedSite;
     sites = [];
-    selectedSite= this.sites[0];
+    selectedSite = '';
+    isDashboardView= false;
 
     constructor(
         private dataservice: DataService,
@@ -51,18 +53,42 @@ export class HeaderComponent implements OnInit {
         private cs: CookieService
     ) {
         ee.onLoginEvent.subscribe(
-            (data) => {
-                this.user = data.user;
-                this.sites = data.sites;
-                this.selectedSite = this.sites[0];
-            }
+          (data) => {
+            this.user = data.user;
+            this.sites = data.sites;
+            this.selectedSite = this.sites[0].name;
+            this.checkAllCompletedSite = this.dataservice.checkAllCompletedSite();
+            this.checkAtLeastOneCompletedSite = this.dataservice.checkAtLeastOneCompletedSite();
+          }
+        );
+        ee.onHomeEvent.subscribe(
+          (data) => {
+            this.isDashboardView = data;
+          }
+        );
+        ee.onSelectSiteEvent.subscribe(
+          (selectedSite) => {
+            this.selectedSite = selectedSite;
+          }
+        );
+        ee.onCompletedEvent.subscribe(
+          (data) => {
+            this.sites = this.dataservice.getSitesList();
+            this.checkAllCompletedSite = this.dataservice.checkAllCompletedSite();
+            this.checkAtLeastOneCompletedSite = this.dataservice.checkAtLeastOneCompletedSite();
+          }
         );
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+      this.checkAtLeastOneCompletedSite = this.dataservice.checkAtLeastOneCompletedSite();
+      this.checkAllCompletedSite = this.dataservice.checkAllCompletedSite();
+      if (this.checkAtLeastOneCompletedSite && this.sites.length > 0)
+        this.selectedSite = this.sites[0].name;
+    }
 
     wizardClick() {
-      this.router.navigate(['wizard']);
+      this.router.navigateByUrl('wizard/start/cms');
     }
 
     logoutClick() {
@@ -76,22 +102,22 @@ export class HeaderComponent implements OnInit {
     onClick(event) {
       try {
         if (
-          event.target.parentElement != null &&
-          !event.target.parentElement.className.includes('user-icon')
+          !event.target.className.includes('user-icon')
         )
           this.state = 'hide';
         if (
           event.target.parentElement != null &&
-          !event.target.parentElement.className.includes('sites-dropdown')
+          !event.target.parentElement.className.includes('sites-dropdown') &&
+          event.target != null &&
+          !event.target.className.includes('sites-dropdown')
         )
           this.stateSites = 'hide';
         if (
-          event.target.parentElement != null &&
-          !event.target.parentElement.className.includes('notification-icon')
+          !event.target.className.includes('notification-icon') && !event.target.className.includes('notification-icon-notification')
         )
           this.notificationState = 'hide';
       } catch (e) {
-        debugger;
+        // debugger;
       }
     }
 

@@ -3,10 +3,73 @@ export class Kpi {
   title: string;
   value: number;
 
-  static getDummyKpis(ds) {
+  static getEmptyKpis(ds) {
     const timeRanges = ds.getTimeRanges();
     const dummyData = [];
     dummyData[timeRanges[0]] = [{
+      title: 'Total Search',
+      value: 0
+    }, {
+      title: 'Unique Visitors',
+      value: 0
+    }, {
+        title: 'Average page visits per user',
+        value: '0'
+    }, {
+        title: 'Total conversion value',
+        value: '0'
+    }, {
+        title: 'Average value per conversion',
+        value: '0'
+    }, {
+        title: 'Altro valore',
+        value: '0'
+    }];
+    dummyData[timeRanges[1]] = [{
+        title: 'Total Search',
+        value: 0
+    }, {
+        title: 'Unique Visitors',
+        value: 0
+    }, {
+        title: 'Average page visits per user',
+        value: '0'
+    }, {
+        title: 'Total conversion value',
+        value: '0'
+    }, {
+        title: 'Average value per conversion',
+        value: '0'
+    }, {
+        title: 'Altro valore',
+        value: '0'
+    }];
+    dummyData[timeRanges[2]] = [{
+        title: 'Total Search',
+        value: 0
+    }, {
+        title: 'Unique Visitors',
+        value: 0
+    }, {
+        title: 'Average page visits per user',
+        value: '0'
+    }, {
+        title: 'Total conversion value',
+        value: '0'
+    }, {
+        title: 'Average value per conversion',
+        value: '0'
+    }, {
+        title: 'Altro valore',
+        value: '0'
+    }];
+    return dummyData;
+  }
+
+  static getDummyKpis(ds) {
+    const timeRanges = ds.getTimeRanges();
+    let dummyData = {};
+    dummyData = {[timeRanges[0]]: [{
       title: 'Total Search',
       value: 440
     }, {
@@ -23,9 +86,8 @@ export class Kpi {
         value: '125'
     }, {
         title: 'Altro valore',
-        value: 'xx'
-    }];
-    dummyData[timeRanges[1]] = [{
+        value: '100'
+    }], [timeRanges[1]]: [{
         title: 'Total Search',
         value: 445
     }, {
@@ -42,9 +104,8 @@ export class Kpi {
         value: '135'
     }, {
         title: 'Altro valore',
-        value: 'xx'
-    }];
-    dummyData[timeRanges[2]] = [{
+        value: '10'
+    }], [timeRanges[2]]: [{
         title: 'Total Search',
         value: 540
     }, {
@@ -61,7 +122,70 @@ export class Kpi {
         value: '325'
     }, {
         title: 'Altro valore',
-        value: 'xx'
+        value: '50'
+    }]};
+    return dummyData;
+  }
+
+  static getDummyKpis2(ds) {
+    const timeRanges = ds.getTimeRanges();
+    const dummyData = [];
+    dummyData[timeRanges[0]] = [{
+      title: 'Total Search',
+      value: 440
+    }, {
+      title: 'Unique Visitors',
+      value: 80
+    }, {
+        title: 'Average page visits per user',
+        value: '5,55'
+    }, {
+        title: 'Total conversion value',
+        value: '10.0000'
+    }, {
+        title: 'Average value per conversion',
+        value: '12500'
+    }, {
+        title: 'Altro valore',
+        value: '10000'
+    }];
+    dummyData[timeRanges[1]] = [{
+        title: 'Total Search',
+        value: 44500
+    }, {
+        title: 'Unique Visitors',
+        value: 900
+    }, {
+        title: 'Average page visits per user',
+        value: '60,5'
+    }, {
+        title: 'Total conversion value',
+        value: 1600000
+    }, {
+        title: 'Average value per conversion',
+        value: '1350000'
+    }, {
+        title: 'Altro valore',
+        value: '1000'
+    }];
+    dummyData[timeRanges[2]] = [{
+        title: 'Total Search',
+        value: 54000
+    }, {
+        title: 'Unique Visitors',
+        value: 10000
+    }, {
+        title: 'Average page visits per user',
+        value: '50,4'
+    }, {
+        title: 'Total conversion value',
+        value: '30.000'
+    }, {
+        title: 'Average value per conversion',
+        value: '32500'
+    }, {
+        title: 'Altro valore',
+        value: '5000'
     }];
     return dummyData;
   }

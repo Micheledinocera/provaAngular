@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Router} from '@angular/router';
 import {DataService} from '../../../service/data/data.service';
 import {WizardController} from '../wizard-controller';
@@ -17,15 +17,16 @@ declare var $: any;
   styleUrls: ['./back-results.component.css'],
   animations: WizardController.animation
 })
-export class BackResultsComponent implements OnInit {
+export class BackResultsComponent implements OnInit, OnDestroy {
 
     bsModalRef: BsModalRef;
-    backResultsInfo = [];
+    backResultsInfo;
     selectedSite;
     state;
     wizardController;
     info;
     searchText;
+    wizardSite;
     fields= [];
 
     constructor(
@@ -35,21 +36,22 @@ export class BackResultsComponent implements OnInit {
         private ee: EventEmitterService
     ) {
         this.wizardController = new WizardController(this.router, this.dataservice);
-        this.backResultsInfo = dataservice.getBackResults();
-        this.fields = this.getSelectedBackResults(dataservice.getSelectedSite());
         ee.onModalDismissEvent.subscribe(
           (data) => {
             this.fields = data.data;
         });
-        ee.onSelectSiteEvent.subscribe(
-          (selectedSite) => {
-            this.fields = this.getSelectedBackResults(dataservice.getSelectedSite());
-        });
     }
 
     ngOnInit() {
-        this.info = this.wizardController.initialazeView();
-        this.state = this.info.state;
+      this.info = this.wizardController.initialazeView();
+      this.state = this.info.state;
+      this.wizardSite = this.dataservice.getWizardSite();
+      this.backResultsInfo = this.dataservice.getBackResults(this.wizardSite.name);
+      this.fields = this.backResultsInfo ? this.backResultsInfo.backResults : BackResults.getDummyBackResultsUnchecked();
+    }
+
+    ngOnDestroy() {
+      this.dataservice.setWizardSite('backResults', { backResults: {backResults: this.fields }}, this.wizardSite.name);
     }
 
     slideOutLeft() {

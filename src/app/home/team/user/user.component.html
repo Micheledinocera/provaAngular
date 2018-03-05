@@ -1,0 +1,20 @@
+<nb-card>
+  <nb-card-body>
+    <img [src]="user.picture" class="avatar center-relative"/>
+
+    <div *ngIf="!editable" class="small text-center mt-2 name" [ngClass]="editable?'edit-form':''"> {{user.name}} </div>
+    <input *ngIf="editable" class="form-control small mt-2 name" [ngClass]="editable?'edit-form':''" [(ngModel)]="user.name">
+
+    <div *ngIf="!editable" class="small text-center mt-2" [ngClass]="editable?'edit-form':''"> {{user.mail}} </div>
+    <input *ngIf="editable" class="form-control small mt-2" [ngClass]="editable?'edit-form':''" [(ngModel)]="user.mail">
+
+    <div *ngIf="!editable" class="small text-center mt-3 mb-3 role"> {{user.type}} </div>
+    <select *ngIf="editable" class="wizard-dropdown form-control-sm col-12 mt-3 mb-3"  [ngClass]="editable?'edit-form':''" [(ngModel)]="user.type">
+      <option *ngFor="let type of types">{{type}}</option>
+    </select>
+
+    <td>
+      <button class="btn small center mb-3" [ngClass]="editable?'ittweb-negative-btn':'ittweb-btn'" (click)="editable = !editable;">{{editable?'SAVE':'EDIT'}}</button>
+    </td>
+  </nb-card-body>
+</nb-card>

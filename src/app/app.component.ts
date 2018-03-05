@@ -20,14 +20,8 @@ export class AppComponent implements OnInit {
         private dataservice: DataService,
         private router: Router,
         private cs: CookieService,
-        private lc: LoginComponent,
-        private ee: EventEmitterService
+        private lc: LoginComponent
         ) {
-        ee.onLoadingEvent.subscribe(
-            (loading) => {
-                this.loading = loading;
-            }
-        );
     }
 
     ngOnInit() {

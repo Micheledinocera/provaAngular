@@ -41,6 +41,32 @@ export class OnlyCheckedPipe implements PipeTransform {
 }
 
 @Pipe({
+  name: 'onlyCompleted',
+  pure: false
+})
+export class OnlyCompletedPipe implements PipeTransform {
+  transform(items: any[]): any[] {
+      if (!items) return [];
+      return items.filter( it => {
+          return it.completed;
+      });
+  }
+}
+
+@Pipe({
+  name: 'onlyIncompleted',
+  pure: false
+})
+export class OnlyIncompletedPipe implements PipeTransform {
+  transform(items: any[]): any[] {
+      if (!items) return [];
+      return items.filter( it => {
+          return !it.completed;
+      });
+  }
+}
+
+@Pipe({
     name: 'filterOnWord'
 })
 export class FilterOnWordPipe implements PipeTransform {

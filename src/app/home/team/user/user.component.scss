@@ -1,0 +1,13 @@
+@import '../../../../styles.scss';
+
+.role{
+  @include Subheader-1-blue();
+}
+
+.name{
+  @include Body-1();
+}
+
+nb-card{
+  min-height: 350px !important;
+}

@@ -10,7 +10,7 @@ declare var google: any;
 
 export class Analytics {
 
-  pieChartData: PieChartData[] = [];
+  pieChartData: PieChartData[][] = [];
   kpis: Kpi[][] = [];
   clicked: Table[][] = [];
   lookingFor: Table[][] = [];
@@ -19,7 +19,8 @@ export class Analytics {
   conversion: Table[][] = [];
   clickPerRow: Table[][] = [];
   mapChartData: MapChartData[][] = [];
-  horizontalChartData: HorizontalChartData[][] = [];
+  uploadedProductsChartData: HorizontalChartData[][] = [];
+  requestChartData: HorizontalChartData[][] = [];
   lineChartSearch: LineChartData[][] = [];
   lineChartVisitors: LineChartData[][] = [];
   lineChartConversion: LineChartData[][] = [];
@@ -39,7 +40,9 @@ export class Analytics {
         this.conversion[timeRange] = [];
         this.clickPerRow[timeRange] = [];
         this.mapChartData[timeRange] = [];
-        this.horizontalChartData[timeRange] = [];
+        this.pieChartData[timeRange] = [];
+        this.uploadedProductsChartData[timeRange] = [];
+        this.requestChartData[timeRange] = [];
         this.lineChartSearch[timeRange] = [];
         this.lineChartVisitors[timeRange] = [];
         this.lineChartConversion[timeRange] = [];
@@ -51,10 +54,10 @@ export class Analytics {
       this.populateData('table', this.searches, data.searches);
       this.populateData('table', this.conversion, data.conversion);
       this.populateData('table', this.clickPerRow, data.clickPerRow);
-      for (const timeRange of this.timeRanges)
-        this.pieChartData[timeRange] = new PieChartData(data.pieChartData);
+      this.populateData('pieChart', this.pieChartData, data.pieChartData);
       this.populateData('mapChart', this.mapChartData, data.mapChartData);
-      this.populateData('horizontalChart', this.horizontalChartData, data.horizontalChartData);
+      this.populateData('horizontalChart', this.uploadedProductsChartData, data.uploadedProductsChartData);
+      this.populateData('horizontalChart', this.requestChartData, data.requestChartData);
       this.populateData('lineChart', this.lineChartSearch, data.lineChartSearch);
       this.populateData('lineChart', this.lineChartVisitors, data.lineChartVisitors);
       this.populateData('lineChart', this.lineChartConversion, data.lineChartConversion);
@@ -62,23 +65,40 @@ export class Analytics {
 
   static getDummyAnalytics(ds) {
     return {
-        kpis: Kpi.getDummyKpis(ds),
-        clicked: Table.getDummyTables(ds),
-        lookingFor: Table.getDummyTables(ds),
-        noResults: Table.getDummyTables(ds),
-        searches: Table.getDummyTables(ds),
-        conversion: Table.getDummyTables(ds),
-        clickPerRow: Table.getDummyTables(ds),
-        mapChartData: MapChartData.getDummyMapChartData(ds),
-        horizontalChartData: HorizontalChartData.getDummyHorizontalChartData(ds),
-        pieChartData: {
-          labels: ['dato1', 'dato2', 'dato3'],
-          data: [300, 500, 100]
-        },
-        lineChartSearch: LineChartData.getDummyLineChartData(ds),
-        lineChartVisitors: LineChartData.getDummyLineChartData(ds),
-        lineChartConversion: LineChartData.getDummyLineChartData(ds)
-      };
+      kpis: Kpi.getDummyKpis(ds),
+      clicked: Table.getDummyTables(ds),
+      lookingFor: Table.getDummyTables(ds),
+      noResults: Table.getDummyTables(ds),
+      searches: Table.getDummyTables(ds),
+      conversion: Table.getDummyTables(ds),
+      clickPerRow: Table.getDummyTables(ds),
+      mapChartData: MapChartData.getDummyMapChartData(ds),
+      uploadedProductsChartData: HorizontalChartData.getDummyHorizontalChartData(ds),
+      requestChartData: HorizontalChartData.getDummyHorizontalChartData(ds),
+      pieChartData: PieChartData.getDummyPieChartData(ds),
+      lineChartSearch: LineChartData.getDummyLineChartData(ds),
+      lineChartVisitors: LineChartData.getDummyLineChartData(ds),
+      lineChartConversion: LineChartData.getDummyLineChartData(ds)
+    };
+  }
+
+  static getEmptyAnalytics(ds) {
+    return {
+      kpis: Kpi.getEmptyKpis(ds),
+      clicked: Table.getEmptyTable(ds),
+      lookingFor: Table.getEmptyTable(ds),
+      noResults: Table.getEmptyTable(ds),
+      searches: Table.getEmptyTable(ds),
+      conversion: Table.getEmptyTable(ds),
+      clickPerRow: Table.getEmptyTable(ds),
+      mapChartData: MapChartData.getEmptyMapChartData(ds),
+      uploadedProductsChartData: HorizontalChartData.getEmptyHorizontalChartData(ds),
+      requestChartData: HorizontalChartData.getEmptyHorizontalChartData(ds),
+      pieChartData: PieChartData.getEmptyPieChartData(ds),
+      lineChartSearch: LineChartData.getEmptyLineChartData(ds),
+      lineChartVisitors: LineChartData.getEmptyLineChartData(ds),
+      lineChartConversion: LineChartData.getEmptyLineChartData(ds)
+    };
   }
 
   populateData(type, result, data) {
@@ -92,7 +112,10 @@ export class Analytics {
             result[timeRange].push(new Table(item));
             break;
           case 'mapChart':
-            result[timeRange].push(new MapChartData(item));
+            result[timeRange].push(item);
+            break;
+          case 'pieChart':
+            result[timeRange].push(new PieChartData(item));
             break;
           case 'lineChart':
             result[timeRange].push(new LineChartData(item));
@@ -103,8 +126,5 @@ export class Analytics {
         }
       }
     }
-    if (type === 'mapChat')
-      for (const timeRange of this.timeRanges)
-        result[timeRange] = google.visualization.arrayToDataTable(result[timeRange]);
   }
 }

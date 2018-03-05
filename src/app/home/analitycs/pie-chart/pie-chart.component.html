@@ -1,9 +1,32 @@
-<div style="display: block">
-<canvas baseChart
-        [data]="pieChartData"
-        [labels]="pieChartLabels"
-        [chartType]="pieChartType"
-        [colors]="pieChartColors"
-        (chartHover)="chartHovered($event)"
-        (chartClick)="chartClicked($event)"></canvas>
+<div class="d-flex container">
+  <div class="col-6" style="height: 360px;">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th colspan="3">Referral name</th>
+        <th>% traffic</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let singleData of generalData.labels; let i = index">
+        <td colspan="3">
+          <div class="d-flex">
+            <div class="square" [ngStyle]="{'background-color': generalData.pieChartColors? generalData.pieChartColors[i] : ''}"> </div>
+            {{singleData}}
+          </div>
+        </td>
+        <td> {{generalData.data[i]}} </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="refresh" class="col-4">
+    <canvas baseChart height="200" width="200"
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"
+            [options]="pieChartOptions"
+            [colors]="pieChartColors"
+            (chartClick)="chartClicked($event)"></canvas>
+  </div>
 </div>

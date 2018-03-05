@@ -4,6 +4,12 @@
     cursor: pointer;
 }
 
+.header-logo{
+  height: 50px;
+  width: 250px;
+  background: url(../../assets/logo.svg) center no-repeat;
+}
+
 ittweb-header {
     width: 100%;
 }
@@ -23,19 +29,56 @@ ittweb-header {
 .header-dropdown-menu{
   top: 4.75rem;
   z-index: 1;
+  padding-left: 0 !important;
+  left: 50% !important;
 }
 
 .user-icon{
-    width: 30px;
-    height: 30px;
+  width: 30px;
+  height: 30px;
+  background: url(../../assets/icon-user.svg) center no-repeat;
 }
 
-.header-user-action:hover g,div{
-    stroke: $color-primary-blue;
+.user-icon:hover{
+  background: url(../../assets/icon-user-active.svg) center no-repeat;
+}
+
+.notification-icon{
+  width: 30px;
+  height: 30px;
+  background: url(../../assets/bell.svg) center no-repeat;
+}
+
+.notification-icon:hover{
+  background: url(../../assets/bell-active.svg) center no-repeat;
+}
+
+.notification-icon-notification{
+  width: 30px;
+  height: 30px;
+  background: url(../../assets/bell-notification.svg) center no-repeat;
+}
+
+.notification-icon-notification:hover{
+  background: url(../../assets/bell-notification-active.svg) center no-repeat;
+}
+
+.dashboard-icon{
+  width: 30px;
+  height: 30px;
+  background: url(../../assets/dashboard.svg) center no-repeat;
+}
+
+.dashboard-icon:hover{
+  background: url(../../assets/dashboard-active.svg) center no-repeat;
 }
 
 .header-user-action, .sites-dropdown, .header-dropdown-menu{
   cursor: pointer;
+}
+
+.header-user-action{
+  margin-right: 25px;
 }
 
 .sites-dropdown-menu{
@@ -45,12 +88,36 @@ ittweb-header {
 
 .sites-dropdown{
   height: 4.75rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  background-color: $color-light-gray;
+  @include Body-2();
+}
+
+.sites-dropdown.selected{
+  color: white;
+  background-color: $color-primary-blue;
 }
 
 .header-dropdown-menu li:hover{
-  background-color: $color-dark-gray;
+  background-color: $color-primary-blue;
+  color: white;
 }
 
-.header-btn{
-  height: 50%;
+.header-dropdown-menu>li{
+  @include Body-2();
+  padding-top: 15px;
+  height: 50px;
+  border: none;
+}
+
+.header-dropdown-menu>li:after {
+  content: '';
+  width: 90%;
+  height: 0.05rem;
+  left: 5px;
+  background: $color-gray;
+  position: absolute;
+  z-index: 1;
+  bottom: 0.01rem;
 }

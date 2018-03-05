@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { SetupRoutingModule} from './setup-routing.module';
 import { NbRouteTabsetModule } from '@nebular/theme';
 import { MatChipsModule} from '@angular/material/chips';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { NbCardModule } from '@nebular/theme';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material';
 import { MatCheckboxModule, MatRadioModule } from '@angular/material';
+import { TreeviewModule } from 'ngx-treeview';
+import { SharedModule } from '../../shared/shared.module';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 import { SetupComponent } from './setup.component';
 import { routingComponents} from './setup-routing.module';
@@ -19,30 +22,36 @@ import { FilterOnWordPipe} from '../../pipes/filter.pipe';
 import { BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BsModalService, ModalModule} from 'ngx-bootstrap';
 import { EngageSearchModalComponent } from './fine-tuning/engage-search-modal/engage-search-modal.component';
+import { ContenteditableDirective } from 'ng-contenteditable';
 
 @NgModule({
   imports: [
-      SetupRoutingModule,
-      NbRouteTabsetModule,
-      MatChipsModule,
-      CommonModule,
-      NbCardModule,
-      MatSliderModule,
-      MatRadioModule,
-      MatCheckboxModule,
-      ModalModule.forRoot(),
-      FormsModule
+    SetupRoutingModule,
+    NbRouteTabsetModule,
+    MatChipsModule,
+    CommonModule,
+    NbCardModule,
+    MatSliderModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    SharedModule,
+    ModalModule.forRoot(),
+    TreeviewModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    AngularSvgIconModule
   ],
   declarations: [
-      SetupComponent,
-      routingComponents,
-      CurrentSettingsComponent,
-      SynonimousComponent,
-      StopWordsComponent,
-      FineTuningComponent,
-      SynonymousModalComponent,
-      EngageSearchModalComponent,
-      FilterOnWordPipe
+    SetupComponent,
+    routingComponents,
+    CurrentSettingsComponent,
+    ContenteditableDirective,
+    SynonimousComponent,
+    StopWordsComponent,
+    FineTuningComponent,
+    SynonymousModalComponent,
+    EngageSearchModalComponent,
+    FilterOnWordPipe
   ],
     providers: [BsModalRef, BsModalService],
     entryComponents: [SynonymousModalComponent, EngageSearchModalComponent]

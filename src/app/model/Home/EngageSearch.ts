@@ -26,4 +26,19 @@ export class EngageSearch {
         template: 'TemplateHtml'
       }];
   }
+
+  static getDummyEngageSearches2() {
+    return [
+      {
+        title: 'Titolo21',
+        description: 'asdkjdhaskjfhaskdjfjsa2',
+        keywords: ['key12', 'key22'],
+        template: 'Template1'
+      } , {
+        title: 'Titolo22',
+        description: 'asdkjdhaskjfhaskdjfjsa2',
+        keywords: ['key32', 'key42'],
+        template: 'TemplateHtml2'
+      }];
+  }
 }

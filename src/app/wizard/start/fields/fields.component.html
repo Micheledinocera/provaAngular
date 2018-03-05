@@ -1,55 +1,65 @@
 <ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
-    <div class="form-check">
-        <label class="form-check-label">
-          <mat-checkbox class="form-check-input" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()"
-                  [indeterminate]="item.indeterminate" > {{item.text}}
-          </mat-checkbox>
-        </label>
-        <label *ngIf="item.children" class="form-check-label float-right" (click)="onArrowClicked(item)">
-            <label> {{item.children.length}} SUB-CATEGORIES</label>
-            <svg-icon [src]="!item.collapsed?'assets/icon-arrow-up.svg':'assets/icon-arrow-down.svg'"></svg-icon>
-        </label>
-    </div>
+  <div class="form-check" [style.border-top]="item.children?'solid 1px #dddddd':''">
+      <label class="form-check-label">
+        <mat-checkbox class="form-check-input" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()"
+                [indeterminate]="item.indeterminate" > {{item.text}}
+        </mat-checkbox>
+      </label>
+      <label *ngIf="item.children" class="form-check-label float-right" (click)="onArrowClicked(item)">
+          <label style="font-size:14px;"> {{item.children.length}} SUB-CATEGORIES</label>
+          <svg-icon [src]="!item.collapsed?'assets/icon-arrow-up.svg':'assets/icon-arrow-down.svg'"></svg-icon>
+      </label>
+  </div>
 </ng-template>
 
 <div class="wizard-container" [@slide]='state' (@slide.done)="navigate($event)">
-  <div class="page-title col-12 text-center">
+  <div class="page-title col-12 text-center mt-3 mb-3">
       Define the area of your research
   </div>
   <div class="d-flex">
 
     <div class="page-sub-title col-6">
-      Category
+      <div class="d-flex">
+        Category <div class="Oval text-center mt-1 ml-2">?</div>
+      </div>
       <nb-card>
         <nb-card-body>
           <ngx-treeview [config]="config" [itemTemplate]="itemTemplate" [items]="categories"></ngx-treeview>
         </nb-card-body>
         <nb-card-footer>
-          <div class="d-flex">
-            <div class="btn ittweb-btn col-4 small" (click)="onInvertClick()">
+            <div class="btn ittweb-negative-btn small" (click)="onInvertClick()">
               Invert Selection
             </div>
-            <div class="btn ittweb-btn col-4 small" (click)="onDeselectClick()">
-            Deselect All
-          </div>
-            <div class="btn ittweb-btn col-4 small" (click)="onSelectClick()">
+            <div class="btn ittweb-btn small float-right" (click)="onSelectClick()">
               Select All
             </div>
-          </div>
+            <div class="btn ittweb-black-btn small float-right" (click)="onDeselectClick()">
+              Deselect All
+            </div>
         </nb-card-footer>
       </nb-card>
     </div>
 
     <div class="page-sub-title col-6">
-      SKU
+      <div class="d-flex">
+        SKU <div class="Oval text-center mt-1 ml-2">?</div>
+      </div>
       <nb-card>
         <nb-card-body>
-          <ul class="list-group">
+          <table class="table table-list">
+            <tbody>
+              <tr *ngFor="let sku of skus | orderBy: '':false:'case-insensitive':customComparator | onlyChecked">
+                <td>
+                    {{ sku.value  }} {{sku.isMain?' - MAIN':''}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!--<ul class="list-group">
             <li *ngFor="let sku of skus | orderBy: '':false:'case-insensitive':customComparator | onlyChecked" class="list-group-item">
-
                 {{ sku.value  }} {{sku.isMain?' - MAIN':''}}
             </li>
-          </ul>
+          </ul>-->
         </nb-card-body>
         <nb-card-footer>
           <div class="btn ittweb-btn float-right small" (click)="modalShowSku()"> SELECT </div>
@@ -60,14 +70,20 @@
   <div class="d-flex">
 
     <div class="page-sub-title col-6">
-      Query
+      <div class="d-flex">
+       Query <div class="Oval text-center mt-1 ml-2">?</div>
+      </div>
       <nb-card>
         <nb-card-body>
-          <ul class="list-group">
-            <li *ngFor="let query of queries | onlyChecked" class="list-group-item">
-              {{ query.value }}
-            </li>
-          </ul>
+          <table class="table table-list">
+            <tbody>
+              <tr *ngFor="let query of queries | onlyChecked">
+                <td>
+                  {{ query.value }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </nb-card-body>
         <nb-card-footer>
           <div class="btn ittweb-btn float-right small" (click)="modalShowQuery()"> SELECT </div>
@@ -76,10 +92,29 @@
     </div>
 
     <div class="page-sub-title col-6">
-      Facets
+      <div class="d-flex">
+        Facets <div class="Oval text-center mt-1 ml-2">?</div>
+      </div>
       <nb-card>
         <nb-card-body>
-          <ul class="list-group">
+          <table class="table table-list">
+            <tbody>
+              <tr *ngFor="let facet of facets | onlyChecked">
+                <td style="width: 20%;"> {{facet.value}} </td>
+                <td style="width: 30%;">
+                  <select [(ngModel)]="facet.type" class="wizard-dropdown form-control-sm input-sm">
+                    <option *ngFor="let facetType of facetTypes" [ngValue]="facetType" [selected]="facetType == facet.type">{{facetType}}</option>
+                  </select>
+                </td>
+                <td>
+                  <div *ngIf="facet.type=='slider'" class="d-flex">
+                    Min <input class="form-control input-sm small" type="text"> Max <input type="text" class="form-control input-sm small">
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!--<ul class="list-group">
             <li *ngFor="let facet of facets | onlyChecked" class="d-flex list-group-item">
               <div class="col-2">{{facet.value}}</div>
               <select [(ngModel)]="facet.type" class="wizard-dropdown col-4 form-control input-sm">
@@ -89,9 +124,15 @@
                 Min <input class="form-control input-sm" type="text"> Max <input type="text" class="form-control input-sm">
               </div>
             </li>
-          </ul>
+          </ul>-->
         </nb-card-body>
         <nb-card-footer>
+            <mat-slide-toggle
+            class="example-margin"
+            color="primary"
+            [(ngModel)]="facetsUnselectedDynamic">
+          Set Unselected Dynamic
+        </mat-slide-toggle>
           <div class="btn ittweb-btn float-right small" (click)="modalShowFacets()"> SELECT </div>
         </nb-card-footer>
       </nb-card>

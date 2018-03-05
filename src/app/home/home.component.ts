@@ -1,13 +1,15 @@
-import { Component, ViewEncapsulation, AfterViewInit} from '@angular/core';
+import { Component, ViewEncapsulation, OnDestroy, OnInit} from '@angular/core';
 import {EventEmitterService} from '../service/event-emitter/event-emitter.service';
+import { DataService } from '../service/data/data.service';
+import { Router } from '@angular/router';
 
 @Component({
     encapsulation: ViewEncapsulation.None,
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements OnDestroy, OnInit {
     tabs: any[] = [
         {
             title: 'DASHBOARD',
@@ -31,11 +33,17 @@ export class HomeComponent implements AfterViewInit {
         }
     ];
 
-    constructor(private ee: EventEmitterService) {
-        // this.ee.onLoadingEvent.emit(true);
+    constructor(
+      private ee: EventEmitterService,
+      private ds: DataService,
+      private router: Router
+    ) {}
+
+    ngOnInit() {
+      this.ee.onHomeEvent.emit(true);
     }
 
-    ngAfterViewInit() {
-        // this.ee.onLoadingEvent.emit(false);
+    ngOnDestroy() {
+      this.ee.onHomeEvent.emit(false);
     }
 }

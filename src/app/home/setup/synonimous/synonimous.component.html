@@ -1,17 +1,17 @@
-<nb-card>
+<nb-card *ngIf=" time > 0" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
   <nb-card-body>
     <table class="table">
       <thead>
       <tr>
         <th>WORD</th>
-        <th colspan="10">SYNONIMOUS</th>
+        <th style="width: 70%;">SYNONIMOUS</th>
         <th><button class="btn ittweb-btn small" (click)="addWord()">+Add Word</button></th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let word of words">
         <td> <mat-checkbox [(ngModel)]="word.selected"> {{word.word}} </mat-checkbox></td>
-        <td colspan="10">
+        <td>
           <mat-chip-list #chipList>
             <mat-chip *ngFor="let synonym of word.synonyms" [selectable]="selectable"
                       [removable]="removable" (remove)="remove(word,synonym)">
@@ -19,14 +19,17 @@
               <i class="material-icons" matChipRemove *ngIf="removable">cancel</i>
             </mat-chip>
           </mat-chip-list>
+          <div *ngIf="word.synonyms.length==0">
+            This word is not connected with any synonimous
+          </div>
         </td>
         <td>
-          <input placeholder="Add Synonimous... (press ENTER to insert)"
+          <input placeholder="+ Synonimous"
           [matChipInputFor]="chipList"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           [matChipInputAddOnBlur]="addOnBlur"
           (matChipInputTokenEnd)="add(word,$event)"
-          class="form-control" />
+          class="form-control small" />
         </td>
       </tr>
       </tbody>
@@ -34,7 +37,7 @@
   </nb-card-body>
   <nb-card-footer>
     <button class="btn ittweb-btn small" (click)="selectAll()">SELECT ALL</button>
-    <button class="btn ittweb-btn small" (click)="deselectAll()">DESELECT ALL</button>
-    <button class="btn ittweb-btn small" (click)="removeWords()">REMOVE SELECTED</button>
+    <button class="btn ittweb-negative-btn small" (click)="deselectAll()">DESELECT ALL</button>
+    <button class="btn ittweb-delete-btn small float-right" (click)="removeWords()">REMOVE SELECTED</button>
   </nb-card-footer>
 </nb-card>

@@ -1,14 +1,14 @@
 <div class="wizard-container center col-4">
-    <div class="page-sub-title col-12 text-center">
-        http://website1.com
+    <div class="page-sub-title col-12 text-center site">
+        {{wizardWebsite}}
     </div>
-    <div class="page-title col-12 text-center">
+    <div class="page-title col-12 text-center desc">
         Accela search is now configured for your website
     </div>
-    <div class="page-title col-12 text-center">
+    <div class="page-title col-12 text-center desc mt-5 mb-5">
         You have now access to the advanced settings and the dashboard,
         where you can monitor your analytics
     </div>
-    <button role="button" class="btn ittweb-btn col-12" routerLink="/home/dashboard">DASHBOARD</button>
-    <button role="button" class="btn ittweb-back-btn col-12" routerLink="/home/setup/fineTuning">FINE TUNING</button>
+    <button role="button" class="btn ittweb-btn col-12" (click)="navigate('dashboard')" routerLink="/home/dashboard">DASHBOARD</button>
+    <button role="button" class="btn ittweb-negative-btn col-12 mt-3" (click)="navigate('fineTuning')" routerLink="/home/setup/fineTuning">FINE TUNING</button>
 </div>

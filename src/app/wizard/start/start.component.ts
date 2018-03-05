@@ -1,4 +1,5 @@
 import {Component, ViewEncapsulation, AfterViewInit} from '@angular/core';
+import { EventEmitterService } from '../../service/event-emitter/event-emitter.service';
 
 declare var jquery: any;
 declare var $: any;
@@ -11,34 +12,41 @@ declare var $: any;
 })
 
 export class StartComponent implements AfterViewInit {
-    tabs: any[] = [
-        {
-            title: 'CMS',
-            route: '/wizard/start/cms'
-        }, {
-            title: 'WEBSITE',
-            route: '/wizard/start/website',
-        }, {
-            title: 'FIELDS',
-            route: '/wizard/start/fields',
-        }, {
-            title: 'BACK RESULTS',
-            route: '/wizard/start/backResults',
-        }, {
-            title: 'OVERVIEW',
-            route: '/wizard/start/overview',
-        }
-    ];
+  isFromEditWizardEvent = false;
+  tabs: any[] = [
+      {
+          title: 'CMS',
+          route: '/wizard/start/cms'
+      }, {
+          title: 'WEBSITE',
+          route: '/wizard/start/website',
+      }, {
+          title: 'FIELDS',
+          route: '/wizard/start/fields',
+      }, {
+          title: 'BACK RESULTS',
+          route: '/wizard/start/backResults',
+      }, {
+          title: 'OVERVIEW',
+          route: '/wizard/start/overview',
+      }
+  ];
 
-    constructor() {
-    }
+  constructor(private ee: EventEmitterService) {
+    this.ee.onEditWizardEvent.subscribe(
+      (data) => {
+        this.isFromEditWizardEvent = true;
+      }
+    );
+  }
 
-    ngAfterViewInit() {
+  ngAfterViewInit() {
+    if (!this.isFromEditWizardEvent)
       $('.ittweb-tabset').children(0).children(0).addClass('avoid-clicks', 'tab-disabled');
-    }
+  }
 
-    getState(outlet) {
-      debugger;
-        return outlet.activatedRouteData.state;
-    }
+  getState(outlet) {
+    debugger;
+      return outlet.activatedRouteData.state;
+  }
 }

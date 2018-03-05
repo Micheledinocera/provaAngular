@@ -1,0 +1,17 @@
+<nb-card>
+  <nb-card-body>
+    <div calss="d-flex">
+      <div class="vertical-centering-absolute">
+        <div class="dont-converting"> This word is not converting well </div>
+        <div class="word">  {{data.name}} </div>
+      </div>
+      <div class="col-4 coverting-rate float-right"> {{data.percentage}}% converting rate </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="synonimous"> You can add some synonymous like:
+      <span class="synonimous-list"> {{data.synonimous}} </span>
+      <!--<span *ngFor="let synonym of data.synonimous; let i = index" class="synonimous-list"> {{synonym + i==data.synonimous.length-1?',':''}} </span>-->
+    </div>
+  </nb-card-footer>
+</nb-card>

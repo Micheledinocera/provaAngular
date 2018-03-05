@@ -44,4 +44,22 @@ export class BackResults {
       }
     ];
   }
+
+  static getDummyBackResultsUnchecked() {
+    return [
+      {
+          value: 'title2',
+          checked: false
+      }, {
+          value: 'description2',
+          checked: false
+      }, {
+          value: 'tag2',
+          checked: false
+      }, {
+          value: 'price2',
+          checked: false
+      }
+    ];
+  }
 }

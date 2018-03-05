@@ -1,89 +1,38 @@
-<div class="page-sub-title"> KPIs
+<div class="page-sub-title mt-5" *ngIf=" time > 0" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> KPIs
   <nb-card>
     <nb-card-body>
-      <select class="wizard-dropdown col-3 form-control" [(ngModel)]="timeRangeKpis">
+      <select class="wizard-dropdown col-3 form-control-sm" [(ngModel)]="timeRangeKpis">
         <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
       </select>
-      <div class="d-flex col-12">
-        <div class="col-3 kpis-data d-flex">
-          <div class="col-6"> {{data[timeRangeKpis][0].title}}</div>
-          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][0].value" duration=1> 0 </div>
-        </div>
-        <div class="col-3 kpis-data d-flex">
-          <div class="col-6"> {{data[timeRangeKpis][1].title}}</div>
-          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][1].value" duration=1> 0 </div>
-        </div>
-        <div class="col-3 kpis-data d-flex">
-          <div class="col-6"> {{data[timeRangeKpis][2].title}}</div>
-          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][2].value" duration=1> 0 </div>
-        </div>
-      </div>
-      <div class="d-flex col-12">
-        <div class="col-3 kpis-data d-flex">
-          <div class="col-6"> {{data[timeRangeKpis][3].title}}</div>
-          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][3].value" duration=1> 0 </div>
-        </div>
-        <div class="col-3 kpis-data d-flex">
-          <div class="col-6"> {{data[timeRangeKpis][4].title}}</div>
-          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][4].value" duration=1> 0 </div>
-        </div>
-        <div class="col-3 kpis-data d-flex">
-          <div class="col-6"> {{data[timeRangeKpis][5].title}}</div>
-          <div countUp class="col-6 text-right" [endVal]="data[timeRangeKpis][5].value" duration=1> 0 </div>
+      <div *ngFor="let j of [0,1]" class="d-flex col-12">
+        <div *ngFor="let i of [0,1,2]" class="col-3 kpis-data">
+          <div class="title vertical-centering-absolute"> {{data[timeRangeKpis][3*j+i].title}}</div>
+          <div countUp class="value vertical-centering-absolute text-right" [endVal]="data[timeRangeKpis][3*j+i].value" duration=1> 0 </div>
         </div>
       </div>
     </nb-card-body>
   </nb-card>
 </div>
-<div class="d-flex">
+<div class="d-flex" *ngIf=" time > 1" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
   <div class="page-sub-title col-6"> Top 10 searches
     <nb-card>
-      <nb-card-body>
-        <select class="wizard-dropdown col-4 form-control" [(ngModel)]="timeRangeSearches">
+      <nb-card-body class="tables">
+        <select class="wizard-dropdown col-5 form-control-sm" [(ngModel)]="timeRangeSearches">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
-        <table class="table table-hover">
-          <thead>
-          <tr>
-            <th colspan="3">Query</th>
-            <th>AVG Hits</th>
-            <th>Count</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let searchSingleData of searchesData[timeRangeSearches]">
-            <td colspan="3"> {{searchSingleData.query}}</td>
-            <td countUp [endVal]="searchSingleData.avg" duration=1> 0 </td>
-            <td countUp [endVal]="searchSingleData.count" duration=1> 0 </td>
-          </tr>
-          </tbody>
-        </table>
+        <app-table-view [data]="searchesData" [timeRange]="timeRangeSearches"></app-table-view>
       </nb-card-body>
     </nb-card>
   </div>
   <div class="page-sub-title col-6"> Top 10 most clicked products
     <nb-card>
-      <nb-card-body>
-        <select class="wizard-dropdown col-4 form-control" [(ngModel)]="timeRangeClicked">
+      <nb-card-body class="tables">
+        <select class="wizard-dropdown col-5 form-control-sm" [(ngModel)]="timeRangeClicked">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th colspan="3">Query</th>
-              <th>AVG Hits</th>
-              <th>Count</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let clickedSingleData of clickedData[timeRangeClicked]">
-              <td colspan="3"> {{clickedSingleData.query}}</td>
-              <td countUp [endVal]="clickedSingleData.avg" duration=1> 0 </td>
-              <td countUp [endVal]="clickedSingleData.count" duration=1> 0 </td>
-            </tr>
-          </tbody>
-        </table>
+        <app-table-view [data]="clickedData" [timeRange]="timeRangeClicked"></app-table-view>
       </nb-card-body>
     </nb-card>
   </div>
 </div>
+<!-- </div> -->

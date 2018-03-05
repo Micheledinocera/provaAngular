@@ -1,6 +1,6 @@
-import {Component, OnInit,ViewEncapsulation} from '@angular/core';
-declare var jquery:any;
-declare var $ :any;
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+declare var jquery: any;
+declare var $: any;
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -8,7 +8,7 @@ declare var $ :any;
     templateUrl: './setup.component.html',
     styleUrls: ['./setup.component.css']
 })
-export class SetupComponent implements OnInit{
+export class SetupComponent implements OnInit {
 
     tabs: any[] = [
         {
@@ -29,8 +29,8 @@ export class SetupComponent implements OnInit{
         }
     ];
 
-    ngOnInit(){
-        $(".ittweb-tabset").children(0).children(0).eq(1).addClass("active");
+    ngOnInit() {
+        $('.ittweb-tabset').children(0).children(0).eq(1).addClass('active');
         // debugger;
         // $(".ittweb-tabset-setup ul li a").hover(function(){
         //     $(this).css("color", "#306ccc");

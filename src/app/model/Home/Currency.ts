@@ -15,4 +15,11 @@ export class Currency {
       separator: 'Dot'
     };
   }
+
+  static getDummyCurrency2() {
+    return {
+      currency: 'Dollar - $',
+      separator: 'Comma'
+    };
+  }
 }

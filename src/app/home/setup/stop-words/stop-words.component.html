@@ -1,8 +1,8 @@
 <div class="d-flex">
-  <div class="page-sub-title col-6"> Default
+  <div class="page-sub-title col-6" *ngIf=" time > 0" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Default
     <nb-card>
       <nb-card-body>
-        <input type="text" [(ngModel)]="searchTextDefault" placeholder="Filter StopWord" class="form-control">
+        <input type="text" [(ngModel)]="searchTextDefault" placeholder="Filter StopWord" class="form-control small">
         <table class="table">
           <tbody>
           <tr *ngFor="let word of defaultWords | filterOnWord : searchTextDefault">
@@ -13,16 +13,21 @@
       </nb-card-body>
     </nb-card>
   </div>
-  <div class="page-sub-title col-6"> Your list
+  <div class="page-sub-title col-6" *ngIf=" time > 1" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Your list
     <nb-card>
       <nb-card-body>
-        <input type="text" [(ngModel)]="searchText"  placeholder="Filter StopWord" class="form-control">
+        <input type="text" [(ngModel)]="searchText"  placeholder="Filter StopWord" class="form-control small">
         <table class="table">
           <tbody>
           <tr *ngFor="let word of words | filterOnWord : searchText">
-            <td colspan="12"> <div [ngClass]="word.editable?'form-control':''" [contentEditable]="word.editable">{{word.word}}</div></td>
-            <td> <button class="btn ittweb-btn small" (click)="removeWord(word)">REMOVE</button> </td>
-            <td> <button class="btn ittweb-btn small" (click)="word.editable=!word.editable">{{word.editable?'OK':'EDIT'}}</button> </td>
+            <td colspan="12" class="d-flex">
+              <div *ngIf="!word?.editable" class="small col-7" [ngClass]="word?.editable?'edit-form':''">{{word.word}}</div>
+              <input *ngIf="word?.editable" class="form-control small col-7" [ngClass]="word?.editable?'edit-form':''" [(ngModel)]="word.word">
+              <!--<div *ngIf="!word?.editable" class="small" [ngClass]="word?.editable?'edit-form':''" [contentEditable]="word?.editable">{{word.word}}</div>
+              <input *ngIf="word?.editable" class="form-control small" [ngClass]="word?.editable?'edit-form':''" [contentEditable]="word?.editable" [(ngModel)]="word.word">-->
+              <button class="btn ittweb-delete-btn small" (click)="removeWord(word)">REMOVE</button>
+              <button class="btn ittweb-black-btn small" (click)="editWord($event,word)">{{word.editable?'SAVE':'EDIT'}}</button>
+            </td>
           </tr>
           </tbody>
         </table>

@@ -17,7 +17,7 @@ declare var $: any;
     encapsulation: ViewEncapsulation.None,
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -39,45 +39,52 @@ export class LoginComponent implements OnInit {
     }
 
     login(username, password, showError) {
-        this.ee.onLoadingEvent.emit(true);
-        if (username === 'dummy' && password === 'dummy') {
-            const data = {
-                type: 'user',
-                name: 'utente',
-                surname: 'dummy'
-            };
-            this.user = new User(data);
-            this.dataservice.setUser(this.user);
-            this.dataservice.getDummyWebsites();
-            this.ee.onLoginEvent.emit({
-              user: this.user,
-              sites: this.dataservice.getSitesList()});
-            this.dataservice.setSelectedSite(this.dataservice.getSitesList()[0]);
+          if (username === 'dummy' && password === 'dummy') {
+          const data = {
+            type: 'user',
+            name: 'utente',
+            surname: 'dummy',
+            mail: 'dummy@dummy.com'
+          };
+          this.user = new User(data);
+          this.dataservice.setUser(this.user);
+          this.dataservice.getDummyWebsites();
+          this.ee.onLoginEvent.emit({
+            user: this.user,
+            sites: this.dataservice.getSitesList()});
+          if (this.dataservice.checkAtLeastOneCompletedSite()) {
+            this.dataservice.setSelectedSite(this.dataservice.getSitesList()[0].name);
+            this.router.navigate(['home/dashboard']);
+          } else
             this.router.navigate(['wizard']);
-            this.ee.onLoadingEvent.emit(false);
+          this.cs.set('username', username);
+          this.cs.set('password', password);
         } else {
-            const url = 'http://localhost:8080/api/roba?username=' + username + '&password=' + password;
+          const url = 'http://localhost:8080/api/roba?username=' + username + '&password=' + password;
 
-            this.http.get<LoginResponse>(url).subscribe(
-                data => {
-                    this.user = new User(data);
-                    this.dataservice.setUser(this.user);
-                    this.ee.onLoginEvent.emit(this.user);
-                    if (this.user.isAdmin())
-                        this.router.navigate(['superAdmin']);
-                    else
-                        this.router.navigate(['wizard']);
-                    this.ee.onLoadingEvent.emit(false);
-                }, err => {
-                    if (showError) {
-                        this.toaster.showToast('error', err.error.message, '');
-                        $('.form-control').addClass('form-control-danger');
-                    }
-                    this.ee.onLoadingEvent.emit(false);
-                });
+          this.http.get<LoginResponse>(url).subscribe(
+            data => {
+              this.user = new User(data.user);
+              this.dataservice.setUser(this.user);
+              this.cs.set('username', username);
+              this.cs.set('password', password);
+              const sites = this.dataservice.getWebsites(data.websites);
+              this.ee.onLoginEvent.emit({
+                user: this.user,
+                sites: this.dataservice.getSitesList()}
+              );
+              if (this.dataservice.checkAtLeastOneCompletedSite()) {
+                this.dataservice.setSelectedSite(this.dataservice.getSitesList()[0].name);
+                this.router.navigate(['home/dashboard']);
+              } else
+                this.router.navigate(['wizard']);
+            }, err => {
+              if (showError) {
+                  this.toaster.showToast('error', err.error.message, '');
+                  $('.form-control').addClass('form-control-danger');
+              }
+            });
         }
-        this.cs.set('username', username);
-        this.cs.set('password', password);
     }
 
     ngOnInit() {}

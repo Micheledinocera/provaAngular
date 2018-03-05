@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, AfterViewInit, OnChanges, Input } from '@angular/core';
 
 declare var google: any;
 
@@ -7,29 +7,21 @@ declare var google: any;
   templateUrl: './bubble-map.component.html',
   styleUrls: ['./bubble-map.component.css']
 })
-export class BubbleMapComponent implements OnInit{
+export class BubbleMapComponent implements OnChanges {
 
-    ngOnInit() {
-        google.charts.load('current', {'packages': ['geochart']});
-        google.charts.setOnLoadCallback(drawRegionsMap);
+  @Input() data;
 
-        function drawRegionsMap() {
+  constructor() {}
 
-            const data = google.visualization.arrayToDataTable([
-                ['Country', 'Popularity'],
-                ['Germany', 200],
-                ['United States', 300],
-                ['Brazil', 400],
-                ['Canada', 500],
-                ['France', 600],
-                ['RU', 700]
-            ]);
+  ngOnChanges() {
+    google.charts.load('current', {'packages': ['geochart']});
+    google.charts.setOnLoadCallback(this.drawRegionsMap(this.data));
+  }
 
-            const options = {};
-
-            const chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
-            chart.draw(data, options);
-        }
-    }
+  drawRegionsMap(dataset) {
+    const data = google.visualization.arrayToDataTable(dataset);
+    const options = {colorAxis: {colors: ['#4f8fed']}};
+    const chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+    chart.draw(data, options);
+  }
 }

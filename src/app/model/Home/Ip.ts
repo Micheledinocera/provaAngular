@@ -5,14 +5,22 @@ export class Ip {
 
   constructor(data: any) {
       this.ip = data.ip;
-      this.editable = false;
+      this.editable = data.editable ? data.editable : false;
   }
 
   static getDummyIps() {
     return [
-      {word: '192.168.0.1', editable: false},
-      {word: '192.168.0.0/16', editable: false},
-      {word: '127.0.0.0/8', editable: false}
+      {ip: '192.168.0.1'},
+      {ip: '192.168.0.0/16'},
+      {ip: '127.0.0.0/8'}
+    ];
+  }
+
+  static getDummyIps2() {
+    return [
+      {ip: '192.168.0.255'},
+      {ip: '192.168.0.0/32'},
+      {ip: '127.0.0.0/8'}
     ];
   }
 }

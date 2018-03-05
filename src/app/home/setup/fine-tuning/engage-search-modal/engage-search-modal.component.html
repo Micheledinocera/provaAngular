@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left"> Ciao </h4>
+  <h4 class="modal-title pull-left"> {{this.type === 'add'?'Add':'Edit'}} </h4>
   <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -8,17 +8,17 @@
   <nb-card>
     <nb-card-body>
       <div class="page-sub-title"> Insert Title</div>
-      <input [(ngModel)]="engagesearch.title" placeholder="Title" class="form-control">
-      <div class="page-sub-title"> Insert Description</div>
-      <input [(ngModel)]="engagesearch.description" placeholder="Description" class="form-control">
-      <div class="page-sub-title"> Insert Keywords separated by a comma</div>
+      <input [(ngModel)]="engagesearch.title" placeholder="Title" class="form-control small">
+      <div class="page-sub-title mt-3"> Insert Description</div>
+      <textarea [(ngModel)]="engagesearch.description" placeholder="Description" class="form-control" rows="2"></textarea>
+      <div class="page-sub-title mt-3"> Insert Keywords separated by a comma</div>
       <textarea [(ngModel)]="keywords" placeholder="Keyword1,Keyword2" class="form-control" rows="5"> </textarea>
-      <mat-radio-group [(ngModel)]="templateSelection">
-        <mat-radio-button name="separator" value="Template"> Use a template </mat-radio-button>
+      <mat-radio-group [(ngModel)]="templateSelection" class="mt-3">
+        <mat-radio-button class="mt-3" name="separator" value="Template"> Use a template </mat-radio-button>
         <mat-radio-button name="separator" value="Html"> Insert your HTML </mat-radio-button>
       </mat-radio-group>
       <div *ngIf="templateSelection=='Template'">
-        <select [(ngModel)]=selectedTemplate class="form-control">
+        <select [(ngModel)]=selectedTemplate class="form-control-sm col-12">
           <option *ngFor=" let template of templates">{{template}}</option>
         </select>
       </div>
@@ -30,4 +30,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn ittweb-btn" (click)="add(engagesearch)">{{this.type === 'add'?'ADD':'EDIT'}}</button>
+  <button type="button" class="btn ittweb-negative-btn" (click)="add(engagesearch)">PREVIEW</button>
 </div>

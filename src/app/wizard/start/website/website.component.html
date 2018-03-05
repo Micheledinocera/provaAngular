@@ -3,11 +3,11 @@
     Choose a website to start the wizard
   </div>
   <div class="page-sub-title"> Website </div>
-  <select [(ngModel)]="siteValue" class="col-12 form-control" (change)=onChange(siteValue)>
-    <option *ngFor="let site of sites"> {{ site }} </option>
+  <select [(ngModel)]="siteValue" class="col-12 form-control-sm" (change)=onChange(siteValue)>
+    <option *ngFor="let site of sites | onlyIncompleted"> {{ site.name }} </option>
   </select>
   <div *ngIf="siteValue">
-    <div class="page-sub-title"> Do you want to import the setup from another website? </div>
+    <div class="page-sub-title mt-5"> Do you want to import the setup from another website? </div>
 
     <!--<div class="d-flex">-->
     <mat-radio-group [(ngModel)]="import">
@@ -16,13 +16,13 @@
     </mat-radio-group>
     <!--</div>-->
     <div *ngIf="import=='Y'">
-        <select [(ngModel)]="importSiteValue" class="col-12 form-control">
-          <option *ngFor="let siteFiltred of sitesFiltred"> {{ siteFiltred }} </option>
+        <select [(ngModel)]="importSiteValue" class="col-12 form-control-sm">
+          <option *ngFor="let siteFiltred of sitesFiltred | onlyCompleted"> {{ siteFiltred.name }} </option>
         </select>
     </div>
   </div>
   <div>
     <!--<button role="button" class="btn ittweb-back-btn" (click)="slideOutRight()">BACK</button>-->
-    <button role="button" class="btn ittweb-btn next" [disabled]="!siteValue || (!importSiteValue && import != 'N')" (click)="slideOutLeft()">NEXT</button>
+    <button role="button" class="btn ittweb-btn next mt-3" [disabled]="!siteValue || (!importSiteValue && import != 'N')" (click)="slideOutLeft()">NEXT</button>
   </div>
 </div>

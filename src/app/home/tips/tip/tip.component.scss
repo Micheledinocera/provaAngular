@@ -1,0 +1,21 @@
+@import '../../../../styles.scss';
+
+.dont-converting{
+  @include Body-1();
+}
+
+.word{
+  @include Headline-4();
+}
+
+.coverting-rate{
+  @include Subheader-1-blue();
+}
+
+.synonimous{
+  @include Caption();
+}
+
+.synonimous-list{
+  @include Body-1();
+}

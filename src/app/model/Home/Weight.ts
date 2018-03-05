@@ -17,4 +17,14 @@ export class Weight {
       value: '4'
     }];
   }
+
+  static getDummyWeights2() {
+    return [{
+      title: 'Titolo',
+      value: '4'
+    }, {
+      title: 'Descrizione',
+      value: '8'
+    }];
+  }
 }

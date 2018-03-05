@@ -1,25 +1,25 @@
 <div class="wizard-container" [@slide]='state' (@slide.done)="toWebsite($event)">
   <div class="page-sub-title col-3" >Choose your CMS</div>
-  <button role="button" class="btn ittweb-btn col-3" (click)="OnMagentoClick()">MAGENTO</button>
-  <button role="button" class="btn ittweb-btn col-3" (click)="OnPrestashopClick()">PRESTASHOP</button>
-  <button role="button" class="btn ittweb-btn col-3" (click)="OnCustomClick()">CUSTOM INTEGRATION</button>
+  <button role="button" class="btn ittweb-btn col-4" style="margin-left:-10px;" (click)="OnMagentoClick()">MAGENTO</button>
+  <button role="button" class="btn ittweb-btn col-4" (click)="OnPrestashopClick()">PRESTASHOP</button>
+  <button role="button" class="btn ittweb-btn col-4" (click)="OnCustomClick()">CUSTOM INTEGRATION</button>
   <div *ngIf="versions.length>0">
     <div class="d-flex mt-3">
-      <div class="col-3">
+      <div class="col-4 mt-5">
         <div class="page-sub-title">Choose the CMS version </div>
         <div>
-          <select class="wizard-dropdown form-control">
+          <select class="wizard-dropdown form-control-sm">
             <option *ngFor="let version of versions">{{version}}</option>
           </select>
         </div>
       </div>
-      <div class="col-3">
-        <div class="page-sub-title">Download the plugin </div>
-        <button role="button" class="btn ittweb-btn float-left" (click)="downloadPlugin()">DOWNLOAD PLUGIN</button>
+      <div class="col-4 mt-5">
+        <div class="page-sub-title ">Download the plugin </div>
+        <button role="button" class="btn ittweb-btn float-left col-12 mt-2" (click)="downloadPlugin()">DOWNLOAD PLUGIN</button>
       </div>
     </div>
 
-    <div class="page-sub-title col-3" >Copy the API Key</div>
+    <div class="page-sub-title col-3 mt-5" >Copy the API Key</div>
     <input class="wizard-api-key col-6 form-control" disabled>
     <div>
       <button role="button" class="btn ittweb-btn next" (click)="slideOut()" disabled >NEXT</button>

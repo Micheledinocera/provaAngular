@@ -1,3 +1,8 @@
-<p>
-  tips works!
-</p>
+<div class="mt-5">
+  <div *ngFor="let i of containersNumberArray" class="d-flex col-12">
+    <!-- <div *ngIf=" time > i" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> -->
+      <app-tip [data]="data[i*2]" *ngIf="data[i*2] && time > i*2" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()" class="col-6"></app-tip>
+      <app-tip *ngIf="data[i*2+1] && time > i*2+1" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()" [data]="data[i*2+1]" class="col-6"></app-tip>
+    <!-- </div> -->
+  </div>
+</div>

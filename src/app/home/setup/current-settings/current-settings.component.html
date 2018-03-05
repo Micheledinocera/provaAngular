@@ -1,1 +1,93 @@
+<ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
+  <div class="form-check" [style.border-top]="item.children?'solid 1px #dddddd':''">
+      <label class="form-check-label">
+        <mat-checkbox class="form-check-input" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()" disabled
+                [indeterminate]="item.indeterminate" > {{item.text}}
+        </mat-checkbox>
+      </label>
+      <label *ngIf="item.children" class="form-check-label float-right" (click)="onArrowClicked(item)">
+          <label style="font-size:14px;"> {{item.children.length}} SUB-CATEGORIES</label>
+          <svg-icon [src]="!item.collapsed?'assets/icon-arrow-up.svg':'assets/icon-arrow-down.svg'"></svg-icon>
+      </label>
+  </div>
+</ng-template>
 
+<div class="wizard-container">
+  <div class="d-flex" *ngIf=" time > 0" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
+      <div class="page-sub-title col-6">
+          Category
+          <nb-card>
+              <nb-card-body>
+                  <ngx-treeview [config]="config" [itemTemplate]="itemTemplate" [items]="categories"></ngx-treeview>
+              </nb-card-body>
+          </nb-card>
+      </div>
+  </div>
+  <div class="d-flex" *ngIf=" time > 1" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
+
+      <div class="page-sub-title col-6">
+          Query
+          <nb-card>
+            <nb-card-body>
+              <table class="table table-list">
+                <tbody>
+                  <tr *ngFor="let query of queries | onlyChecked">
+                    <td>
+                      {{ query.value }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </nb-card-body>
+          </nb-card>
+      </div>
+
+      <div class="page-sub-title col-6">
+        Facets
+        <nb-card>
+          <nb-card-body>
+            <table class="table table-list">
+              <tbody>
+                <tr *ngFor="let facet of facets | onlyChecked">
+                  <td> {{facet.value}} </td>
+                  <td>
+                    <!--<select [(ngModel)]="facet.type" class="wizard-dropdown form-control-sm">
+                      <option *ngFor="let facetType of facetTypes" [ngValue]="facetType" [selected]="facetType == facet.type" disabled>{{facetType}}</option>
+                    </select>-->
+                    <input [ngModel]="facet.type" class="form-control small" type="text" disabled>
+                  </td>
+                  <td>
+                    <div class="d-flex" *ngIf="facet.type == 'slider'" style="height: 20px">
+                      Min <input class="form-control small" type="text" disabled> Max <input type="text" disabled class="form-control small">
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </nb-card-body>
+          <nb-card-footer>
+            {{facetsUnselectedDynamic?'Unselected are dynamic':'Unselected are NOT dynamic'}}
+          </nb-card-footer>
+        </nb-card>
+      </div>
+  </div>
+  <div class="page-sub-title col-6" *ngIf=" time > 2" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
+      Back results
+      <nb-card>
+        <nb-card-body>
+          <table class="table table-list">
+            <tbody>
+              <tr *ngFor="let field of backResults | onlyChecked">
+                <td>
+                  {{ field.value }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </nb-card-body>
+      </nb-card>
+  </div>
+  <div class="col-12" *ngIf=" time > 3" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
+      <button role="button" class="btn ittweb-btn col-1 mb-5 float-right" (click)="toWizard()">EDIT</button>
+  </div>
+</div>

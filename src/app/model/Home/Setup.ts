@@ -4,7 +4,7 @@ import { FineTuning } from './FineTuning';
 
 export class Setup {
 
-  synonims: Synonym[];
+  synonims: Synonym[] = [];
   stopWords: StopWords;
   fineTuning: FineTuning;
 
@@ -20,6 +20,14 @@ export class Setup {
       synonims: Synonym.getDummySynonyms(),
       stopWord: StopWords.getDummyStopWords(),
       fineTuning: FineTuning.getDummyFineTuning()
+    };
+  }
+
+  static getDummySetup2(ds) {
+    return {
+      synonims: Synonym.getDummySynonyms2(),
+      stopWord: StopWords.getDummyStopWords2(),
+      fineTuning: FineTuning.getDummyFineTuning2()
     };
   }
 }

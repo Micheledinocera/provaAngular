@@ -5,6 +5,6 @@ export class SelectableItem {
 
   constructor(data: any) {
     this.value = data.value;
-    this.checked = data.checked;
+    this.checked = data.checked ? data.checked : false;
   }
 }

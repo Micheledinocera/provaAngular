@@ -1,0 +1,17 @@
+@import "../../styles.scss";
+
+nb-card-header{
+    background-color: #fbfbfb !important;
+}
+
+.page-sub-title-home{
+  @include Subheader-1();
+}
+
+.page-sub-sub-title-home{
+  @include Headline-3();
+}
+
+.plan{
+  padding: 0 !important;
+}

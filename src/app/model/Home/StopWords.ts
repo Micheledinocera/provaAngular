@@ -20,4 +20,13 @@ export class StopWords {
       words: words
     };
   }
+
+  static getDummyStopWords2() {
+    const defaultWords = [{word: 'ilads'}, {word: 'lasdo'}, {word: 'asdla'}, {word: 'i'}, {word: 'gli'}, {word: 'le'}];
+    const words = [{word: 'asdcustomWord2'}, {word: 'customWord1asd'}];
+    return {
+      defaultWords: defaultWords,
+      words: words
+    };
+  }
 }

@@ -33,6 +33,14 @@ export class Dashboard {
     };
   }
 
+  static getDummyDashboard2(ds) {
+    return {
+      kpi: Kpi.getDummyKpis2(ds),
+      searches: Table.getDummyTables2(ds),
+      clicked: Table.getDummyTables2(ds)
+    };
+  }
+
   populateData(type, result, data) {
     for (const timeRange of this.timeRanges){
       for (const item of data[timeRange]){

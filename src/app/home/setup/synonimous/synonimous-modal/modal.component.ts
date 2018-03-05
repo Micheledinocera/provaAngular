@@ -9,17 +9,17 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 export class SynonymousModalComponent {
 
     word: any;
-    words: any []=[];
-    constructor(public modalRef: BsModalRef) {
-    }
+    words: any []= [];
+    constructor(public modalRef: BsModalRef) {}
 
     add(word) {
-        this.words.push(
-            {
-                word: word,
-                synonyms: []
-            }
-        );
-        this.modalRef.hide();
+      this.words.push(
+        {
+          word: word,
+          synonyms: [],
+          editable: false
+        }
+      );
+      this.modalRef.hide();
     }
 }
