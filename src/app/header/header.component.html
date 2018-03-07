@@ -9,7 +9,7 @@
               <li *ngFor='let site of sites | onlyCompleted' role="menuitem" class="list-group-item" (click)="selectSite(site.name)"> {{site.name}}</li>
             </ul>
         </div>
-        <div>
+        <div style="height: 75px;">
           <button *ngIf="isDashboardView" class="btn ittweb-negative-btn small vertical-centering" > Preview </button>
         </div>
     </div>
@@ -48,7 +48,7 @@
           <div *ngIf="checkAtLeastOneCompletedSite"  class="header-user-action dashboard-icon vertical-centering" routerLink="/home">
           </div>
         </div>
-        <div class="position-relative">
+        <div class="position-relative" style="height: 75px;">
           <button class="btn ittweb-btn vertical-centering" (click)="wizardClick()" [disabled]="checkAllCompletedSite" > START A WIZARD </button>
           <button class="btn ittweb-negative-btn vertical-centering" > SUPPORT </button>
         </div>

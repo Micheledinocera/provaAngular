@@ -296,10 +296,16 @@ nb-card ul{
   @include Body-1();
 }
 
+.table-list td > div > input.small{
+  width: 150px;
+}
+
 input.form-control.small, .treeview-header input.form-control, div.form-control.small{
-  height: 20px;
   padding-left: 10px;
   padding-right: 10px;
+  padding-top: 0;
+	padding-bottom: 0;
+	height: 25px;
 }
 
 ngx-treeview-item .form-check:not(.form-check){
@@ -334,4 +340,12 @@ ngx-treeview-item .form-check:not(.form-check){
   font-size: 10px;
   font-weight: 500;
   cursor: pointer;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(../assets/icon-arrow-drop-down.svg) right / 20px no-repeat #fff;
+  padding-right: 20px;
 }
