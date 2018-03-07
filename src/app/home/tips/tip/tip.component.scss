@@ -19,3 +19,7 @@
 .synonimous-list{
   @include Body-1();
 }
+
+nb-card-body{
+  height: 100px !important;
+}
