@@ -1,0 +1,44 @@
+@import '../../../../styles.scss';
+
+.wizard-dropdown{
+    margin-top: 2%;
+    width: 90%;
+    height: 40px;
+}
+
+.cms-container{
+  color: white;
+  cursor: pointer;
+  width: 33%;
+  margin-right: 30px;
+  height: 250px;
+  transition: all .2s ease-in-out;
+  transform: scale(1);
+  opacity: 1;
+
+  span{
+    @include Headline-2();
+    color: white !important;
+    margin-left: 25px;
+  }
+}
+
+.cms-container.selected{
+  transform: scale(1.1);
+}
+
+.cms-container.unselected{
+  opacity: 0.5;
+}
+
+.magento{
+  background: radial-gradient(circle at left top, #de4b0c 40%, #e74e0b 0%, #e74e0b 50%, #f6520b 0%);
+}
+
+.prestashop{
+  background: radial-gradient(circle at left top, #689f1d 40%, #72ac22 0%, #72ac22 50%, #7ab727 0%);
+}
+
+.custom{
+  background: radial-gradient(circle at left top, #3a3a5a 40%, #414162 0%, #414162 50%, #454567 0%);
+}

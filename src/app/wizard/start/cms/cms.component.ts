@@ -9,7 +9,7 @@ declare var $: any;
 @Component({
   selector: 'app-cms',
   templateUrl: './cms.component.html',
-  styleUrls: ['./cms.component.css'],
+  styleUrls: ['./cms.component.scss'],
   animations: WizardController.animation
 })
 export class CmsComponent implements OnInit {
@@ -17,7 +17,7 @@ export class CmsComponent implements OnInit {
     state;
     private wizardController;
     private info;
-    private selectedCms;
+    public selectedCms = '';
     versions;
 
     constructor(

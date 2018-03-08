@@ -1,8 +1,19 @@
 <div class="wizard-container" [@slide]='state' (@slide.done)="toWebsite($event)">
   <div class="page-sub-title col-3" >Choose your CMS</div>
-  <button role="button" class="btn ittweb-btn col-4" style="margin-left:-10px;" (click)="OnMagentoClick()">MAGENTO</button>
+  <!-- <button role="button" class="btn ittweb-btn col-4" style="margin-left:-10px;" (click)="OnMagentoClick()">MAGENTO</button>
   <button role="button" class="btn ittweb-btn col-4" (click)="OnPrestashopClick()">PRESTASHOP</button>
-  <button role="button" class="btn ittweb-btn col-4" (click)="OnCustomClick()">CUSTOM INTEGRATION</button>
+  <button role="button" class="btn ittweb-btn col-4" (click)="OnCustomClick()">CUSTOM INTEGRATION</button>-->
+  <div class="d-flex">
+    <div class="cms-container magento" [ngClass]="selectedCms==''?'': selectedCms=='Magento'?'selected':'unselected'" (click)="OnMagentoClick()">
+      <span class="vertical-centering"> Magento</span>
+    </div>
+    <div class="cms-container prestashop" [ngClass]="selectedCms=='' ?'':  selectedCms=='Prestashop'?'selected':'unselected'" (click)="OnPrestashopClick()">
+      <span class="vertical-centering">Prestashop</span>
+    </div>
+    <div class="cms-container custom" [ngClass]="selectedCms=='' ?'':  selectedCms=='Custom'?'selected':'unselected'" (click)="OnCustomClick()">
+      <span class="vertical-centering">Custom Integration</span>
+    </div>
+  </div>
   <div *ngIf="versions.length>0">
     <div class="d-flex mt-3">
       <div class="col-4 mt-5">
