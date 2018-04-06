@@ -1,5 +1,5 @@
 <nb-card *ngIf=" time > 0" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
-  <nb-card-body>
+  <nb-card-body class="half">
     <table class="table">
       <thead>
       <tr>
@@ -36,8 +36,10 @@
     </table>
   </nb-card-body>
   <nb-card-footer>
-    <button class="btn ittweb-btn small" (click)="selectAll()">SELECT ALL</button>
-    <button class="btn ittweb-negative-btn small" (click)="deselectAll()">DESELECT ALL</button>
-    <button class="btn ittweb-delete-btn small float-right" (click)="removeWords()">REMOVE SELECTED</button>
+    <div class="vertical-centering">
+      <button class="btn ittweb-btn small" (click)="selectAll()">SELECT ALL</button>
+      <button class="btn ittweb-negative-btn small" (click)="deselectAll()">DESELECT ALL</button>
+      <button class="btn ittweb-delete-btn small float-right" (click)="removeWords()">REMOVE SELECTED</button>
+    </div>
   </nb-card-footer>
 </nb-card>

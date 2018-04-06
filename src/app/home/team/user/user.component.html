@@ -1,5 +1,5 @@
 <nb-card>
-  <nb-card-body>
+  <nb-card-body class="half">
     <img [src]="user.picture" class="avatar center-relative"/>
 
     <div *ngIf="!editable" class="small text-center mt-2 name" [ngClass]="editable?'edit-form':''"> {{user.name}} </div>

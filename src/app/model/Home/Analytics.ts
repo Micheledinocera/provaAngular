@@ -18,6 +18,12 @@ export class Analytics {
   searches: Table[][] = [];
   conversion: Table[][] = [];
   clickPerRow: Table[][] = [];
+
+  averageResultsData: Table[][] = [];
+  wordsData: Table[][] = [];
+  charactersData: Table[][] = [];
+  conversionPerRowData: Table[][] = [];
+
   mapChartData: MapChartData[][] = [];
   uploadedProductsChartData: HorizontalChartData[][] = [];
   requestChartData: HorizontalChartData[][] = [];
@@ -33,6 +39,10 @@ export class Analytics {
       this.timeRanges = ds.getTimeRanges();
       for (const timeRange of this.timeRanges){
         this.kpis[timeRange] = [];
+        this.averageResultsData[timeRange] = [];
+        this.wordsData[timeRange] = [];
+        this.charactersData[timeRange] = [];
+        this.conversionPerRowData[timeRange] = [];
         this.clicked[timeRange] = [];
         this.lookingFor[timeRange] = [];
         this.noResults[timeRange] = [];
@@ -49,6 +59,10 @@ export class Analytics {
       }
       this.populateData('kpi', this.kpis, data.kpis);
       this.populateData('table', this.clicked, data.clicked);
+      this.populateData('table', this.averageResultsData, data.averageResultsData);
+      this.populateData('table', this.wordsData, data.wordsData);
+      this.populateData('table', this.charactersData, data.charactersData);
+      this.populateData('table', this.conversionPerRowData, data.conversionPerRowData);
       this.populateData('table', this.lookingFor, data.lookingFor);
       this.populateData('table', this.noResults, data.noResults);
       this.populateData('table', this.searches, data.searches);
@@ -72,6 +86,10 @@ export class Analytics {
       searches: Table.getDummyTables(ds),
       conversion: Table.getDummyTables(ds),
       clickPerRow: Table.getDummyTables(ds),
+      averageResultsData: Table.getDummyTables(ds),
+      wordsData: Table.getDummyTables(ds),
+      charactersData: Table.getDummyTables(ds),
+      conversionPerRowData: Table.getDummyTables(ds),
       mapChartData: MapChartData.getDummyMapChartData(ds),
       uploadedProductsChartData: HorizontalChartData.getDummyHorizontalChartData(ds),
       requestChartData: HorizontalChartData.getDummyHorizontalChartData(ds),
@@ -91,6 +109,10 @@ export class Analytics {
       searches: Table.getEmptyTable(ds),
       conversion: Table.getEmptyTable(ds),
       clickPerRow: Table.getEmptyTable(ds),
+      averageResultsData: Table.getEmptyTable(ds),
+      wordsData: Table.getEmptyTable(ds),
+      charactersData: Table.getEmptyTable(ds),
+      conversionPerRowData: Table.getEmptyTable(ds),
       mapChartData: MapChartData.getEmptyMapChartData(ds),
       uploadedProductsChartData: HorizontalChartData.getEmptyHorizontalChartData(ds),
       requestChartData: HorizontalChartData.getEmptyHorizontalChartData(ds),

@@ -42,6 +42,26 @@ export class BackResultsComponent implements OnInit, OnDestroy {
         });
     }
 
+    disableTabs() {
+      $('.ittweb-tabset').children(0).children(0)[2].classList.add('avoid-clicks', 'tab-disabled');
+      $('.ittweb-tabset').children(0).children(0)[4].classList.add('avoid-clicks', 'tab-disabled');
+    }
+
+    activateTabs() {
+      $('.ittweb-tabset').children(0).children(0)[2].classList.remove('avoid-clicks', 'tab-disabled');
+      $('.ittweb-tabset').children(0).children(0)[4].classList.remove('avoid-clicks', 'tab-disabled');
+    }
+
+    checkSelection() {
+      if (this.fields.filter((item) => item.checked).length === 0) {
+        this.disableTabs();
+        return true;
+      } else {
+        this.activateTabs();
+        return false;
+      }
+    }
+
     ngOnInit() {
       this.info = this.wizardController.initialazeView();
       this.state = this.info.state;
@@ -51,7 +71,8 @@ export class BackResultsComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-      this.dataservice.setWizardSite('backResults', { backResults: {backResults: this.fields }}, this.wizardSite.name);
+      if (!this.checkSelection())
+        this.dataservice.setWizardSite('backResults', { backResults: {backResults: this.fields }}, this.wizardSite.name);
     }
 
     slideOutLeft() {

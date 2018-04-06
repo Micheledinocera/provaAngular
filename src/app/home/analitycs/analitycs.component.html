@@ -7,7 +7,7 @@
         <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
       </select>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body class="half">
         <app-line-chart [lineChartData]=lineChartSearch[timeRangeLineChartSearch]> </app-line-chart>
     </nb-card-body>
   </nb-card>
@@ -19,7 +19,7 @@
         <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
       </select>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body class="half">
         <app-line-chart [lineChartData]=lineChartVisitors[timeRangeLineChartVisitors]> </app-line-chart>
     </nb-card-body>
   </nb-card>
@@ -30,7 +30,7 @@
 <div class="d-flex page-sub-title-container" *ngIf="time > 2" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
   <div class="page-sub-title col-6"> Top 10 most clicked products
     <nb-card>
-      <nb-card-body class="tables">
+      <nb-card-body class="tables half">
         <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeClicked">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
@@ -40,7 +40,7 @@
   </div>
   <div class="page-sub-title col-6"> Top 10 “maybe you are looking for..”
     <nb-card>
-      <nb-card-body class="tables">
+      <nb-card-body class="tables half">
         <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeLookingFor">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
@@ -52,7 +52,7 @@
 <div class="d-flex page-sub-title" *ngIf="time > 3" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
   <div class="page-sub-title col-6"> Top 10 searches with no results
     <nb-card>
-      <nb-card-body class="tables">
+      <nb-card-body class="tables half">
         <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeNoResults">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
@@ -62,7 +62,7 @@
   </div>
   <div class="page-sub-title col-6" > Top 10 searches
     <nb-card>
-      <nb-card-body class="tables">
+      <nb-card-body class="tables half">
         <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeSearches">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
@@ -72,31 +72,31 @@
   </div>
 </div>
 <div class="d-flex page-sub-title" *ngIf="time > 4" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
-  <div class="page-sub-title col-6"> Top 10 most clicked products
+  <div class="page-sub-title col-6"> Top 10 characters per search
     <nb-card>
-      <nb-card-body class="tables">
-        <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeClicked">
+      <nb-card-body class="tables half">
+        <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeCharacters">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
-        <app-table-view [data]="clickedData" [timeRange]="timeRangeClicked"></app-table-view>
+        <app-table-view [data]="charactersData" [timeRange]="timeRangeCharacters"></app-table-view>
       </nb-card-body>
     </nb-card>
   </div>
-  <div class="page-sub-title col-6"> Top 10 “maybe you are looking for..”
+  <div class="page-sub-title col-6"> Top 10 words per search
     <nb-card>
-      <nb-card-body class="tables">
-        <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeLookingFor">
+      <nb-card-body class="tables half">
+        <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeWords">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
-        <app-table-view [data]="lookingForData" [timeRange]="timeRangeLookingFor"></app-table-view>
+        <app-table-view [data]="wordsData" [timeRange]="timeRangeWords"></app-table-view>
       </nb-card-body>
     </nb-card>
   </div>
 </div>
 <div class="d-flex page-sub-title" *ngIf="time > 5" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
-  <div class="page-sub-title col-6"> Top 10 conversion per searches
+  <div class="page-sub-title col-6"> Top 10 conversion per search
     <nb-card>
-      <nb-card-body class="tables">
+      <nb-card-body class="tables half">
         <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeConversion">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
@@ -106,7 +106,7 @@
   </div>
   <div class="page-sub-title col-6"> Top 10 average click per row
     <nb-card>
-      <nb-card-body class="tables">
+      <nb-card-body class="tables half">
         <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeClickPerRow">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
@@ -115,33 +115,57 @@
     </nb-card>
   </div>
 </div>
+<div class="d-flex page-sub-title" *ngIf="time > 6" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
+    <div class="page-sub-title col-6"> Top 10 % conversion per row
+      <nb-card>
+        <nb-card-body class="tables half">
+          <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeConvertionPerRow">
+            <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
+          </select>
+          <app-table-view [data]="conversionPerRowData" [timeRange]="timeRangeConvertionPerRow"></app-table-view>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="page-sub-title col-6"> Top 10 average results per search
+      <nb-card>
+        <nb-card-body class="tables half">
+          <select class="wizard-dropdown col-4 form-control-sm" [(ngModel)]="timeRangeAverageResults">
+            <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
+          </select>
+          <app-table-view [data]="averageResultsData" [timeRange]="timeRangeAverageResults"></app-table-view>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
 
 <!-- BAR CHART -->
 
-<div class="page-sub-title col-12" *ngIf="time > 6" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Profile percentage of use
+<div class="page-sub-title col-12" *ngIf="time > 7" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Profile percentage of use
   <nb-card>
     <nb-card-header>
       <select class="wizard-dropdown col-3 form-control-sm" [(ngModel)]="timeRangeHorizontalLineChart">
         <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
       </select>
     </nb-card-header>
-    <nb-card-body>
-        <app-bar-chart [data]=UploadedProductsChartData[timeRangeHorizontalLineChart]> </app-bar-chart>
-        <app-bar-chart [data]=RequestChartDataData[timeRangeHorizontalLineChart]> </app-bar-chart>
+    <nb-card-body style="height: 350px !important;">
+      <div> Uploaded products </div>
+      <app-bar-chart [data]=UploadedProductsChartData[timeRangeHorizontalLineChart]> </app-bar-chart>
+      <div> Requests </div>
+      <app-bar-chart [data]=RequestChartDataData[timeRangeHorizontalLineChart]> </app-bar-chart>
     </nb-card-body>
   </nb-card>
 </div>
 
 <!-- LINE CHART -->
 
-<div class="page-sub-title col-12" *ngIf="time > 7" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Average conversion by: Query / Click / Filter
+<div class="page-sub-title col-12" *ngIf="time > 8" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Average conversion by: Query / Click / Filter
   <nb-card>
     <nb-card-header>
       <select class="wizard-dropdown col-3 form-control-sm" [(ngModel)]="timeRangeLineChartConversion">
         <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
       </select>
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body class="half">
         <app-line-chart [lineChartData]=lineChartConversion[timeRangeLineChartConversion]> </app-line-chart>
     </nb-card-body>
   </nb-card>
@@ -149,9 +173,9 @@
 
 <!-- KPIS -->
 
-<div class="page-sub-title" *ngIf="time > 8" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> KPIs
+<div class="page-sub-title" *ngIf="time > 9" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> KPIs
   <nb-card>
-    <nb-card-body>
+    <nb-card-body class="half">
       <select class="wizard-dropdown col-3 form-control-sm" [(ngModel)]="timeRangeKpis">
         <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
       </select>
@@ -167,7 +191,7 @@
 
 <!-- PIE CHART -->
 
-<div class="page-sub-title col-12" *ngIf="time > 9" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Profile percentage of use
+<div class="page-sub-title col-12" *ngIf="time > 10" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Conversions by referral
   <nb-card>
     <nb-card-header>
       <select class="wizard-dropdown col-3 form-control-sm" [(ngModel)]="timeRangePieChartData">
@@ -183,7 +207,7 @@
 
 <!-- MAP CHART -->
 
-<div class="page-sub-title col-12" *ngIf="time > 10" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Profile percentage of use
+<div class="page-sub-title col-12" *ngIf="time > 11" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Profile percentage of use
   <nb-card>
     <nb-card-header>
       <select class="wizard-dropdown col-3 form-control-sm" [(ngModel)]="timeRangeMapChartData">

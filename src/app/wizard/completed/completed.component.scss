@@ -7,3 +7,9 @@
 .desc{
   @include Subheader-2();
 }
+
+.icon{
+  height: 200px;
+  width: 200px;
+  background: url(../../../assets/gufo_occhiolino.svg) center no-repeat;
+}

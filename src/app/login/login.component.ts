@@ -4,11 +4,11 @@ import {NgForm} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {LoginResponse} from '../service/responses/LoginResponse';
-import {MyToasterService} from '../service/toaster/my-toaster.service';
 import {DataService} from '../service/data/data.service';
 import {User} from '../model/User';
 import {EventEmitterService} from '../service/event-emitter/event-emitter.service';
 import { CookieService } from 'ngx-cookie-service';
+import { KitNotificationService } from '@ngx-kit/core';
 
 declare var jquery: any;
 declare var $: any;
@@ -27,10 +27,10 @@ export class LoginComponent implements OnInit {
     constructor(
         private http: HttpClient,
         private router: Router,
-        private toaster: MyToasterService,
         private dataservice: DataService,
         private ee: EventEmitterService,
-        private cs: CookieService
+        private cs: CookieService,
+        private notificationService: KitNotificationService
     ) {}
 
     onSubmit (form: NgForm) {
@@ -80,8 +80,9 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['wizard']);
             }, err => {
               if (showError) {
-                  this.toaster.showToast('error', err.error.message, '');
-                  $('.form-control').addClass('form-control-danger');
+                  this.notificationService.config({position: 'top-right'});
+                  this.notificationService.open({message: err.error.message, className: 'warn'});
+                  // $('.form-control').addClass('form-control-danger');
               }
             });
         }

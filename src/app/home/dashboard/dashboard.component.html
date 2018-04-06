@@ -1,6 +1,6 @@
 <div class="page-sub-title mt-5" *ngIf=" time > 0" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> KPIs
   <nb-card>
-    <nb-card-body>
+    <nb-card-body class="half">
       <select class="wizard-dropdown col-3 form-control-sm" [(ngModel)]="timeRangeKpis">
         <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
       </select>
@@ -16,7 +16,7 @@
 <div class="d-flex" *ngIf=" time > 1" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
   <div class="page-sub-title col-6"> Top 10 searches
     <nb-card>
-      <nb-card-body class="tables">
+      <nb-card-body class="tables half">
         <select class="wizard-dropdown col-5 form-control-sm" [(ngModel)]="timeRangeSearches">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>
@@ -26,7 +26,7 @@
   </div>
   <div class="page-sub-title col-6"> Top 10 most clicked products
     <nb-card>
-      <nb-card-body class="tables">
+      <nb-card-body class="tables half">
         <select class="wizard-dropdown col-5 form-control-sm" [(ngModel)]="timeRangeClicked">
           <option *ngFor="let timeRange of timeRanges">{{timeRange}}</option>
         </select>

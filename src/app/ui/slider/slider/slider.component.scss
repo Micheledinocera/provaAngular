@@ -1,0 +1,42 @@
+$height: 4px;
+$pointer: 8px;
+$pad: 4px;
+
+.slider {
+  height: $height;
+  padding: $pad 0;
+  position: relative;
+}
+
+.bg {
+  background: #dddddd;
+  height: $height;
+}
+
+.fill {
+  background: #2399e5;
+  bottom: $pad;
+  height: $height;
+  position: absolute;
+  top: $pad;
+  transition-duration: 100ms;
+  transition-property: left, right;
+}
+
+.pointer {
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, .3);
+  cursor: pointer;
+  height: $pointer;
+  position: absolute;
+  top: ($height - $pointer) / 2 + $pad;
+  transform: translateX(-50%);
+  transition: left 100ms;
+  width: $pointer;
+  &:focus {
+    background: #f9f9f9;
+    box-shadow: 1px 1px 11px rgba(0, 0, 0, .4);
+    outline: none;
+  }
+}

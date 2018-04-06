@@ -1,8 +1,8 @@
 <div class="d-flex" *ngIf=" time > 0" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
   <div class="page-sub-title col-6"> Currency
     <nb-card>
-      <nb-card-body>
-        <div>
+      <nb-card-body class="third">
+        <div class="vertical-centering">
           <select [(ngModel)]="currency" class="wizard-dropdown col-7 form-control-sm">
             <option *ngFor="let currency of currencies"> {{currency}} </option>
           </select>
@@ -16,8 +16,10 @@
   </div>
   <div class="page-sub-title col-6"> Placeholder to show if price not provided in the feed
     <nb-card>
-      <nb-card-body>
-        <input type="text" placeholder="Placeholder text" [(ngModel)]="placeholder" class="form-control small">
+      <nb-card-body class="third">
+        <div class="vertical-centering">
+          <input type="text" placeholder="Placeholder text" [(ngModel)]="placeholder" class="form-control small">
+        </div>
       </nb-card-body>
     </nb-card>
   </div>
@@ -43,16 +45,42 @@
           </table>
       </nb-card-body>
       <nb-card-footer>
-          <button class="btn ittweb-btn small float-right" (click)="addSearch()"> ADD </button>
+          <button class="btn ittweb-btn small float-right vertical-centering" (click)="addSearch()"> ADD </button>
       </nb-card-footer>
     </nb-card>
   </div>
-  <div class="page-sub-title col-6"> JS Layer show mode
+  <div class="page-sub-title col-6">
+    JS Layer show mode
     <nb-card>
-      <nb-card-body>
+      <nb-card-body class="third">
+        <div class="vertical-centering">
           <select [(ngModel)]="showMode" class="wizard-dropdown col-8 form-control-sm">
               <option *ngFor="let showMode of showModes"> {{showMode}} </option>
           </select>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <div style="margin-top:50px;">Webhook</div>
+    <nb-card>
+      <nb-card-body class="third">
+          <div class="vertical-centering">
+            <input type="text" placeholder="http://domain/api/getInfo?skus=1234;1234;1235" [(ngModel)]="webhook" class="form-control small">
+          </div>
+      </nb-card-body>
+    </nb-card>
+    <div style="margin-top:50px;">Voice Search</div>
+    <nb-card>
+      <nb-card-body class="third">
+          <div class="vertical-centering d-flex">
+            <input type="text" placeholder="Google assistant APIKEY" [(ngModel)]="googleapikey" (change)="googleApiKeyCheck()" class="form-control small">
+            <mat-slide-toggle
+              class="example-margin"
+              color="primary"
+              [disabled]="googleapikey==''"
+              [(ngModel)]="voiceSearch">
+              Activate
+            </mat-slide-toggle>
+          </div>
       </nb-card-body>
     </nb-card>
   </div>
@@ -60,18 +88,20 @@
 <div class="d-flex" *ngIf=" time > 2" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()">
   <div class="page-sub-title col-6"> Weight
     <nb-card>
-      <nb-card-body>
+      <nb-card-body class="half">
         <table class="table">
           <thead>
-            <th> FIELD</th>
-            <th colspan="10"> WEIGHT</th>
+            <th style="width:30%;"> FIELD</th>
+            <th> WEIGHT</th>
           </thead>
           <tbody>
             <tr *ngFor="let weight of weights">
               <td> {{weight.title}}</td>
-              <td colspan="10">
+              <td class="d-flex">
                 <!--  <input type="range" class="progress" [(ngModel)]="weight.value" max="10">-->
-                <mat-slider max=10 min=0 step=1 thumb-label=true [(ngModel)]="weight.value" color="primary"></mat-slider>
+                <!-- <mat-slider max=10 min=1 step=1 thumb-label=true [(ngModel)]="weight.value" color="primary"></mat-slider> -->
+                <span>{{weight.value}}</span>
+                <slider class="weight-slider" [(ngModel)]="weight.value" [min]="1" [max]="10" [step]="1"> </slider>
               </td>
             </tr>
           </tbody>
@@ -79,25 +109,32 @@
       </nb-card-body>
     </nb-card>
   </div>
-  <div class="page-sub-title col-6"> Remove IP
+  <div class="page-sub-title col-6">
+    <div class="d-flex"> Remove IP
+      <div class="Oval text-center mt-1 ml-2" tooltip="tooltip"><span>?</span></div></div>
     <nb-card>
-      <nb-card-body>
+      <nb-card-body class="half">
           <table class="table">
               <tbody>
-              <tr *ngFor="let ip of ips">
+              <tr *ngFor="let ip of ips; let i = index">
                 <td class="d-flex">
                   <div *ngIf="!ip?.editable" class="small col-7" [ngClass]="ip?.editable?'edit-form':''">{{ip.ip}}</div>
-                  <input *ngIf="ip?.editable" class="form-control small col-7" [ngClass]="ip?.editable?'edit-form':''" [(ngModel)]="ip.ip">
+                  <input *ngIf="ip?.editable" class="form-control small col-7" [(ngModel)]="ip.ip" (keyup)="ipCheck(ip.ip,i)" (change)="ipCheck(ip.ip,i)"
+                  [ngClass]="{
+                    'edit-form': ip?.editable && validateIp[i],
+                    'form-control-danger': !validateIp[i],
+                    '': validateIp[i]
+                  }">
                 <!--<td colspan="12"> <div class="form-control" [ngClass]="ip?.editable?'edit-form':''" [contentEditable]="ip.editable" [textContent]="ip.ip">{{ip.ip}}</div></td>-->
                   <button class="btn ittweb-delete-btn small" (click)="removeIp(ip)">REMOVE</button>
-                  <button class="btn ittweb-black-btn small" (click)="updateWord($event,ip)">{{ip.editable?'SAVE':'EDIT'}}</button>
+                  <button class="btn ittweb-black-btn small" [disabled]="!validateIp[i]" (click)="updateWord($event,ip)">{{ip.editable?'SAVE':'EDIT'}}</button>
                 </td>
               </tr>
               </tbody>
             </table>
       </nb-card-body>
       <nb-card-footer>
-        <button class="btn ittweb-btn small" (click)=addWord()>ADD</button>
+        <button class="btn ittweb-btn small vertical-centering" (click)=addWord()>ADD</button>
       </nb-card-footer>
     </nb-card>
   </div>

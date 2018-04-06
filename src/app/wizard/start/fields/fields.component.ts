@@ -1,8 +1,8 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
-import {Router} from '@angular/router';
-import {DataService} from '../../../service/data/data.service';
-import {WizardController} from '../wizard-controller';
-import {TreeviewItem, TreeviewConfig} from 'ngx-treeview';
+import { Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
+import { Router} from '@angular/router';
+import { DataService} from '../../../service/data/data.service';
+import { WizardController} from '../wizard-controller';
+import { TreeviewItem, TreeviewConfig} from 'ngx-treeview';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ModalComponent } from './modal/modal.component';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -30,6 +30,7 @@ export class FieldsComponent implements OnInit, AfterViewInit, OnDestroy {
     wizardController;
     info;
     fields: Fields;
+    categoryExclude= false;
     config = TreeviewConfig.create({
         hasAllCheckBox: false,
         hasFilter: true,
@@ -40,9 +41,13 @@ export class FieldsComponent implements OnInit, AfterViewInit, OnDestroy {
     wizardSite: Website;
     categories = [];
     skus: Sku[];
+    titles: Sku[];
+    prices: Sku[];
+    boosting: Sku[];
+    images: Sku[];
     queries: Query[] = [];
     facets = [];
-    facetTypes= ['checkbox', 'slider', 'radio'];
+    facetTypes= Facet.TYPES;
     facetsUnselectedDynamic;
 
     private mainSku: any;
@@ -65,6 +70,18 @@ export class FieldsComponent implements OnInit, AfterViewInit, OnDestroy {
             case 'facet':
               this.facets = data.data;
               break;
+            case 'title':
+              this.titles = data.data;
+              break;
+            case 'image':
+              this.images = data.data;
+              break;
+            case 'boosting':
+              this.boosting = data.data;
+              break;
+            case 'price':
+              this.prices = data.data;
+              break;
           }
         }
       );
@@ -76,6 +93,36 @@ export class FieldsComponent implements OnInit, AfterViewInit, OnDestroy {
       $('.ittweb-tabset').children(0).children(0)[3].classList.remove('avoid-clicks', 'tab-disabled');
       $('.ittweb-tabset').children(0).children(0)[4].classList.remove('avoid-clicks', 'tab-disabled');
       this.ee.onEditWizardEvent.emit(true);
+    }
+
+    checkSelection() {
+      if (this.skus.filter((item) => item.checked).length === 0) {
+        this.disableTabs();
+        return true;
+      } else if (this.titles.filter((item) => item.checked).length === 0) {
+        this.disableTabs();
+        return true;
+      } else if (this.categories.filter((item) => item.checked).length === 0 &&
+        this.categories.filter((item) => item.indeterminate).length === 0) {
+        this.disableTabs();
+        return true;
+      }else if (this.facets.filter((item) => item.checked).length === 0 || this.facets.filter((item) => item.type !== '').length === 0) {
+        this.disableTabs();
+        return true;
+      } else {
+        this.activateTabs();
+        return false;
+      }
+    }
+
+    disableTabs() {
+      $('.ittweb-tabset').children(0).children(0)[3].classList.add('avoid-clicks', 'tab-disabled');
+      $('.ittweb-tabset').children(0).children(0)[4].classList.add('avoid-clicks', 'tab-disabled');
+    }
+
+    activateTabs() {
+      $('.ittweb-tabset').children(0).children(0)[3].classList.remove('avoid-clicks', 'tab-disabled');
+      $('.ittweb-tabset').children(0).children(0)[4].classList.remove('avoid-clicks', 'tab-disabled');
     }
 
     onArrowClicked(item) {
@@ -90,28 +137,46 @@ export class FieldsComponent implements OnInit, AfterViewInit, OnDestroy {
       if ( this.fields ) {
         this.categories = this.fields.categories;
         this.skus = this.fields.skus;
+        this.titles = this.fields.titles;
+        this.prices = this.fields.prices;
+        this.images = this.fields.images;
+        this.boosting = this.fields.boosting;
         this.queries = this.fields.queries;
         this.facets = this.fields.facets;
         this.facetsUnselectedDynamic = this.fields.facetsUnselectedDynamic;
+        this.categoryExclude = this.fields.categoryExclude;
       } else {
         this.categories = Category.getDummyCategoriesUnchecked();
         this.skus = Sku.getDummySkusUnchecked();
+        this.titles = Sku.getDummySkusUnchecked();
+        this.boosting = Sku.getDummySkusChecked();
+        this.prices = Sku.getDummySkusUnchecked();
+        this.images = Sku.getDummySkusUnchecked();
+        this.skus = Sku.getDummySkusUnchecked();
         this.queries = Query.getDummyQueriesUnchecked();
         this.facets = Facet.getDummyFacetsUnchecked();
-        this.facetsUnselectedDynamic = true;
+        this.facetsUnselectedDynamic = false;
+        this.categoryExclude = false;
       }
     }
 
     ngOnDestroy() {
-      this.dataservice.setWizardSite('fields', {
-        fields: {
-          categories: this.categories,
-          skus: this.skus,
-          queries: this.queries,
-          facets: this.facets,
-          facetsUnselectedDynamic: this.facetsUnselectedDynamic
-        }
-      }, this.wizardSite.name);
+      if (!this.checkSelection()) {
+        this.dataservice.setWizardSite('fields', {
+          fields: {
+            categoryExclude: this.categoryExclude,
+            categories: this.categories,
+            skus: this.skus,
+            titles: this.titles,
+            images: this.images,
+            prices: this.prices,
+            boosting: this.boosting,
+            queries: this.queries,
+            facets: this.facets,
+            facetsUnselectedDynamic: this.facetsUnselectedDynamic
+          }
+        }, this.wizardSite.name);
+      }
     }
 
     slideOutLeft() {
@@ -161,23 +226,53 @@ export class FieldsComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     }
 
-    modalShowSku() {
+    modalShowSku(type) {
       this.bsModalRef = this.ms.show(ModalComponent);
-      this.bsModalRef.content.skus = this.skus;
-      this.bsModalRef.content.type = 'sku';
-      this.mainSku = this.getMainSku();
+      this.bsModalRef.content.type = type;
+      this.mainSku = this.getMainSku(type);
       this.bsModalRef.content.mainSku = this.mainSku;
-      for (const sku of this.skus){
-        this.bsModalRef.content.modalData.push(new Sku(sku));
+      if (type === 'boosting') {
+        this.bsModalRef.content.skus = this.boosting;
+        for (const boost of this.boosting){
+          this.bsModalRef.content.modalData.push(new Sku(boost));
+        }
+      } else if (type === 'image') {
+        this.bsModalRef.content.queries = this.images;
+        for (const query of this.images){
+          this.bsModalRef.content.modalData.push(new Sku(query));
+        }
+      } else {
+        this.bsModalRef.content.skus = this.skus;
+        for (const sku of this.skus){
+          this.bsModalRef.content.modalData.push(new Sku(sku));
+        }
       }
     }
 
-    modalShowQuery() {
+    modalShowQuery(type) {
       this.bsModalRef = this.ms.show(ModalComponent);
-      this.bsModalRef.content.queries = this.queries;
-      this.bsModalRef.content.type = 'query';
-      for (const query of this.queries){
-        this.bsModalRef.content.modalData.push(new Query(query));
+      this.bsModalRef.content.type = type;
+      if (type === 'title') {
+        this.bsModalRef.content.queries = this.titles;
+        this.mainSku = this.getMainSku(type);
+        this.bsModalRef.content.mainSku = this.mainSku;
+        for (const query of this.titles){
+          this.bsModalRef.content.modalData.push(new Sku(query));
+          this.bsModalRef.content.filteredData = this.bsModalRef.content.modalData.filter((data) => data.checked);
+        }
+      } else if (type === 'price') {
+        this.bsModalRef.content.queries = this.prices;
+        this.mainSku = this.getMainSku(type);
+        this.bsModalRef.content.mainSku = this.mainSku;
+        for (const query of this.prices){
+          this.bsModalRef.content.modalData.push(new Sku(query));
+          this.bsModalRef.content.filteredData = this.bsModalRef.content.modalData.filter((data) => data.checked);
+        }
+      } else {
+        this.bsModalRef.content.queries = this.queries;
+        for (const query of this.queries){
+          this.bsModalRef.content.modalData.push(new Query(query));
+        }
       }
     }
 
@@ -190,10 +285,22 @@ export class FieldsComponent implements OnInit, AfterViewInit, OnDestroy {
       }
   }
 
-    getMainSku() {
-      for (const sku of this.skus){
-        if (sku.isMain)
-          return sku.value;
+    getMainSku(type) {
+      if (type === 'sku') {
+        for (const sku of this.skus){
+          if (sku.isMain)
+            return sku.value;
+        }
+      } else if (type === 'boosting') {
+        for (const boost of this.boosting){
+          if (boost.isMain)
+            return boost.value;
+        }
+      } else if (type === 'image') {
+        for (const image of this.images){
+          if (image.isMain)
+            return image.value;
+        }
       }
     }
 

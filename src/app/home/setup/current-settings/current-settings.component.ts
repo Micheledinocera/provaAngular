@@ -4,6 +4,7 @@ import { EventEmitterService } from '../../../service/event-emitter/event-emitte
 import { Router } from '@angular/router';
 import { TreeviewConfig } from 'ngx-treeview';
 import { AnimationController } from '../../../animationController';
+import { Facet } from '../../../model/Facet';
 
 @Component({
   selector: 'app-current-settings',
@@ -32,10 +33,11 @@ export class CurrentSettingsComponent implements OnInit {
   queries;
   wizardSite;
   backResultsInfo;
+  categoryExclude;
   backResults;
   facetsUnselectedDynamic;
 
-  facetTypes= ['checkbox', 'slider', 'radio'];
+  facetTypes= Facet.TYPES;
   constructor(
       private router: Router,
       private dataservice: DataService,
@@ -63,6 +65,7 @@ export class CurrentSettingsComponent implements OnInit {
       this.queries = this.fields.queries;
       this.facets = this.fields.facets;
       this.facetsUnselectedDynamic = this.fields.facetsUnselectedDynamic;
+      this.categoryExclude = this.fields.categoryExclude;
     }
   }
 

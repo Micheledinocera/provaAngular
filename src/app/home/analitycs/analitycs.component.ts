@@ -30,6 +30,14 @@ export class AnalitycsComponent implements OnInit, OnDestroy {
   timeRangeLookingFor;
   noResultsdData;
   timeRangeNoResults;
+  charactersData;
+  timeRangeCharacters;
+  wordsData;
+  timeRangeWords;
+  conversionPerRowData;
+  timeRangeConvertionPerRow;
+  averageResultsData;
+  timeRangeAverageResults;
   SearchesData;
   timeRangeSearches;
   ConversionData;
@@ -50,6 +58,10 @@ export class AnalitycsComponent implements OnInit, OnDestroy {
 
   constructor(private ee: EventEmitterService, private ds: DataService) {
     this.timeRanges = ds.getTimeRanges();
+    this.timeRangeAverageResults = this.timeRanges[0];
+    this.timeRangeConvertionPerRow = this.timeRanges[0];
+    this.timeRangeWords = this.timeRanges[0];
+    this.timeRangeCharacters = this.timeRanges[0];
     this.timeRangeLineChartSearch = this.timeRanges[0];
     this.timeRangeLineChartVisitors = this.timeRanges[0];
     this.timeRangeClicked = this.timeRanges[0];
@@ -106,6 +118,10 @@ export class AnalitycsComponent implements OnInit, OnDestroy {
 
   getDataFromDataService(selectedSite) {
     if (this.ds.getAnalytics('lineChartSearch')[selectedSite]) {
+      this.averageResultsData = this.ds.getAnalytics('averageResultsData')[selectedSite];
+      this.wordsData = this.ds.getAnalytics('wordsData')[selectedSite];
+      this.charactersData = this.ds.getAnalytics('charactersData')[selectedSite];
+      this.conversionPerRowData = this.ds.getAnalytics('conversionPerRowData')[selectedSite];
       this.lineChartSearch = this.ds.getAnalytics('lineChartSearch')[selectedSite];
       this.lineChartVisitors = this.ds.getAnalytics('lineChartVisitors')[selectedSite];
       this.lookingForData = this.ds.getAnalytics('lookingFor')[selectedSite];
@@ -122,6 +138,10 @@ export class AnalitycsComponent implements OnInit, OnDestroy {
       this.mapChartData = this.ds.getAnalytics('mapChartData')[selectedSite];
     } else {
       const emptyInfo = Analytics.getEmptyAnalytics(this.ds);
+      this.averageResultsData = emptyInfo.averageResultsData;
+      this.wordsData = emptyInfo.wordsData;
+      this.charactersData = emptyInfo.charactersData;
+      this.conversionPerRowData = emptyInfo.conversionPerRowData;
       this.lineChartSearch = emptyInfo.lineChartSearch ;
       this.lineChartVisitors = emptyInfo.lineChartVisitors;
       this.lookingForData = emptyInfo.lookingFor;

@@ -19,15 +19,21 @@ declare var $: any;
 })
 export class FineTuningComponent implements OnInit, OnDestroy {
 
+  ipv4REGEX= RegExp('^([0-9]{1,3}\.){3}[0-9]{1,3}(\/([0-9]|[1-2][0-9]|3[0-2]))?$');
+  ipv6REGEX= RegExp('^s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]d|1dd|[1-9]?d)(.(25[0-5]|2[0-4]d|1dd|[1-9]?d)){3}))|:)))(%.+)?s*(\/([0-9]|[1-9][0-9]|1[0-1][0-9]|12[0-8]))?$');
   time;
   state;
   currencies = ['Euro - €', 'Dollar - $'];
   showModes = ['Grid view', 'List view'];
   bsModalRef: BsModalRef;
   ips = [];
+  validateIp= [];
   currency;
   separator= 'Dot';
   placeholder;
+  webhook;
+  voiceSearch;
+  googleapikey;
   showMode;
   engageSearchs = [];
   weights = [];
@@ -50,6 +56,11 @@ export class FineTuningComponent implements OnInit, OnDestroy {
     this.getDataFromDataService(this.ds.getSelectedSite());
   }
 
+  googleApiKeyCheck() {
+    if (this.googleapikey === '')
+      this.voiceSearch = false;
+  }
+
   ngOnDestroy() {
     this.ds.setWizardSite('fineTuning', {
       fineTuning: {
@@ -57,6 +68,9 @@ export class FineTuningComponent implements OnInit, OnDestroy {
         currency: new Currency({currency: this.currency, separator: this.separator}),
         jsLayer: this.showMode,
         placeholder: this.placeholder,
+        webhook: this.webhook,
+        voiceSearch: this.voiceSearch,
+        googleapikey: this.googleapikey,
         weights: this.weights,
         engageSearchs: this.engageSearchs
       }}, this.ds.getSelectedSite());
@@ -64,6 +78,7 @@ export class FineTuningComponent implements OnInit, OnDestroy {
 
   addWord() {
     this.ips.push(new Ip({ip: '', editable: true}));
+    this.validateIp.push(true);
   }
 
   updateWord(event, ip) {
@@ -76,6 +91,13 @@ export class FineTuningComponent implements OnInit, OnDestroy {
     this.bsModalRef = this.ms.show(EngageSearchModalComponent);
     this.bsModalRef.content.type = 'add';
     this.bsModalRef.content.engageSearchs = this.engageSearchs;
+  }
+
+  ipCheck(ip, index) {
+    if (!this.ipv4REGEX.test(ip) && !this.ipv6REGEX.test(ip))
+      this.validateIp[index] = false;
+    else
+      this.validateIp[index] = true;
   }
 
   editSearch(engageSearch) {
@@ -104,6 +126,7 @@ export class FineTuningComponent implements OnInit, OnDestroy {
 
       if (index >= 0) {
           this.ips.splice(index, 1);
+          this.validateIp.splice(index, 1);
       }
   }
 
@@ -118,10 +141,14 @@ export class FineTuningComponent implements OnInit, OnDestroy {
   getDataFromDataService(selectedSite) {
     if (this.ds.getFineTuning()[selectedSite]) {
       this.ips = this.ds.getFineTuning()[selectedSite].ips;
+      this.ips.forEach(() => this.validateIp.push(true));
       this.currency = this.ds.getFineTuning()[selectedSite].currency.currency;
       this.separator = this.ds.getFineTuning()[selectedSite].currency.separator;
       this.showMode = this.ds.getFineTuning()[selectedSite].jsLayer;
       this.placeholder = this.ds.getFineTuning()[selectedSite].placeholder;
+      this.webhook = this.ds.getFineTuning()[selectedSite].webhook;
+      this.voiceSearch = this.ds.getFineTuning()[selectedSite].voiceSearch;
+      this.googleapikey = this.ds.getFineTuning()[selectedSite].googleapikey;
       this.weights = this.ds.getFineTuning()[selectedSite].weights;
       this.engageSearchs = this.ds.getFineTuning()[selectedSite].engageSearchs;
     } else {
@@ -130,6 +157,9 @@ export class FineTuningComponent implements OnInit, OnDestroy {
       this.separator = 'Dot';
       this.showMode = 'Grid view';
       this.placeholder = '';
+      this.webhook = '';
+      this.voiceSearch = false;
+      this.googleapikey = '';
       this.weights = [];
       this.engageSearchs = [];
     }

@@ -3,6 +3,7 @@
 @import '~@nebular/theme/styles/themes/default';
 @import '~@angular/material/theming';
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700,800');
 
 @include mat-core();
 
@@ -16,7 +17,8 @@ $color-dark-gray: #9b9b9b;
 $color-gray: #dddddd;
 $color-kpis-gray: #f5f5f5;
 $color-light-gray: #fbfbfb;
-$font: Montserrat, sans-serif;
+//$font: Montserrat, sans-serif;
+$font: 'Open Sans', sans-serif;
 
 $md-ittwebprimarycolor: (
   50 : #e6edf9,
@@ -51,9 +53,43 @@ $md-ittwebprimarycolor: (
   )
 );
 
+$md-ittwebalertcolor:(
+  50 : #f5e7e7,
+  100 : #e7c2c4,
+  200 : #d7999d,
+  300 : #c77075,
+  400 : #bb5258,
+  500 : #af333a,
+  600 : #a82e34,
+  700 : #9f272c,
+  800 : #962025,
+  900 : #861418,
+  A100 : #ffbbbd,
+  A200 : #ff888b,
+  A400 : #ff555a,
+  A700 : #ff3b41,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #ffffff,
+  )
+);
+
 $accelasearch-app-primary: mat-palette($md-ittwebprimarycolor);
 $accelasearch-app-accent:  mat-palette($md-ittwebprimarycolor);
-$accelasearch-app-theme:   mat-light-theme($accelasearch-app-primary, $accelasearch-app-accent);
+$accelasearch-app-warn:  mat-palette($md-ittwebalertcolor);
+$accelasearch-app-theme:   mat-light-theme($accelasearch-app-primary, $accelasearch-app-accent,$accelasearch-app-warn);
 
 // Include the default theme styles.
 @include mat-core-theme($accelasearch-app-theme);

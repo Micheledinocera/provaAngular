@@ -40,8 +40,9 @@ export class FinishComponent implements OnInit {
     backResultsInfo;
     backResults;
     facetsUnselectedDynamic;
+    categoryExclude;
 
-    facetTypes= ['checkbox', 'slider', 'radio'];
+    facetTypes= Facet.TYPES;
     constructor(
         private router: Router,
         private dataservice: DataService,
@@ -62,6 +63,7 @@ export class FinishComponent implements OnInit {
         this.queries = this.fields.queries;
         this.facets = this.fields.facets;
         this.facetsUnselectedDynamic = this.fields.facetsUnselectedDynamic;
+        this.categoryExclude = this.fields.categoryExclude;
       }
     }
 

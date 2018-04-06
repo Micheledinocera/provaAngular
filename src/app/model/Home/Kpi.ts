@@ -22,7 +22,7 @@ export class Kpi {
         title: 'Average value per conversion',
         value: '0'
     }, {
-        title: 'Altro valore',
+        title: 'Total conversions',
         value: '0'
     }];
     dummyData[timeRanges[1]] = [{
@@ -41,7 +41,7 @@ export class Kpi {
         title: 'Average value per conversion',
         value: '0'
     }, {
-        title: 'Altro valore',
+        title: 'Total conversions',
         value: '0'
     }];
     dummyData[timeRanges[2]] = [{
@@ -60,7 +60,7 @@ export class Kpi {
         title: 'Average value per conversion',
         value: '0'
     }, {
-        title: 'Altro valore',
+        title: 'Total conversions',
         value: '0'
     }];
     return dummyData;
@@ -85,7 +85,7 @@ export class Kpi {
         title: 'Average value per conversion',
         value: '125'
     }, {
-        title: 'Altro valore',
+        title: 'Total conversions',
         value: '100'
     }], [timeRanges[1]]: [{
         title: 'Total Search',
@@ -103,7 +103,7 @@ export class Kpi {
         title: 'Average value per conversion',
         value: '135'
     }, {
-        title: 'Altro valore',
+        title: 'Total conversions',
         value: '10'
     }], [timeRanges[2]]: [{
         title: 'Total Search',
@@ -121,7 +121,7 @@ export class Kpi {
         title: 'Average value per conversion',
         value: '325'
     }, {
-        title: 'Altro valore',
+        title: 'Total conversions',
         value: '50'
     }]};
     return dummyData;
@@ -146,7 +146,7 @@ export class Kpi {
         title: 'Average value per conversion',
         value: '12500'
     }, {
-        title: 'Altro valore',
+        title: 'Total conversions',
         value: '10000'
     }];
     dummyData[timeRanges[1]] = [{
@@ -165,7 +165,7 @@ export class Kpi {
         title: 'Average value per conversion',
         value: '1350000'
     }, {
-        title: 'Altro valore',
+        title: 'Total conversions',
         value: '1000'
     }];
     dummyData[timeRanges[2]] = [{
@@ -184,7 +184,7 @@ export class Kpi {
         title: 'Average value per conversion',
         value: '32500'
     }, {
-        title: 'Altro valore',
+        title: 'Total conversions',
         value: '5000'
     }];
     return dummyData;

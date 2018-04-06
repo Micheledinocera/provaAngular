@@ -41,7 +41,7 @@ export class Sku {
           isMain: false
       }), new Sku({
           value: 'sku3',
-          isMain: true
+          isMain: false
       }), new Sku({
           value: 'sku4',
           isMain: false
@@ -49,4 +49,25 @@ export class Sku {
     ];
   }
 
+  static getDummySkusChecked() {
+    return [new Sku(
+      {
+          value: 'sku1',
+          checked: true,
+          isMain: false
+      }), new Sku({
+          value: 'sku2',
+          checked: true,
+          isMain: false
+      }), new Sku({
+          value: 'sku3',
+          checked: true,
+          isMain: false
+      }), new Sku({
+          value: 'sku4',
+          checked: true,
+          isMain: false
+      })
+    ];
+  }
 }

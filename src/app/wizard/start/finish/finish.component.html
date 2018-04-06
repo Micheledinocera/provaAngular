@@ -1,7 +1,7 @@
 <ng-template #itemTemplate let-item="item" let-onCollapseExpand="onCollapseExpand" let-onCheckedChange="onCheckedChange">
   <div class="form-check" [style.border-top]="item.children?'solid 1px #dddddd':''">
       <label class="form-check-label">
-        <mat-checkbox class="form-check-input" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()" disabled
+        <mat-checkbox class="form-check-input" [ngClass]="categoryExclude?'exclude':''" [(ngModel)]="item.checked" (ngModelChange)="onCheckedChange()" disabled
                 [indeterminate]="item.indeterminate" > {{item.text}}
         </mat-checkbox>
       </label>
@@ -25,12 +25,46 @@
             </nb-card-body>
         </nb-card>
       </div>
+      <div class="page-sub-title col-6">
+        Facets
+        <nb-card>
+          <nb-card-body>
+            <table class="table table-list">
+              <thead>
+                <tr>
+                  <td style="width: 20%;">FIELD</td>
+                  <td style="width: 30%;">TYPE</td>
+                  <td>LABEL</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let facet of facets | onlyChecked">
+                  <td> {{facet.value}} </td>
+                  <td>
+                    <input [ngModel]="facet.type" class="form-control small" type="text" disabled>
+                  </td>
+                  <td>
+                    <div class="d-flex">
+                        <input [ngModel]="facet.label" class="form-control input-sm small" type="text" disabled>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </nb-card-body>
+          <nb-card-footer>
+            <div class="vertical-centering">
+            {{facetsUnselectedDynamic?'Unselected are dynamic':'Unselected are NOT dynamic'}}
+            </div>
+          </nb-card-footer>
+        </nb-card>
+      </div>
     </div>
     <div class="d-flex">
       <div class="page-sub-title col-6">
         Query
         <nb-card>
-          <nb-card-body>
+          <nb-card-body class="half">
             <table class="table table-list">
               <tbody>
                 <tr *ngFor="let query of queries | onlyChecked">
@@ -43,51 +77,10 @@
           </nb-card-body>
         </nb-card>
       </div>
-
       <div class="page-sub-title col-6">
-        Facets
-        <nb-card>
-          <nb-card-body>
-            <table class="table table-list">
-              <tbody>
-                <tr *ngFor="let facet of facets | onlyChecked">
-                  <td> {{facet.value}} </td>
-                  <td>
-                    <!--<select [(ngModel)]="facet.type" class="wizard-dropdown form-control-sm">
-                      <option *ngFor="let facetType of facetTypes" [ngValue]="facetType" [selected]="facetType == facet.type" disabled>{{facetType}}</option>
-                    </select>-->
-                    <input [ngModel]="facet.type" class="form-control small" type="text" disabled>
-                  </td>
-                  <td>
-                    <div class="d-flex" *ngIf="facet.type == 'slider'" style="height: 20px">
-                      Min <input class="form-control small" type="text" disabled> Max <input type="text" disabled class="form-control small">
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--<ul class="list-group">
-              <li *ngFor="let facet of facets | onlyChecked" class="d-flex list-group-item">
-                <div class="col-2">{{facet.value}}</div>
-                <select [(ngModel)]="facet.type" class="wizard-dropdown col-4 form-control">
-                  <option *ngFor="let facetType of facetTypes" [ngValue]="facetType" [selected]="facetType == facet.type" disabled>{{facetType}}</option>
-                </select>
-                <div *ngIf="facet.type=='slider'" class="col-6 d-flex">
-                  Min <input class="form-control" type="text" disabled> Max <input type="text" disabled class="form-control">
-                </div>
-              </li>
-            </ul>-->
-          </nb-card-body>
-          <nb-card-footer>
-            {{facetsUnselectedDynamic?'Unselected are dynamic':'Unselected are NOT dynamic'}}
-          </nb-card-footer>
-        </nb-card>
-      </div>
-    </div>
-    <div class="page-sub-title col-6">
         Back results
         <nb-card>
-            <nb-card-body>
+            <nb-card-body class="half">
               <table class="table table-list">
                 <tbody>
                   <tr *ngFor="let field of backResults | onlyChecked">
@@ -99,6 +92,7 @@
               </table>
             </nb-card-body>
         </nb-card>
+      </div>
     </div>
     <div>
         <!--<button role="button" class="btn ittweb-back-btn" (click)="slideOutRight()">BACK</button>-->

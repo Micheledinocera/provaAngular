@@ -7,7 +7,7 @@
     <div class="page-sub-title col-6">
       Back results
       <nb-card>
-        <nb-card-body>
+        <nb-card-body class="half">
           <table class="table table-list">
             <tbody>
               <tr *ngFor="let field of fields | onlyChecked">
@@ -19,7 +19,7 @@
           </table>
         </nb-card-body>
         <nb-card-footer>
-          <div class="btn ittweb-btn float-right small" (click)="modalShow()"> SELECT </div>
+          <div class="vertical-centering btn ittweb-btn float-right small" (click)="modalShow()"> SELECT </div>
         </nb-card-footer>
       </nb-card>
     </div>
@@ -27,7 +27,7 @@
     <div class="page-sub-title col-6">
       Facets
       <nb-card>
-        <nb-card-body>
+        <nb-card-body class="half">
          ciao
         </nb-card-body>
       </nb-card>
@@ -35,6 +35,6 @@
   </div>
   <div>
     <!--<button role="button" class="btn ittweb-back-btn" (click)="slideOutRight()">BACK</button>-->
-    <button role="button" class="btn ittweb-btn next" (click)="slideOutLeft()">NEXT</button>
+    <button role="button" class="btn ittweb-btn next" (click)="slideOutLeft()" [disabled]="checkSelection()">NEXT</button>
   </div>
 </div>

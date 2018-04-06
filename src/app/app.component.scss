@@ -4,6 +4,7 @@ nav{
     width: 100%;
     padding: 0;
     z-index: 1;
+    position: fixed;
     border-radius: 0;
 }
 
@@ -19,8 +20,18 @@ nav{
 //   opacity: 1 !important;
 // }
 
+.go-to-login{
+  cursor: pointer;
+  font-weight: 700;
+  color: $color-primary-blue;
+}
+
 nb-route-tabset ul{
   padding: 0 !important;
+}
+
+.layout-container{
+  margin-top:80px;
 }
 
 nb-layout-header, nb-layout-column{
@@ -83,10 +94,30 @@ nb-layout-header, nb-layout-column{
   @include button($color-primary-blue);
 }
 
+.ittweb-btn.warn{
+  @include button($color-alert-red);
+}
+
+.ittweb-btn.warn:hover{
+  background-color: $color-alert-red !important;
+  opacity: 0.9;
+}
+
+.ittweb-negative-btn.warn:hover{
+  color: $color-alert-red !important;
+  border-color: $color-alert-red !important;
+  opacity: 0.9;
+}
+
 .ittweb-negative-btn{
   @include button(white);
   border: solid $color-primary-blue 2px !important;
   color: $color-primary-blue !important;
+}
+
+.ittweb-negative-btn.warn{
+  color: $color-alert-red !important;
+  border-color: $color-alert-red !important;
 }
 
 .ittweb-black-btn{
@@ -140,7 +171,6 @@ nb-layout-header, nb-layout-column{
 
 .page-sub-title{
     color: black;
-    font-family: Montserrat, sans-serif !important;
     font-weight: 600;
     margin-bottom: 3%;
 }
@@ -169,7 +199,18 @@ nb-card{
 }
 
 nb-card-body {
-  max-height: 500px;
+  // max-height: 500px;
+  height: 500px;
+}
+
+nb-card-body.third{
+  // max-height: 500px;
+  height: 96px;
+}
+
+nb-card-body.half{
+  // max-height: 500px;
+  height: 310px;
 }
 
 nb-card-body.tables {
@@ -177,7 +218,11 @@ nb-card-body.tables {
 }
 
 nb-card-body.map-chart {
-  max-height: 600px;
+  height: 600px;
+}
+
+nb-card-footer{
+  height: 40px;
 }
 
 nb-card ul{
@@ -267,6 +312,44 @@ nb-card ul{
   background: $color-primary-blue !important;
 }
 
+.mat-checkbox-disabled.exclude .mat-checkbox-checkmark-path{
+  stroke: white !important;
+}
+
+.mat-checkbox-checked.exclude .mat-checkbox-mixedmark{
+  height: 0px;
+}
+
+.mat-checkbox.exclude .mat-checkbox-checkmark-path {
+  stroke-width: 0px !important;
+}
+
+.mat-checkbox.mat-checkbox-checked.exclude .mat-checkbox-background{
+  background: url(../assets/icon_close.svg) right / 20px no-repeat #fff !important;
+}
+
+.mat-checkbox-indeterminate.exclude .mat-checkbox-background{
+  background-color: $color-alert-red !important;
+}
+
+.mat-checkbox-indeterminate.mat-checkbox-disabled.exclude .mat-checkbox-background{
+  background-color: white !important;
+}
+
+.mat-checkbox-indeterminate.mat-checkbox-disabled.exclude .mat-checkbox-mixedmark{
+  background-color: $color-alert-red !important;
+}
+
+.mat-checkbox.mat-checkbox-checked.exclude.mat-checkbox-disabled .mat-checkbox-label{
+  font-weight: 100 !important;
+  color: gray !important;
+}
+
+.mat-checkbox.exclude.mat-checkbox-disabled:not(.mat-checkbox-checked) .mat-checkbox-label{
+  font-weight: 600 !important;
+  color: $color-darkest-gray !important;
+}
+
 .square{
   height: 15px;
   width: 15px;
@@ -342,10 +425,40 @@ ngx-treeview-item .form-check:not(.form-check){
   cursor: pointer;
 }
 
+.Oval>span{
+  position: absolute;
+  margin-top: -2px;
+  margin-left: -2px;
+}
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   background: url(../assets/icon-arrow-drop-down.svg) right / 20px no-repeat #fff;
   padding-right: 20px;
+}
+
+mat-checkbox mat-radio-group .mat-radio-container{
+  display:none;
+}
+
+.weight-slider{
+  width: 85%;
+  margin-left: 30px;
+  margin-top: 4px;
+}
+
+notification-host div{
+  z-index: 5;
+}
+
+notification-host div.item.warn{
+  background-color: $color-alert-red !important;
+  opacity: 0.7;
+}
+
+notification-host div.item{
+  background-color: $color-secondary-blue !important;
+  opacity: 0.7;
 }

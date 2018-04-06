@@ -1,7 +1,7 @@
 <div class="d-flex">
   <div class="page-sub-title col-6" *ngIf=" time > 0" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Default
     <nb-card>
-      <nb-card-body>
+      <nb-card-body class="half">
         <input type="text" [(ngModel)]="searchTextDefault" placeholder="Filter StopWord" class="form-control small">
         <table class="table">
           <tbody>
@@ -15,7 +15,7 @@
   </div>
   <div class="page-sub-title col-6" *ngIf=" time > 1" [@appear]="state" (@appear.start)="startAnimation()" (@appear.done)="endAnimation()"> Your list
     <nb-card>
-      <nb-card-body>
+      <nb-card-body class="half">
         <input type="text" [(ngModel)]="searchText"  placeholder="Filter StopWord" class="form-control small">
         <table class="table">
           <tbody>
@@ -23,8 +23,6 @@
             <td colspan="12" class="d-flex">
               <div *ngIf="!word?.editable" class="small col-7" [ngClass]="word?.editable?'edit-form':''">{{word.word}}</div>
               <input *ngIf="word?.editable" class="form-control small col-7" [ngClass]="word?.editable?'edit-form':''" [(ngModel)]="word.word">
-              <!--<div *ngIf="!word?.editable" class="small" [ngClass]="word?.editable?'edit-form':''" [contentEditable]="word?.editable">{{word.word}}</div>
-              <input *ngIf="word?.editable" class="form-control small" [ngClass]="word?.editable?'edit-form':''" [contentEditable]="word?.editable" [(ngModel)]="word.word">-->
               <button class="btn ittweb-delete-btn small" (click)="removeWord(word)">REMOVE</button>
               <button class="btn ittweb-black-btn small" (click)="editWord($event,word)">{{word.editable?'SAVE':'EDIT'}}</button>
             </td>
@@ -33,7 +31,7 @@
         </table>
       </nb-card-body>
       <nb-card-footer>
-          <th><button class="btn ittweb-btn small" (click)="addWord()">+Add Word</button></th>
+          <div class="vertical-centering"><button class="btn ittweb-btn small" (click)="addWord()">+Add Word</button></div>
       </nb-card-footer>
     </nb-card>
   </div>

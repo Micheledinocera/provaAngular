@@ -11,7 +11,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { MatCheckboxModule, MatRadioModule} from '@angular/material';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { SharedModule } from '../../shared/shared.module';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { CmsComponent } from './cms/cms.component';
 import { WebsiteComponent } from './website/website.component';

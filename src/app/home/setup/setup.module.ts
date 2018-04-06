@@ -10,6 +10,7 @@ import { MatCheckboxModule, MatRadioModule } from '@angular/material';
 import { TreeviewModule } from 'ngx-treeview';
 import { SharedModule } from '../../shared/shared.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { SetupComponent } from './setup.component';
 import { routingComponents} from './setup-routing.module';
@@ -23,11 +24,15 @@ import { BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BsModalService, ModalModule} from 'ngx-bootstrap';
 import { EngageSearchModalComponent } from './fine-tuning/engage-search-modal/engage-search-modal.component';
 import { ContenteditableDirective } from 'ng-contenteditable';
+import { SliderModule } from '../../ui/slider';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   imports: [
     SetupRoutingModule,
     NbRouteTabsetModule,
+    MatSlideToggleModule,
+    SliderModule,
     MatChipsModule,
     CommonModule,
     NbCardModule,
@@ -35,6 +40,7 @@ import { ContenteditableDirective } from 'ng-contenteditable';
     MatRadioModule,
     MatCheckboxModule,
     SharedModule,
+    TooltipModule.forRoot(),
     ModalModule.forRoot(),
     TreeviewModule.forRoot(),
     FormsModule,
