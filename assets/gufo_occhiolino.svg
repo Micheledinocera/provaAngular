@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="68px" height="94px" viewBox="0 0 68 94" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>gufo_occhiolino</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Schermate" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="03_Login_1st_access" transform="translate(-686.000000, -168.000000)">
+            <g id="gufo_occhiolino" transform="translate(688.000000, 170.000000)">
+                <g id="gufo">
+                    <path d="M55.3846154,90 C48.402741,84.9350206 42.6923077,75.8239127 42.6923077,65.4257803 C42.6923077,55.4819226 48.0043632,46.7153106 54.4826079,41.5384615 L55.3846154,90 Z" id="Fill-1" fill="#5E89C6"></path>
+                    <path d="M14.5042145,13.8461538 C21.7879465,13.8461538 27.6923077,19.9179257 27.6923077,27.4073876 L27.6923077,53.0769231 L27.0513772,53.0769231 C27.0513772,53.0769231 0,40.5633383 0,28.7610014 C0,20.5234476 6.49416477,13.8461538 14.5042145,13.8461538 Z" id="Stroke-3" stroke="#3D6CB4" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M27.6923077,53.0769231 L28.3332382,53.0769231 C28.3332382,53.0769231 55.3846154,40.5633383 55.3846154,28.7610014 L55.3846154,28.7604674 C55.3846154,20.5234476 48.8909777,13.8461538 40.8804009,13.8461538 C33.5966688,13.8461538 27.6923077,19.9173917 27.6923077,27.4073876" id="Stroke-5" stroke="#3D6CB4" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M55.3846154,90 C48.402741,84.9350206 42.6923077,75.8239127 42.6923077,65.4257803 C42.6923077,55.4819226 48.0043632,46.7153106 54.4826079,41.5384615" id="Stroke-7" stroke="#3D6CB4" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M3.46153846,82.8947368 L63.4615385,82.8947368" id="Stroke-9" stroke="#3D6CB4" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M28.1084421,0 C43.173087,0 55.3846154,12.1701549 55.3846154,27.1825865 L55.3846154,90 L47.9316194,82.6461147 L42.309193,82.6461147 C18.9424166,82.6461147 0,63.7681658 0,40.4815628 L0,28.0119997 C0,12.5415261 12.5847053,0 28.1084421,0 Z" id="Stroke-11" stroke="#3D6CB4" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M36.9230769,31.1528631 C37.642956,29.7888916 39.1805617,28.8461538 40.9612889,28.8461538 C42.7425152,28.8461538 44.2806202,29.7893831 45,31.1538462" id="Stroke-13" stroke="#3D6CB4" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M18.4615385,31.1538462 L15.3452334,31.1538462 C11.9684578,31.1538462 9.23076923,28.5707323 9.23076923,25.3846154 L12.3476238,25.3846154 C15.7243994,25.3846154 18.4615385,27.9672107 18.4615385,31.1538462 Z" id="Stroke-15" stroke="#3D6CB4" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
