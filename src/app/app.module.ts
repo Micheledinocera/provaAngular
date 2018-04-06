@@ -31,7 +31,7 @@ import { TableViewComponent } from './home/table-view/table-view.component';
 import { RandomComponent } from './random/random.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { KitRootModule, KitModule, KitPlatformBrowserModule } from '@ngx-kit/core';
-import { NotificationHostComponent } from './ui/notification/notification-host/notification-host.component';
+import { NotificationModule } from './ui/notification/notification.module';
 // import { PieChartComponent } from './home/analitycs/pie-chart/pie-chart.component';
 
 
@@ -44,11 +44,11 @@ import { NotificationHostComponent } from './ui/notification/notification-host/n
       LoginComponent,
       SuperAdminComponent,
       RandomComponent,
-      SignUpComponent,
-      NotificationHostComponent
+      SignUpComponent
     ],
     imports: [
       HttpClientModule,
+      NotificationModule,
       CommonModule,
       NbLayoutModule,
       KitRootModule,
