@@ -50,6 +50,7 @@
     "ng2-slider-component": "^1.0.9",
     "ngx-bootstrap": "^2.0.0-rc.0",
     "ngx-chips": "^1.6.3",
+    "ngx-ckeditor": "^0.3.1",
     "ngx-cookie-service": "^1.0.10",
     "ngx-dropdown": "0.0.22",
     "ngx-dropdowns": "0.0.6",

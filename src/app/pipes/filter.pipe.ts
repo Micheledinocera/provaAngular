@@ -92,3 +92,14 @@ export class FilterOnWordPipe implements PipeTransform {
         });
     }
 }
+
+@Pipe({
+  name: 'onlyKeys',
+  pure: false
+})
+export class FilterOnlyKeys implements PipeTransform {
+  transform(items: {}, searchText: string): any[] {
+      if (!items) return [];
+      return Object.keys(items);
+  }
+}

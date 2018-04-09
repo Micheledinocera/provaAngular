@@ -30,14 +30,14 @@
       <nb-card-body>
           <table class="table">
             <tbody>
-              <tr *ngFor="let engageSearch of engageSearchs">
+              <tr *ngFor="let engageSearch of engageSearchs.data">
                 <td colspan="3">
                   <div class="page-sub-title"> {{engageSearch.title}} </div>
                   <div> {{engageSearch.description}} </div>
                 </td>
                 <td>
-                  <button class="btn ittweb-negative-btn small float-right"> Preview</button>
-                  <button class="btn ittweb-black-btn smaller float-right" (click)='editSearch(engageSearch)'> Edit</button>
+                  <button class="btn ittweb-negative-btn small float-right" (click)="showPreview(engageSearchs.templates, engageSearch)"> Preview</button>
+                  <button class="btn ittweb-black-btn smaller float-right" (click)='editSearch(engageSearchs.templates, engageSearch)'> Edit</button>
                   <button class="btn ittweb-delete-btn smaller float-right" (click)='removeSearch(engageSearch)'> Delete</button>
                 </td>
               </tr>

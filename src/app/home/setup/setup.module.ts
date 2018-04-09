@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material';
 import { MatCheckboxModule, MatRadioModule } from '@angular/material';
 import { TreeviewModule } from 'ngx-treeview';
+import { CKEditorModule } from 'ngx-ckeditor';
 import { SharedModule } from '../../shared/shared.module';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -26,6 +27,7 @@ import { EngageSearchModalComponent } from './fine-tuning/engage-search-modal/en
 import { ContenteditableDirective } from 'ng-contenteditable';
 import { SliderModule } from '../../ui/slider';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { PreviewModalComponent } from './fine-tuning/engage-search-modal/preview-modal/preview-modal.component';
 
 @NgModule({
   imports: [
@@ -36,6 +38,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     MatChipsModule,
     CommonModule,
     NbCardModule,
+    CKEditorModule,
     MatSliderModule,
     MatRadioModule,
     MatCheckboxModule,
@@ -57,10 +60,11 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     FineTuningComponent,
     SynonymousModalComponent,
     EngageSearchModalComponent,
-    FilterOnWordPipe
+    FilterOnWordPipe,
+    PreviewModalComponent
   ],
     providers: [BsModalRef, BsModalService],
-    entryComponents: [SynonymousModalComponent, EngageSearchModalComponent]
+    entryComponents: [SynonymousModalComponent, EngageSearchModalComponent, PreviewModalComponent]
 })
 
 export class SetupModule {}

@@ -19,16 +19,22 @@
       </mat-radio-group>
       <div *ngIf="templateSelection=='Template'">
         <select [(ngModel)]=selectedTemplate class="form-control-sm col-12">
-          <option *ngFor=" let template of templates">{{template}}</option>
+          <option *ngFor=" let template of templates | onlyKeys">{{template}}</option>
         </select>
+        <button type="button" class="btn ittweb-negative-btn mt-2" (click)="editTemplate(selectedTemplate)" [disabled]="!selectedTemplate"> EDIT TEMPLATE </button>
+        <button type="button" class="btn ittweb-delete-btn mt-2 float-right" (click)="deleteTemplate(selectedTemplate)" [disabled]="!selectedTemplate"> DELETE TEMPLATE </button>
       </div>
       <div *ngIf="templateSelection=='Html'">
-          <textarea [(ngModel)]=selectedTemplateHtml placeholder="Your HTML here" class="form-control" rows="5"> </textarea>
+          <ck-editor name="editor" [(ngModel)]="selectedTemplateHtml" skin="moono-lisa" language="en" [fullPage]="true"></ck-editor>
+          <div class="d-flex mt-2">
+              <button type="button" class="btn ittweb-btn" (click)="saveTemplate(templateName)" [disabled]="templateName == ''"> SAVE TEMPLATE </button>
+              <input placeholder="Template name" class="form-control small mt-1 ml-1" [(ngModel)]="templateName">
+          </div>
       </div>
     </nb-card-body>
   </nb-card>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn ittweb-btn" (click)="add(engagesearch)">{{this.type === 'add'?'ADD':'EDIT'}}</button>
-  <button type="button" class="btn ittweb-negative-btn" (click)="add(engagesearch)">PREVIEW</button>
+  <button type="button" class="btn ittweb-btn" [disabled]="checkEmptyHtml() " (click)="add(engagesearch)">{{this.type === 'add'?'ADD':'EDIT'}}</button>
+  <button type="button" class="btn ittweb-negative-btn d-none" [disabled]="checkEmptyHtml()" (click)="showPreview(selectedTemplateHtml)">PREVIEW</button>
 </div>

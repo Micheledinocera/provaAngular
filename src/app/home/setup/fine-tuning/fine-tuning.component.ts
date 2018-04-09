@@ -2,11 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { SynonymousModalComponent } from '../synonimous/synonimous-modal/modal.component';
 import { EngageSearchModalComponent } from './engage-search-modal/engage-search-modal.component';
+import { PreviewModalComponent } from './engage-search-modal/preview-modal/preview-modal.component';
 import { DataService } from '../../../service/data/data.service';
 import { EventEmitterService } from '../../../service/event-emitter/event-emitter.service';
 import { Ip } from '../../../model/Home/Ip';
 import { Currency } from '../../../model/Home/Currency';
 import { AnimationController } from '../../../animationController';
+import { EngageSearch } from '../../../model/Home/EngageSearch';
 
 declare var jquery: any;
 declare var $: any;
@@ -26,6 +28,7 @@ export class FineTuningComponent implements OnInit, OnDestroy {
   currencies = ['Euro - €', 'Dollar - $'];
   showModes = ['Grid view', 'List view'];
   bsModalRef: BsModalRef;
+  previewModalRef: BsModalRef;
   ips = [];
   validateIp= [];
   currency;
@@ -35,7 +38,7 @@ export class FineTuningComponent implements OnInit, OnDestroy {
   voiceSearch;
   googleapikey;
   showMode;
-  engageSearchs = [];
+  engageSearchs: EngageSearch;
   weights = [];
 
   constructor(
@@ -91,6 +94,15 @@ export class FineTuningComponent implements OnInit, OnDestroy {
     this.bsModalRef = this.ms.show(EngageSearchModalComponent);
     this.bsModalRef.content.type = 'add';
     this.bsModalRef.content.engageSearchs = this.engageSearchs;
+    this.bsModalRef.content.templates = this.engageSearchs.templates;
+    this.bsModalRef.content.selectedTemplate = null;
+  }
+
+  showPreview(templates, engageSearch) {
+    const htmlForPreview = Object.keys(templates).includes(engageSearch.template) ?
+      templates[engageSearch.template] : engageSearch.template;
+    this.previewModalRef = this.ms.show(PreviewModalComponent, htmlForPreview);
+    this.previewModalRef.content.innerHtml = htmlForPreview;
   }
 
   ipCheck(ip, index) {
@@ -100,24 +112,23 @@ export class FineTuningComponent implements OnInit, OnDestroy {
       this.validateIp[index] = true;
   }
 
-  editSearch(engageSearch) {
+  editSearch(templates, engageSearch) {
     this.bsModalRef = this.ms.show(EngageSearchModalComponent, engageSearch);
-
     this.bsModalRef.content.keywords = '';
+    this.bsModalRef.content.templates = templates;
     for (const keyword of engageSearch.keywords){
         this.bsModalRef.content.keywords += keyword + ',';
     }
     this.bsModalRef.content.keywords = this.bsModalRef.content.keywords.substring(0, this.bsModalRef.content.keywords.length - 1);
-    if ( this.bsModalRef.content.templates.indexOf(engageSearch.template) >= 0) {
+    if ( Object.keys(this.bsModalRef.content.templates).indexOf(engageSearch.template) >= 0) {
         this.bsModalRef.content.selectedTemplate = engageSearch.template;
     } else {
         this.bsModalRef.content.templateSelection = 'Html';
         this.bsModalRef.content.selectedTemplateHtml = engageSearch.template;
     }
-
     this.bsModalRef.content.type = 'edit';
     this.bsModalRef.content.engagesearch = engageSearch;
-    this.bsModalRef.content.index = this.engageSearchs.indexOf(engageSearch);
+    this.bsModalRef.content.index = this.engageSearchs.data.indexOf(engageSearch);
     this.bsModalRef.content.engageSearchs = this.engageSearchs;
   }
 
@@ -131,10 +142,10 @@ export class FineTuningComponent implements OnInit, OnDestroy {
   }
 
   removeSearch(search) {
-    const index = this.engageSearchs.indexOf(search);
+    const index = this.engageSearchs.data.indexOf(search);
 
     if (index >= 0) {
-        this.engageSearchs.splice(index, 1);
+        this.engageSearchs.data.splice(index, 1);
     }
   }
 
@@ -161,7 +172,6 @@ export class FineTuningComponent implements OnInit, OnDestroy {
       this.voiceSearch = false;
       this.googleapikey = '';
       this.weights = [];
-      this.engageSearchs = [];
     }
   }
 

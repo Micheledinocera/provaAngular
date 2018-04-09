@@ -234,5 +234,6 @@ $accelasearch-app-theme:   mat-light-theme($accelasearch-app-primary, $accelasea
 // and change some variables inside of the map
 $nb-themes: nb-register-theme((
   color-success: $color-secondary-blue,
-  font-main:$font
+  font-main:$font,
+  layout-bg:$color-light-gray
 ), default, default); // let's leave it as default

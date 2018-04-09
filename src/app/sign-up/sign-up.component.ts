@@ -60,7 +60,9 @@ export class SignUpComponent implements OnInit {
         private ee: EventEmitterService,
         private cs: CookieService,
         private notificationService: KitNotificationService
-    ) {}
+    ) {
+      notificationService.config({position: 'top-left'});
+    }
 
     ngOnInit() {
       this.http.get<any>(Rest.URL_COUNTRIES).subscribe(
@@ -74,11 +76,12 @@ export class SignUpComponent implements OnInit {
     onSubmit (form: NgForm) {
         if (form.form.valid) {
           this.http.post<any>(Rest.URL_NEW_CUSTOMER, this.params, Rest.httpOptions).subscribe(
-            data => {this.notificationService.config({position: 'top-right'});
-            this.notificationService.open({message: data.message, className: ''}); }, err => {debugger; }
+            data => {
+              this.notificationService.open({message: data.message, className: ''});
+            },
+            err => {debugger; }
           );
         } else {
-          this.notificationService.config({position: 'top-right'});
           this.notificationService.open({message: 'Check the inserted fields', className: 'warn'});
         }
     }

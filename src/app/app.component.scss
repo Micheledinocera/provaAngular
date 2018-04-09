@@ -449,8 +449,8 @@ mat-checkbox mat-radio-group .mat-radio-container{
   margin-top: 4px;
 }
 
-notification-host div{
-  z-index: 5;
+notification-host>div{
+  z-index: 1050 !important;
 }
 
 notification-host div.item.warn{
@@ -461,4 +461,8 @@ notification-host div.item.warn{
 notification-host div.item{
   background-color: $color-secondary-blue !important;
   opacity: 0.7;
+}
+
+body{
+  background-color: $color-light-gray;
 }

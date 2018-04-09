@@ -9,7 +9,7 @@ export class FineTuning {
   placeholder: string;
   webhook: string;
   jsLayer: string;
-  engageSearchs: EngageSearch[] = [];
+  engageSearchs: EngageSearch;
   weights: Weight[] = [];
   ips: Ip[] = [];
   voiceSearch: boolean;
@@ -22,8 +22,7 @@ export class FineTuning {
       this.googleapikey = data.googleapikey;
       this.webhook = data.webhook;
       this.jsLayer = data.jsLayer;
-      for (const engageSearch of data.engageSearchs)
-        this.engageSearchs.push(new EngageSearch(engageSearch));
+      this.engageSearchs = data.engageSearchs;
       for (const weight of data.weights)
         this.weights.push(new Weight(weight));
       for (const ip of data.ips)
