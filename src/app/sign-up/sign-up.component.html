@@ -10,10 +10,10 @@
   <input type="text" placeholder="Address" class="form-control" name="address" [(ngModel)]="params.address">
   <input type="text" placeholder="Address2" class="form-control" name="address2" [(ngModel)]="params.address2">
   <input type="text" placeholder="Vat" class="form-control" name="vat" [(ngModel)]="params.vat">
-  <select style="width: 80%;padding-top: 0px;" [ngStyle]="{'color':countryISO=='Country'?'gray':''}" name="countryISO" [(ngModel)]="params.country_iso" class="wizard-dropdown form-control-sm input-sm">
-    <option value="Country" disabled hidden selected> Country </option>
-    <option *ngFor="let countryISO of countriesISO" [ngValue]="countryISO.countryiso" [selected]="countryISO == countryISO.countryiso">{{countryISO.country}}</option>
-  </select>
+  <mat-select name="countryISO" [(value)]="params.country_iso" placeholder="Country" class="wizard-dropdown form-control-sm input-sm">
+    <!-- <mat-option value="Country" disabled hidden selected> Country </option> [selected]="countryISO == countryISO.countryiso" -->
+    <mat-option *ngFor="let countryISO of countriesISO" [value]="countryISO.countryiso">{{countryISO.country}}</mat-option>
+  </mat-select>
   <input type="text" placeholder="State" class="form-control" name="state" [(ngModel)]="params.state">
   <input type="text" placeholder="Zipcode" class="form-control" name="zipcode" [(ngModel)]="params.zip_code">
   <input type="text" placeholder="City" class="form-control" name="city" [(ngModel)]="params.city">
@@ -22,23 +22,23 @@
   <input type="text" placeholder="Account Name" class="form-control" name="accountname" [(ngModel)]="params.account_name">
   <input type="text" placeholder="First Name" class="form-control" name="firstname" [(ngModel)]="params.first_name">
   <input type="text" placeholder="Last Name" class="form-control" name="lastname" [(ngModel)]="params.last_name">
-  <select style="width: 80%;padding-top: 0px;" [ngStyle]="{'color':languageISO=='Language'?'gray':''}" name="languageISO" [(ngModel)]="params.lang_iso" class="wizard-dropdown form-control-sm input-sm">
-    <option value="Language" disabled hidden selected> Language </option>
-    <option *ngFor="let languageISO of languagesISO" [ngValue]="languageISO.langiso" [selected]="languageISO == languageISO.langiso">{{languageISO.language}}</option>
-  </select>
-  <select class="wizard-dropdown form-control-sm input-sm" name="datetime_format_id" [(ngModel)]="params.datetime_format_id">
-    <option value="1">mm/dd/yyyy 12 hour</option>
-    <option value="2">mm/dd/yyyy 24 hour</option>
-  </select>
-  <select class="wizard-dropdown form-control-sm input-sm" name="timezone_id" [(ngModel)]="params.timezone_id">
-    <option value="1">Kabul</option>
-    <option value="2">Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
-    <option value="3">West Central Africa</option>
-  </select>
-  <select class="wizard-dropdown form-control-sm input-sm" name="number_format_id" [(ngModel)]="params.number_format_id">
-    <option value="5">1.234,50</option>
-    <option value="6">1234,50</option>
-  </select>
+  <mat-select name="languageISO" [(value)]="params.lang_iso" placeholder="Language" class="wizard-dropdown form-control-sm input-sm">
+    <!-- <option value="Language" disabled hidden selected> Language </option> [selected]="languageISO == languageISO.langiso" -->
+    <mat-option *ngFor="let languageISO of languagesISO" [value]="languageISO.langiso">{{languageISO.language}}</mat-option>
+  </mat-select>
+  <mat-select class="wizard-dropdown form-control-sm input-sm" placeholder="Datetime Format" name="datetime_format_id" [(value)]="params.datetime_format_id">
+    <mat-option value="1">mm/dd/yyyy 12 hour</mat-option>
+    <mat-option value="2">mm/dd/yyyy 24 hour</mat-option>
+  </mat-select>
+  <mat-select class="wizard-dropdown form-control-sm input-sm"  placeholder="Timezone" name="timezone_id" [(value)]="params.timezone_id">
+    <mat-option value="1">Kabul</mat-option>
+    <mat-option value="2">Belgrade, Bratislava, Budapest, Ljubljana, Prague</mat-option>
+    <mat-option value="3">West Central Africa</mat-option>
+  </mat-select>
+  <mat-select class="wizard-dropdown form-control-sm input-sm" name="number_format_id" placeholder="Number Format" [(ngModel)]="params.number_format_id">
+    <mat-option value="5">1.234,50</mat-option>
+    <mat-option value="6">1234,50</mat-option>
+  </mat-select>
   <input type="email" placeholder="Email" class="form-control" email [(ngModel)]="params.user_email" name="userMail" #userMail="ngModel"
   [ngClass]="{
     'form-control-danger': userMail.invalid && userMail.dirty,

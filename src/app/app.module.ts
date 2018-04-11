@@ -34,8 +34,9 @@ import { KitRootModule, KitModule, KitPlatformBrowserModule } from '@ngx-kit/cor
 import { NotificationModule } from './ui/notification/notification.module';
 import { SliderModule } from './ui/slider/slider.module';
 import { CustomSelectModule } from './ui/custom-select/custom-select.module';
-
+import { MatSelectModule } from '@angular/material/select';
 // import { PieChartComponent } from './home/analitycs/pie-chart/pie-chart.component';
+
 
 
 
@@ -52,6 +53,7 @@ import { CustomSelectModule } from './ui/custom-select/custom-select.module';
     imports: [
       HttpClientModule,
       NotificationModule,
+      MatSelectModule,
       CustomSelectModule,
       CommonModule,
       SliderModule,
