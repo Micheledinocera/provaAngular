@@ -3,9 +3,9 @@
     <nb-card>
       <nb-card-body class="third">
         <div class="vertical-centering">
-          <select [(ngModel)]="currency" class="wizard-dropdown col-7 form-control-sm">
-            <option *ngFor="let currency of currencies"> {{currency}} </option>
-          </select>
+          <mat-select [(value)]="currency" class="wizard-dropdown col-7 form-control-sm">
+            <mat-option *ngFor="let currency of currencies" [value]="currency"> {{currency}} </mat-option>
+          </mat-select>
           <mat-radio-group class="float-right vertical-centering-absolute ml-4" [(ngModel)]="separator">
             <mat-radio-button name="separator" value="Dot" class="mr-5"> Dot </mat-radio-button>
             <mat-radio-button name="separator" value="Comma"> Comma </mat-radio-button>
@@ -54,9 +54,9 @@
     <nb-card>
       <nb-card-body class="third">
         <div class="vertical-centering">
-          <select [(ngModel)]="showMode" class="wizard-dropdown col-8 form-control-sm">
-              <option *ngFor="let showMode of showModes"> {{showMode}} </option>
-          </select>
+          <mat-select [(value)]="showMode" class="wizard-dropdown col-8 form-control-sm">
+              <mat-option *ngFor="let showMode of showModes" [value]="showMode"> {{showMode}} </mat-option>
+          </mat-select>
         </div>
       </nb-card-body>
     </nb-card>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RandomComponent } from './random.component';
+import { ChangePlanComponent } from './change-plan.component';
 
-describe('RandomComponent', () => {
-  let component: RandomComponent;
-  let fixture: ComponentFixture<RandomComponent>;
+describe('ChangePlanComponent', () => {
+  let component: ChangePlanComponent;
+  let fixture: ComponentFixture<ChangePlanComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RandomComponent ]
+      declarations: [ ChangePlanComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RandomComponent);
+    fixture = TestBed.createComponent(ChangePlanComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

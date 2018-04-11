@@ -158,6 +158,7 @@ export class FieldsComponent implements OnInit, AfterViewInit, OnDestroy {
         this.facetsUnselectedDynamic = false;
         this.categoryExclude = false;
       }
+      window.scrollTo(0, 0);
     }
 
     ngOnDestroy() {

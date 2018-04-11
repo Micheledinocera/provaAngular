@@ -24,6 +24,8 @@ import { FinishComponent } from './finish/finish.component';
 
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { BsModalService } from 'ngx-bootstrap';
+import { CustomSelectModule } from '../../ui/custom-select';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -36,6 +38,8 @@ import { BsModalService } from 'ngx-bootstrap';
     AngularSvgIconModule,
     OrderModule,
     SharedModule,
+    MatSelectModule,
+    CustomSelectModule,
     MatCheckboxModule,
     MatRadioModule,
     ReactiveFormsModule,

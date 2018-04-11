@@ -18,9 +18,9 @@
         <mat-radio-button name="separator" value="Html"> Insert your HTML </mat-radio-button>
       </mat-radio-group>
       <div *ngIf="templateSelection=='Template'">
-        <select [(ngModel)]=selectedTemplate class="form-control-sm col-12">
-          <option *ngFor=" let template of templates | onlyKeys">{{template}}</option>
-        </select>
+        <mat-select [(value)]=selectedTemplate class="form-control-sm col-12">
+          <mat-option *ngFor=" let template of templates | onlyKeys" [value]="template">{{template}}</mat-option>
+        </mat-select>
         <button type="button" class="btn ittweb-negative-btn mt-2" (click)="editTemplate(selectedTemplate)" [disabled]="!selectedTemplate"> EDIT TEMPLATE </button>
         <button type="button" class="btn ittweb-delete-btn mt-2 float-right" (click)="deleteTemplate(selectedTemplate)" [disabled]="!selectedTemplate"> DELETE TEMPLATE </button>
       </div>

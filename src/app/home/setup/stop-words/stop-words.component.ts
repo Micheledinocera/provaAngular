@@ -43,6 +43,7 @@ export class StopWordsComponent implements OnInit, OnDestroy {
     this.time = 1;
     this.defaultWords = this.ds.getStopWords()[this.ds.getSelectedSite()]['defaultWords'];
     this.words = this.ds.getStopWords()[this.ds.getSelectedSite()]['words'];
+    window.scrollTo(0, 0);
   }
 
   ngOnDestroy() {

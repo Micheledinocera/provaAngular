@@ -71,6 +71,7 @@ export class SignUpComponent implements OnInit {
       this.http.get<any>(Rest.URL_LANGUAGES).subscribe(
         data => {this.languagesISO = data; } , err => {}
       );
+      window.scrollTo(0, 0);
     }
 
     onSubmit (form: NgForm) {

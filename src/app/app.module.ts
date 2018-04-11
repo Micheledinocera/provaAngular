@@ -28,10 +28,13 @@ import {EventEmitterService} from './service/event-emitter/event-emitter.service
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableViewComponent } from './home/table-view/table-view.component';
-import { RandomComponent } from './random/random.component';
+import { ChangePlanComponent } from './change-plan/change-plan.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { KitRootModule, KitModule, KitPlatformBrowserModule } from '@ngx-kit/core';
 import { NotificationModule } from './ui/notification/notification.module';
+import { SliderModule } from './ui/slider/slider.module';
+import { CustomSelectModule } from './ui/custom-select/custom-select.module';
+
 // import { PieChartComponent } from './home/analitycs/pie-chart/pie-chart.component';
 
 
@@ -43,13 +46,15 @@ import { NotificationModule } from './ui/notification/notification.module';
       HeaderComponent,
       LoginComponent,
       SuperAdminComponent,
-      RandomComponent,
+      ChangePlanComponent,
       SignUpComponent
     ],
     imports: [
       HttpClientModule,
       NotificationModule,
+      CustomSelectModule,
       CommonModule,
+      SliderModule,
       NbLayoutModule,
       KitRootModule,
       KitModule,

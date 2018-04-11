@@ -48,6 +48,7 @@ export class SynonimousComponent implements OnInit, OnDestroy {
     for (const word of this.words){
       word.selected = false;
     }
+    window.scrollTo(0, 0);
   }
 
   ngOnDestroy() {

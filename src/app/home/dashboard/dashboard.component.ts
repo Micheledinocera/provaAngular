@@ -4,7 +4,7 @@ import { Kpi } from '../../model/Home/Kpi';
 import { Table } from '../../model/Home/Table';
 import { DataService } from '../../service/data/data.service';
 import { AnimationController } from '../../animationController';
-import { RandomComponent } from '../../random/random.component';
+import { Utility } from '../../shared/Utility';
 
 declare var jquery: any;
 declare var $: any;
@@ -46,6 +46,7 @@ export class DashboardComponent implements OnInit {
     this.time = 1;
     this.getDataFromDataService(this.ds.getSelectedSite());
     $('.ittweb-tabset').children(0).children(0).eq(1).removeClass('active');
+    window.scrollTo(0, 0);
   }
 
   getDataFromDataService(selectedSite) {
@@ -66,5 +67,9 @@ export class DashboardComponent implements OnInit {
 
   endAnimation() {
     AnimationController.endAnimation(this.ee);
+  }
+
+  toCustomSelectConverter(array) {
+    return Utility.toCustomSelectConverter(array);
   }
 }

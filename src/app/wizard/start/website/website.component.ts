@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {DataService} from '../../../service/data/data.service';
 import {EventEmitterService} from '../../../service/event-emitter/event-emitter.service';
 import {WizardController} from '../wizard-controller';
+import { Utility } from '../../../shared/Utility';
 
 declare var jquery: any;
 declare var $: any;
@@ -37,6 +38,7 @@ export class WebsiteComponent implements OnInit {
     ngOnInit() {
         this.info = this.wizardController.initialazeView();
         this.state = this.info.state;
+        window.scrollTo(0, 0);
     }
 
     slideOutLeft() {
@@ -59,5 +61,20 @@ export class WebsiteComponent implements OnInit {
       this.sitesFiltred = this.sites.filter(function(i) {
         return i.name !== siteValue;
       });
+    }
+
+    toCustomSelectConverter(array, type) {
+      const result = [];
+      if (type === 'completed')
+        array.forEach( it => {
+          if (it.completed)
+            result.push({label: it.name, value: it});
+        });
+      else
+        array.forEach( it => {
+          if (!it.completed)
+            result.push({label: it.name, value: it});
+        });
+      return result;
     }
 }

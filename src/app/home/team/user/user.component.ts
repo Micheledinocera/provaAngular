@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Utility } from '../../../shared/Utility';
 
 @Component({
   selector: 'app-user',
@@ -15,5 +16,9 @@ export class UserComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toCustomSelectConverter(array) {
+    return Utility.toCustomSelectConverter(array);
   }
 }

@@ -466,3 +466,40 @@ notification-host div.item{
 body{
   background-color: $color-light-gray;
 }
+
+.slider-container .slider .bg, .slider-container .slider .fill{
+  height: 10px !important;
+}
+
+.slider-container .slider .pointer{
+  height: 15px !important;
+  width: 15px !important;
+}
+
+.mat-select-content{
+  background-color: white;
+}
+
+mat-select.form-control-sm{
+  border: solid 1px black;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  color: black;
+}
+
+.mat-option{
+  border-bottom: solid 1px $color-light-gray;
+  padding: 25px;
+  margin: 0px 10px;
+}
+
+.mat-option:hover,.mat-option.mat-selected {
+  color: white !important;
+  background: $color-primary-blue !important;
+}
+
+.cdk-overlay-container{
+  z-index: 1051 !important;
+}

@@ -17,6 +17,7 @@ export class CompletedComponent implements OnInit {
 
   ngOnInit() {
     this.wizardWebsite = this.ds.getWizardSite().name;
+    window.scrollTo(0, 0);
   }
 
   navigate(type) {

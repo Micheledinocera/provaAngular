@@ -33,6 +33,7 @@ export class TeamComponent implements OnInit, OnDestroy, OnChanges {
     $('.ittweb-tabset').children(0).children(0).eq(1).removeClass('active');
     this.users = this.ds.getUsers()[this.ds.getSelectedSite()];
     this.containersNumberArray = Array(Math.ceil(this.users.length / 4)).fill(0).map((x, i) => i);
+    window.scrollTo(0, 0);
   }
 
   startAnimation() {

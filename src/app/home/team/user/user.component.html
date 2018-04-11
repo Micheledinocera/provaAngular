@@ -9,9 +9,9 @@
     <input *ngIf="editable" class="form-control small mt-2" [ngClass]="editable?'edit-form':''" [(ngModel)]="user.mail">
 
     <div *ngIf="!editable" class="small text-center mt-3 mb-3 role"> {{user.type}} </div>
-    <select *ngIf="editable" class="wizard-dropdown form-control-sm col-12 mt-3 mb-3"  [ngClass]="editable?'edit-form':''" [(ngModel)]="user.type">
-      <option *ngFor="let type of types">{{type}}</option>
-    </select>
+    <mat-select *ngIf="editable" class="wizard-dropdown form-control-sm col-12 mt-3 mb-3"  [ngClass]="editable?'edit-form':''" [(value)]="user.type">
+      <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+    </mat-select>
 
     <td>
       <button class="btn small center mb-3" [ngClass]="editable?'ittweb-negative-btn':'ittweb-btn'" (click)="editable = !editable;">{{editable?'SAVE':'EDIT'}}</button>

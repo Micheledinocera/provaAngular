@@ -46,4 +46,8 @@ export class HomeComponent implements OnDestroy, OnInit {
     ngOnDestroy() {
       this.ee.onHomeEvent.emit(false);
     }
+
+    onChangePlanClick() {
+        this.router.navigate(['change-plan']);
+    }
 }

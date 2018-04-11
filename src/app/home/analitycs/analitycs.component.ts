@@ -6,6 +6,7 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { MapChartData } from '../../model/Home/MapChartData';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { AnimationController } from '../../animationController';
+import { Utility } from '../../shared/Utility';
 declare var jquery: any;
 declare var $: any;
 
@@ -100,6 +101,7 @@ export class AnalitycsComponent implements OnInit, OnDestroy {
       for ( const j of this.pieChartData[timeRange][0].data)
         this.pieChartData[timeRange][0].pieChartColors.push(this.getRandomColor());
     }
+    window.scrollTo(0, 0);
     // this.timeout = setTimeout(() => this.ee.onComponentAppear.emit(''), 500);
   }
 
@@ -114,6 +116,10 @@ export class AnalitycsComponent implements OnInit, OnDestroy {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+  }
+
+  toCustomSelectConverter(array) {
+    return Utility.toCustomSelectConverter(array);
   }
 
   getDataFromDataService(selectedSite) {

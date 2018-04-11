@@ -31,6 +31,7 @@ export class CmsComponent implements OnInit {
         this.info = this.wizardController.initialazeView();
         this.state = this.info.state;
         this.versions = [];
+        window.scrollTo(0, 0);
     }
 
     slideOut() {

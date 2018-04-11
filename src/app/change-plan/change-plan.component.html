@@ -1,0 +1,19 @@
+<div class="ittweb-container" style="width:75%">
+  <div class="col-12 change-plan mt-5"> Choose your plan </div>
+  <div class="d-flex col-12 mt-5">
+    <div class="col-6">
+      <div class="slider-container">
+        <div class="page-sub-title"> SKUS: {{skusValue}} </div>
+        <slider [(ngModel)]="skusValue" [min]="5000" [max]="200000" [step]="5000"> </slider>
+      </div>
+      <div class="slider-container mt-5">
+        <div class="page-sub-title"> REQUESTS: {{requestsValue}} </div>
+        <slider [(ngModel)]="requestsValue" [min]="5000" [max]="200000" [step]="5000"> </slider>
+      </div>
+    </div>
+    <div class="col-6" style="text-align: center;">
+      <div class="change-plan"> {{requestsValue+skusValue}} €/month</div>
+      <button class="btn ittweb-btn"> BUY NOW </button>
+    </div>
+  </div>
+</div>

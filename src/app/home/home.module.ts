@@ -6,6 +6,9 @@ import { NbCardModule, NbUserModule } from '@nebular/theme';
 import { ThemeModule } from '../theme/theme.module';
 import { SharedModule} from '../shared/shared.module';
 import { CountUpModule } from 'countup.js-angular2';
+import { CustomSelectModule } from '../ui/custom-select/custom-select.module';
+import {MatSelectModule} from '@angular/material/select';
+
 // import { AngularEchartsModule } from 'ngx-echarts';
 
 import { routingComponents} from './home-routing.module';
@@ -40,6 +43,8 @@ import { UserComponent } from './team/user/user.component';
       ThemeModule,
       NbRouteTabsetModule,
       HomeRoutingModule,
+      CustomSelectModule,
+      MatSelectModule,
       NbCardModule,
       NbUserModule,
       ChartsModule,

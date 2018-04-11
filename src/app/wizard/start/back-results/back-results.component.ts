@@ -68,6 +68,7 @@ export class BackResultsComponent implements OnInit, OnDestroy {
       this.wizardSite = this.dataservice.getWizardSite();
       this.backResultsInfo = this.dataservice.getBackResults(this.wizardSite.name);
       this.fields = this.backResultsInfo ? this.backResultsInfo.backResults : BackResults.getDummyBackResultsUnchecked();
+      window.scrollTo(0, 0);
     }
 
     ngOnDestroy() {

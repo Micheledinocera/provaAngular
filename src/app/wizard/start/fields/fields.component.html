@@ -64,9 +64,9 @@
               <tr *ngFor="let facet of facets | onlyChecked">
                 <td style="width: 20%;"> {{facet.value}} </td>
                 <td style="width: 30%;">
-                  <select style="width: 80%;padding-top: 0px;" [(ngModel)]="facet.type" class="wizard-dropdown form-control-sm input-sm">
-                    <option *ngFor="let facetType of facetTypes" [ngValue]="facetType" [selected]="facetType == facet.type">{{facetType}}</option>
-                  </select>
+                  <mat-select style="width: 80%;padding-top: 0px;" [(value)]="facet.type" class="wizard-dropdown form-control-sm input-sm">
+                    <mat-option *ngFor="let facetType of facetTypes" [value]="facetType">{{facetType}}</mat-option>
+                  </mat-select>
                 </td>
                 <td>
                   <div class="d-flex">

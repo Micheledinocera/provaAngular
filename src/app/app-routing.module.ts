@@ -5,11 +5,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {SuperAdminComponent} from './super-admin/super-admin.component';
+import {ChangePlanComponent} from './change-plan/change-plan.component';
 
 const routes: Routes = [
     { path: '', component: SignUpComponent },
     { path: 'login', component: LoginComponent },
     { path: 'superAdmin', component: SuperAdminComponent },
+    { path: 'change-plan', component: ChangePlanComponent},
     { path: 'home', loadChildren: './home/home.module#HomeModule' },
     { path: 'wizard', loadChildren: './wizard/wizard.module#WizardModule' },
     { path: '**', component: NotFoundComponent },

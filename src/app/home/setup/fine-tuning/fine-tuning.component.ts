@@ -57,6 +57,7 @@ export class FineTuningComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.time = 1;
     this.getDataFromDataService(this.ds.getSelectedSite());
+    window.scrollTo(0, 0);
   }
 
   googleApiKeyCheck() {

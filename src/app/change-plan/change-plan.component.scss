@@ -1,0 +1,8 @@
+@import "../../styles.scss";
+
+.change-plan{
+  @include Headline-2();
+  text-align: center;
+}
+
+

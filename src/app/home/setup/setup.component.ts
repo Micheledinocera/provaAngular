@@ -31,6 +31,7 @@ export class SetupComponent implements OnInit {
 
     ngOnInit() {
         $('.ittweb-tabset').children(0).children(0).eq(1).addClass('active');
+        window.scrollTo(0, 0);
         // debugger;
         // $(".ittweb-tabset-setup ul li a").hover(function(){
         //     $(this).css("color", "#306ccc");

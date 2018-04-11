@@ -65,6 +65,7 @@ export class FinishComponent implements OnInit {
         this.facetsUnselectedDynamic = this.fields.facetsUnselectedDynamic;
         this.categoryExclude = this.fields.categoryExclude;
       }
+      window.scrollTo(0, 0);
     }
 
     slideOutLeft() {

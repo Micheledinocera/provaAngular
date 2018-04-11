@@ -28,6 +28,8 @@ import { ContenteditableDirective } from 'ng-contenteditable';
 import { SliderModule } from '../../ui/slider';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PreviewModalComponent } from './fine-tuning/engage-search-modal/preview-modal/preview-modal.component';
+import { CustomSelectModule } from '../../ui/custom-select';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -38,6 +40,8 @@ import { PreviewModalComponent } from './fine-tuning/engage-search-modal/preview
     MatChipsModule,
     CommonModule,
     NbCardModule,
+    MatSelectModule,
+    CustomSelectModule,
     CKEditorModule,
     MatSliderModule,
     MatRadioModule,

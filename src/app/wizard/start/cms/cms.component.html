@@ -19,9 +19,9 @@
       <div class="col-4 mt-5">
         <div class="page-sub-title">Choose the CMS version </div>
         <div>
-          <select class="wizard-dropdown form-control-sm">
-            <option *ngFor="let version of versions">{{version}}</option>
-          </select>
+          <mat-select class="wizard-dropdown form-control-sm">
+            <mat-option *ngFor="let version of versions" [value]="version">{{version}}</mat-option>
+          </mat-select>
         </div>
       </div>
       <div class="col-4 mt-5">

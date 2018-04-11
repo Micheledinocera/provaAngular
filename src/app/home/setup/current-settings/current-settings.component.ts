@@ -54,6 +54,7 @@ export class CurrentSettingsComponent implements OnInit {
   ngOnInit() {
     this.time = 1;
     this.backResultsInfo = this.getDataFromDataService(this.dataservice.getSelectedSite());
+    window.scrollTo(0, 0);
   }
 
   getDataFromDataService(sitename) {

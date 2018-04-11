@@ -35,6 +35,7 @@ export class TipsComponent implements OnInit {
     $('.ittweb-tabset').children(0).children(0).eq(1).removeClass('active');
     this.data = this.ds.getTips()[this.ds.getSelectedSite()];
     this.containersNumberArray = Array(Math.ceil(this.data.length / 2)).fill(0).map((x, i) => i);
+    window.scrollTo(0, 0);
   }
 
   startAnimation() {

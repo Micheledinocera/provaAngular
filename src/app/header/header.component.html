@@ -38,7 +38,7 @@
             </div>
             <ul [@appear]='state' role="menu" class="header-dropdown-menu list-group center">
                 <li role="menuitem" class="list-group-item"><div>Account</div></li>
-                <li role="menuitem" class="list-group-item"><div>Plan</div></li>
+                <li role="menuitem" class="list-group-item" routerLink="/change-plan"><div>Plan</div></li>
                 <!--<li *ngIf="!user.isAdmin()" role="menuitem" (click)="wizardClick()" class="list-group-item">Wizard</li>-->
                 <li role="menuitem" (click)="logoutClick()" class="list-group-item"><div>Logout</div></li>
             </ul>

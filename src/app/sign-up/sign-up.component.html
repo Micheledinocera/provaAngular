@@ -1,4 +1,4 @@
-<div class="center sign-up mt-5"> SIGN UP </div>
+<div class="center sign-up"> SIGN UP </div>
 <form #signUpForm="ngForm" class="ittweb-container col-4 mt-5" (ngSubmit)="onSubmit(signUpForm)">
   <input type="text" placeholder="Full name" class="form-control" name="fullName" [(ngModel)]="params.contact_name" >
   <input type="email" placeholder="E-mail" class="form-control" required email [(ngModel)]="params.email" name="email" #email="ngModel"
