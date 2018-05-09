@@ -1,53 +1,55 @@
-<div class="center sign-up"> SIGN UP </div>
-<form #signUpForm="ngForm" class="ittweb-container col-4 mt-5" (ngSubmit)="onSubmit(signUpForm)">
-  <input type="text" placeholder="Full name" class="form-control" name="fullName" [(ngModel)]="params.contact_name" >
-  <input type="email" placeholder="E-mail" class="form-control" required email [(ngModel)]="params.email" name="email" #email="ngModel"
-  [ngClass]="{
-    'form-control-danger': email.invalid && email.dirty,
-    '': email.valid && email.dirty
-  }">
-  <input type="text" placeholder="Company" class="form-control" name="company" [(ngModel)]="params.company">
-  <input type="text" placeholder="Address" class="form-control" name="address" [(ngModel)]="params.address">
-  <input type="text" placeholder="Address2" class="form-control" name="address2" [(ngModel)]="params.address2">
-  <input type="text" placeholder="Vat" class="form-control" name="vat" [(ngModel)]="params.vat">
-  <mat-select name="countryISO" [(value)]="params.country_iso" placeholder="Country" class="wizard-dropdown form-control-sm input-sm">
-    <!-- <mat-option value="Country" disabled hidden selected> Country </option> [selected]="countryISO == countryISO.countryiso" -->
-    <mat-option *ngFor="let countryISO of countriesISO" [value]="countryISO.countryiso">{{countryISO.country}}</mat-option>
-  </mat-select>
-  <input type="text" placeholder="State" class="form-control" name="state" [(ngModel)]="params.state">
-  <input type="text" placeholder="Zipcode" class="form-control" name="zipcode" [(ngModel)]="params.zip_code">
-  <input type="text" placeholder="City" class="form-control" name="city" [(ngModel)]="params.city">
-  <input type="text" placeholder="Phone" class="form-control" name="phone" [(ngModel)]="params.phone">
-  <input type="text" placeholder="Website" class="form-control" name="website" [(ngModel)]="params.website">
-  <input type="text" placeholder="Account Name" class="form-control" name="accountname" [(ngModel)]="params.account_name">
-  <input type="text" placeholder="First Name" class="form-control" name="firstname" [(ngModel)]="params.first_name">
-  <input type="text" placeholder="Last Name" class="form-control" name="lastname" [(ngModel)]="params.last_name">
-  <mat-select name="languageISO" [(value)]="params.lang_iso" placeholder="Language" class="wizard-dropdown form-control-sm input-sm">
-    <!-- <option value="Language" disabled hidden selected> Language </option> [selected]="languageISO == languageISO.langiso" -->
-    <mat-option *ngFor="let languageISO of languagesISO" [value]="languageISO.langiso">{{languageISO.language}}</mat-option>
-  </mat-select>
-  <mat-select class="wizard-dropdown form-control-sm input-sm" placeholder="Datetime Format" name="datetime_format_id" [(value)]="params.datetime_format_id">
-    <mat-option value="1">mm/dd/yyyy 12 hour</mat-option>
-    <mat-option value="2">mm/dd/yyyy 24 hour</mat-option>
-  </mat-select>
-  <mat-select class="wizard-dropdown form-control-sm input-sm"  placeholder="Timezone" name="timezone_id" [(value)]="params.timezone_id">
-    <mat-option value="1">Kabul</mat-option>
-    <mat-option value="2">Belgrade, Bratislava, Budapest, Ljubljana, Prague</mat-option>
-    <mat-option value="3">West Central Africa</mat-option>
-  </mat-select>
-  <mat-select class="wizard-dropdown form-control-sm input-sm" name="number_format_id" placeholder="Number Format" [(ngModel)]="params.number_format_id">
-    <mat-option value="5">1.234,50</mat-option>
-    <mat-option value="6">1234,50</mat-option>
-  </mat-select>
-  <input type="email" placeholder="Email" class="form-control" email [(ngModel)]="params.user_email" name="userMail" #userMail="ngModel"
-  [ngClass]="{
-    'form-control-danger': userMail.invalid && userMail.dirty,
-    '': userMail.valid && userMail.dirty
-  }">
-  <input type="text" placeholder="Phone" class="form-control" name="userPhone" [(ngModel)]="params.user_phone">
-  <input type="password" placeholder="Password" class="form-control" name="password" [(ngModel)]="params.password">
-  <button type="submit" class="btn ittweb-btn col-12">SIGN UP</button>
-  <div>
-    Already a member? <span class="go-to-login" routerLink="/login"> Login </span>
-  </div>
-</form>
+<div class="container">
+  <div class="center sign-up"> SIGN UP </div>
+  <form #signUpForm="ngForm" class="ittweb-container col-4 mt-5" (ngSubmit)="onSubmit(signUpForm)">
+    <input type="text" placeholder="Full name" class="form-control" name="fullName" [(ngModel)]="params.contact_name" >
+    <input type="email" placeholder="E-mail" class="form-control" required email [(ngModel)]="params.email" name="email" #email="ngModel"
+    [ngClass]="{
+      'form-control-danger': email.invalid && email.dirty,
+      '': email.valid && email.dirty
+    }">
+    <input type="text" placeholder="Company" class="form-control" name="company" [(ngModel)]="params.company">
+    <input type="text" placeholder="Address" class="form-control" name="address" [(ngModel)]="params.address">
+    <input type="text" placeholder="Address2" class="form-control" name="address2" [(ngModel)]="params.address2">
+    <input type="text" placeholder="Vat" class="form-control" name="vat" [(ngModel)]="params.vat">
+    <mat-select name="countryISO" [(value)]="params.country_iso" placeholder="Country" class="wizard-dropdown form-control-sm input-sm">
+      <!-- <mat-option value="Country" disabled hidden selected> Country </option> [selected]="countryISO == countryISO.countryiso" -->
+      <mat-option *ngFor="let countryISO of countriesISO" [value]="countryISO.countryiso">{{countryISO.country}}</mat-option>
+    </mat-select>
+    <input type="text" placeholder="State" class="form-control" name="state" [(ngModel)]="params.state">
+    <input type="text" placeholder="Zipcode" class="form-control" name="zipcode" [(ngModel)]="params.zip_code">
+    <input type="text" placeholder="City" class="form-control" name="city" [(ngModel)]="params.city">
+    <input type="text" placeholder="Phone" class="form-control" name="phone" [(ngModel)]="params.phone">
+    <input type="text" placeholder="Website" class="form-control" name="website" [(ngModel)]="params.website">
+    <input type="text" placeholder="Account Name" class="form-control" name="accountname" [(ngModel)]="params.account_name">
+    <input type="text" placeholder="First Name" class="form-control" name="firstname" [(ngModel)]="params.first_name">
+    <input type="text" placeholder="Last Name" class="form-control" name="lastname" [(ngModel)]="params.last_name">
+    <mat-select name="languageISO" [(value)]="params.lang_iso" placeholder="Language" class="wizard-dropdown form-control-sm input-sm">
+      <!-- <option value="Language" disabled hidden selected> Language </option> [selected]="languageISO == languageISO.langiso" -->
+      <mat-option *ngFor="let languageISO of languagesISO" [value]="languageISO.langiso">{{languageISO.language}}</mat-option>
+    </mat-select>
+    <mat-select class="wizard-dropdown form-control-sm input-sm" placeholder="Datetime Format" name="datetime_format_id" [(value)]="params.datetime_format_id">
+      <mat-option value="1">mm/dd/yyyy 12 hour</mat-option>
+      <mat-option value="2">mm/dd/yyyy 24 hour</mat-option>
+    </mat-select>
+    <mat-select class="wizard-dropdown form-control-sm input-sm"  placeholder="Timezone" name="timezone_id" [(value)]="params.timezone_id">
+      <mat-option value="1">Kabul</mat-option>
+      <mat-option value="2">Belgrade, Bratislava, Budapest, Ljubljana, Prague</mat-option>
+      <mat-option value="3">West Central Africa</mat-option>
+    </mat-select>
+    <mat-select class="wizard-dropdown form-control-sm input-sm" name="number_format_id" placeholder="Number Format" [(ngModel)]="params.number_format_id">
+      <mat-option value="5">1.234,50</mat-option>
+      <mat-option value="6">1234,50</mat-option>
+    </mat-select>
+    <input type="email" placeholder="Email" class="form-control" email [(ngModel)]="params.user_email" name="userMail" #userMail="ngModel"
+    [ngClass]="{
+      'form-control-danger': userMail.invalid && userMail.dirty,
+      '': userMail.valid && userMail.dirty
+    }">
+    <input type="text" placeholder="Phone" class="form-control" name="userPhone" [(ngModel)]="params.user_phone">
+    <input type="password" placeholder="Password" class="form-control" name="password" [(ngModel)]="params.password">
+    <button type="submit" class="btn ittweb-btn col-12">SIGN UP</button>
+    <div>
+      Already a member? <span class="go-to-login" routerLink="/login"> Login </span>
+    </div>
+  </form>
+</div>
